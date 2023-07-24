@@ -148,8 +148,6 @@ namespace QuanLyCafe
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that might occur (e.g., invalid image format)
-                Console.WriteLine("Error converting byte array to image: " + ex.Message);
                 return null;
             }
         }
