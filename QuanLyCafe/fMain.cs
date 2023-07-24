@@ -34,8 +34,8 @@ namespace QuanLyCafe
             Helper_Project.svgImages = svgImageCollection1;
             ShowNotification("Chào mừng bạn", "Chúc bạn một ngày tốt lành", "Làm việc thật tốt nhé <3", Helper_Project.svgImages["team_work"]);
 
-            uc_QuanLyBan uc_quanlyban = new uc_QuanLyBan();
-            Helper_Project.ShowFormUC(uc_quanlyban);
+            uc_QLSanPham uc_QLSanPham = new uc_QLSanPham();
+            Helper_Project.ShowFormUC(uc_QLSanPham);
         }
 
         private void ControlElementQLSanPham_Click(object sender, EventArgs e)
