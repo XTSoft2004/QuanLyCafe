@@ -82,5 +82,34 @@ namespace QuanLyCafe.QuanLyBan
             Helper_QuanLyBan.FlowLayoutPanel = fLayoutTable;
             Helper_QuanLyBan.LoadAllTable();
         }
+        private void rbAllTable_Click(object sender, EventArgs e)
+        {
+            List<QLBan> result = uc_QuanLyBan.db_quanly.QLBans.ToList();
+            Helper_QuanLyBan.LoadAllTable(result);
+        }
+
+        private void rbDangDuocDat_Click(object sender, EventArgs e)
+        {
+            List<QLBan> result = uc_QuanLyBan.db_quanly.QLBans
+                .Where(p=> p.TrangThaiBan == "Đang được đạt")
+                .ToList();
+            Helper_QuanLyBan.LoadAllTable(result);
+        }
+
+        private void rbDangHoatDong_Click(object sender, EventArgs e)
+        {
+            List<QLBan> result = uc_QuanLyBan.db_quanly.QLBans
+                .Where(p => p.TrangThaiBan == "Đang hoạt động")
+                .ToList();
+            Helper_QuanLyBan.LoadAllTable(result);
+        }
+
+        private void rbDangTrong_Click(object sender, EventArgs e)
+        {
+            List<QLBan> result = uc_QuanLyBan.db_quanly.QLBans
+                .Where(p => p.TrangThaiBan == "Đang trống")
+                .ToList();
+            Helper_QuanLyBan.LoadAllTable(result);
+        }
     }
 }

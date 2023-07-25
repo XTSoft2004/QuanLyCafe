@@ -83,3 +83,6 @@ G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.OrderSanPham.Form_H
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.OrderSanPham.Form_Helper.fKhachHang.resources
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.OrderSanPham.Form_Helper.fNhanVien.resources
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLy.fChucVu.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLySanPham.AddLinkImage.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLySanPham.QLTopping.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLySanPham.Test.resources

@@ -27,11 +27,11 @@ namespace QuanLyCafe.OrderSanPham
         private void LoadAllTopping()
         {
             var result = db_quanly.Toppings
-                .Where(p=> p.IdSanPham == IdSanPham)
+                .Where(p=> p.IdDanhMucTopping == IdSanPham)
                 .Select(p => new { p.IdTopping,p.NameTopping, p.GiaTopping })
                 .ToList();
 
-            toppingBindingSource.DataSource = result;
+            danhMucToppingBindingSource.DataSource = result;
             gridView1.RefreshData();                  
         }
         private void fAddTopping_Load(object sender, EventArgs e)
@@ -70,8 +70,8 @@ namespace QuanLyCafe.OrderSanPham
                 }
 
                 _ModelOrderSanPham _order = _listsanpham.Find(p => p.IdSanPham == IdSanPham);
-                _order.ToppingList = null;
-                _order.ToppingList = list_topping;
+                //_order.ToppingList = null;
+                //_order.ToppingList = list_topping;
 
                 gridView1.SelectRow(index[0]);
 

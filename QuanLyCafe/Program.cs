@@ -1,6 +1,7 @@
 ﻿using DevExpress.Skins;
 using DevExpress.UserSkins;
 using QuanLyCafe.QLNhanVien;
+using QuanLyCafe.QLySanPham;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace QuanLyCafe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fMain());
+            Application.Run(new QLTopping(0));
         }
     }
 }

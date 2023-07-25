@@ -33,6 +33,7 @@ namespace QuanLyCafe.QuanLyBan
             {
                 Size = new Size(250, 120),
                 //BackColor = Color.DarkSeaGreen,
+                Name = "Color_" + id,
             };
             if (statusTable == "Đang hoạt động") panelColor.BackColor = color_DangHoatDong;
             else if (statusTable == "Đang trống") panelColor.BackColor = color_DangTrong;
@@ -68,6 +69,7 @@ namespace QuanLyCafe.QuanLyBan
                 ForeColor = Color.White,
                 Size = new Size(150, 20),
                 Location = new Point(85, 60),
+                Name = "TrangBai_Id_" + id,
             };
 
             PictureBox picture = new PictureBox()
@@ -90,7 +92,6 @@ namespace QuanLyCafe.QuanLyBan
                 Location = new Point(0, 90),
             };
 
-
             //Button btnDangSuDung = new Button()
             //{
             //    Size = new Size(100, 30),
@@ -102,22 +103,21 @@ namespace QuanLyCafe.QuanLyBan
             //};
             //btnDangSuDung.Click += new EventHandler(btnBanDangSuDung_Click);
 
-
-            //Button btnBanTrong = new Button()
-            //{
-            //    Size = new Size(70, 30),
-            //    Location = new Point(100, 0),  // Đặt vị trí cho button nhỏ bên trong p1
-            //    Text = "Bàn trống",
-            //    Font = new Font("Times New Roman", 8),
-            //    Name = "btn_BanTrong_" + id,
-            //    //BackColor = Color.White,
-            //};
-            //btnBanTrong.Click += new EventHandler(btnBanTrong_Click);
+            Button btnBanTrong = new Button()
+            {
+                Size = new Size(80, 30),
+                Location = new Point(3, 0),  // Đặt vị trí cho button nhỏ bên trong p1
+                Text = "Bàn trống",
+                Font = new Font("Times New Roman", 8),
+                Name = "btn_BanTrong_" + id,
+                //BackColor = Color.White,
+            };
+            btnBanTrong.Click += new EventHandler(btnBanTrong_Click);
 
             Button btnDuocDat = new Button()
             {
-                Size = new Size(120, 30),
-                Location = new Point(3, 0),  // Đặt vị trí cho button nhỏ bên trong p1
+                Size = new Size(80, 30),
+                Location = new Point(85, 0),  // Đặt vị trí cho button nhỏ bên trong p1
                 Text = "Bàn đặt",
                 Font = new Font("Times New Roman", 8),
                 Name = "btn_ChuaSuDung_" + id,
@@ -127,8 +127,8 @@ namespace QuanLyCafe.QuanLyBan
 
             Button btnOrder = new Button()
             {
-                Size = new Size(125, 30),
-                Location = new Point(123, 0),  // Đặt vị trí cho button nhỏ bên trong p1
+                Size = new Size(85, 30),
+                Location = new Point(165, 0),  // Đặt vị trí cho button nhỏ bên trong p1
                 Text = "Order",
                 Font = new Font("Times New Roman", 8),
                 Name = "btn_Order_" + id,
@@ -139,7 +139,7 @@ namespace QuanLyCafe.QuanLyBan
             //panelBtn.Controls.Add(btnDangSuDung);
             panelBtn.Controls.Add(btnDuocDat);
             panelBtn.Controls.Add(btnOrder);
-            //panelBtn.Controls.Add(btnBanTrong);
+            panelBtn.Controls.Add(btnBanTrong);
 
             #endregion
 
@@ -157,35 +157,59 @@ namespace QuanLyCafe.QuanLyBan
         private static void btnOrderBan_Click(object sender, EventArgs e)
         {
             Button btn_click = (Button)sender;
+
             string nameban = btn_click.Name;
             int idban = Convert.ToInt32(nameban.Split('_')[2]);
-            uc_OrderSanPham uc_OrderSanPham = new uc_OrderSanPham(idban);
-            Helper_Project.ShowFormUC(uc_OrderSanPham);
+
+            Panel panel_click = (Panel)btn_click.Parent;
+            string name1 = panel_click.Name;
+
+            Panel panel_click_1 = (Panel)panel_click.Parent;
+            string name2 = panel_click_1.Name;
+            // Access the Label control directly from the panel's Controls collection using its name.
+            Label label_status = (Label)panel_click_1.Controls["TrangBai_Id_" + idban];
+
+            label_status.Text = "A";      
+            
+            QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
+            var TrangThaiBan = db_quanly.QLBans
+                .Where(p=>p.IdBan == idban)
+                .FirstOrDefault();
+
+            if(TrangThaiBan.TrangThaiBan != "Đang hoạt động")
+            {
+                uc_OrderSanPham uc_OrderSanPham = new uc_OrderSanPham(idban);
+                Helper_Project.ShowFormUC(uc_OrderSanPham);
+            }
+            else
+            {
+                Helper_Project.fMain.ShowNotification("Thông báo", "Order sản phẩm", "Bàn đang hoạt động không thể order !!!!", Helper_Project.svgImages["Error"]);
+            }
+
         }
         private static void btnBanDangSuDung_Click(object sender, EventArgs e)
         {
             Button btn_click = (Button)sender;
+            string nameban = btn_click.Name;
+            int idban = Convert.ToInt32(nameban.Split('_')[2]);
 
-            Panel panel_click = (Panel)btn_click.Parent;
-            string id = panel_click.Name;
-
-            EditStatusTable(id, Status_Table.Ban_Dang_Hoat_Dong);
+            EditStatusTable(sender, idban, Status_Table.Ban_Dang_Hoat_Dong);
         }
         private static void btnBanTrong_Click(object sender, EventArgs e)
         {
             Button btn_click = (Button)sender;
+            string nameban = btn_click.Name;
+            int idban = Convert.ToInt32(nameban.Split('_')[2]);
 
-            Panel panel_click = (Panel)btn_click.Parent;
-            string id = panel_click.Name;
-            EditStatusTable(id, Status_Table.Ban_Trong);
+            EditStatusTable(sender, idban, Status_Table.Ban_Trong);
         }
         private static void btnBanDuocDat_Click(object sender, EventArgs e)
         {
             Button btn_click = (Button)sender;
+            string nameban = btn_click.Name;
+            int idban = Convert.ToInt32(nameban.Split('_')[2]);
 
-            Panel panel_click = (Panel)btn_click.Parent;
-            string id = panel_click.Name;
-            EditStatusTable(id, Status_Table.Ban_Duoc_Dat);
+            EditStatusTable(sender, idban, Status_Table.Ban_Duoc_Dat);
         }
         private enum Status_Table
         {
@@ -193,25 +217,37 @@ namespace QuanLyCafe.QuanLyBan
             Ban_Trong,
             Ban_Duoc_Dat,
         };
-        private static void EditStatusTable(string nameban, Status_Table status_table)
+        private static void EditStatusTable(object sender,int idban, Status_Table status_table)
         {
+            Button btn_click = (Button)sender;
+
+            Panel panel_click = (Panel)btn_click.Parent;
+            Panel panel_color = (Panel)panel_click.Parent;
+            Label label_status = (Label)panel_color.Controls["TrangBai_Id_" + idban];
+
             QLBan qLBan = uc_QuanLyBan.db_quanly.QLBans
-                .Where(p => p.NameBan == nameban).FirstOrDefault();
+                .Where(p => p.IdBan == idban).FirstOrDefault();
             switch (status_table)
             {
                 case Status_Table.Ban_Dang_Hoat_Dong:
                     qLBan.TrangThaiBan = "Đang hoạt động";
+                    label_status.Text = "Đang hoạt động";
+                    panel_color.BackColor = color_DangHoatDong;
                     break;
                 case Status_Table.Ban_Trong:
                     qLBan.TrangThaiBan = "Đang trống";
+                    label_status.Text = "Đang trống";
+                    panel_color.BackColor = color_DangTrong;
                     break;
                 case Status_Table.Ban_Duoc_Dat:
                     qLBan.TrangThaiBan = "Đang được đặt";
+                    label_status.Text = "Đang được đặt";
+                    panel_color.BackColor = color_DangDuocDat;
                     break;
             }
             uc_QuanLyBan.db_quanly.SaveChanges();
 
-            LoadAllTable();
+            //LoadAllTable();
         }
         public static void LoadAllTable()
         {
@@ -221,6 +257,14 @@ namespace QuanLyCafe.QuanLyBan
                 .Select(p => new { p.IdBan, p.NameBan, p.TrangThaiBan }).ToList();
 
             foreach (var item in result)
+            {
+                Helper_QuanLyBan.CreateTable(item.IdBan, item.NameBan, item.TrangThaiBan);
+            }
+        }
+        public static void LoadAllTable(List<QLBan> list_ban)
+        {
+            uc_QuanLyBan.ClearAllPanel(FlowLayoutPanel);
+            foreach (var item in list_ban)
             {
                 Helper_QuanLyBan.CreateTable(item.IdBan, item.NameBan, item.TrangThaiBan);
             }

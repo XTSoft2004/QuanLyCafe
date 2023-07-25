@@ -17,8 +17,8 @@ namespace QuanLyCafe
         public int IdTopping { get; set; }
         public string NameTopping { get; set; }
         public decimal GiaTopping { get; set; }
-        public int IdSanPham { get; set; }
+        public int IdDanhMucTopping { get; set; }
     
-        public virtual SanPham SanPham { get; set; }
+        public virtual DanhMucTopping DanhMucTopping { get; set; }
     }
 }

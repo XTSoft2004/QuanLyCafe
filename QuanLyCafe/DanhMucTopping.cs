@@ -12,26 +12,20 @@ namespace QuanLyCafe
     using System;
     using System.Collections.Generic;
     
-    public partial class SanPham
+    public partial class DanhMucTopping
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SanPham()
+        public DanhMucTopping()
         {
-            this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
-            this.DanhMucToppings = new HashSet<DanhMucTopping>();
+            this.Toppings = new HashSet<Topping>();
         }
     
+        public int IdDanhMucTopping { get; set; }
+        public string NameDanhMuc { get; set; }
         public int IdSanPham { get; set; }
-        public string NameSanPham { get; set; }
-        public decimal GiaSanPham { get; set; }
-        public int IdTypeSP { get; set; }
-        public byte[] Image { get; set; }
-        public decimal Cost { get; set; }
     
+        public virtual SanPham SanPham { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DanhMucTopping> DanhMucToppings { get; set; }
-        public virtual LoaiSanPham LoaiSanPham { get; set; }
+        public virtual ICollection<Topping> Toppings { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using QuanLy;
+using QuanLyCafe.OrderSanPham.Form_Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,7 +100,8 @@ namespace QuanLyCafe.QLNhanVien
 
             int index = gridView1.FocusedRowHandle;
             int idnhanvien = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdNhanVien"));
-            string namenhanvien = gridView1.GetRowCellValue(idnhanvien, "NameNhanVien").ToString();
+            string namenhanvien = gridView1.GetRowCellValue(index, "NameNhanVien").ToString();
+
             NhanVien nhanvien = db_quanly.NhanViens.Find(idnhanvien);
             nhanvien.NameNhanVien = NameNhanVienTextEdit.Text;
             nhanvien.IdChucVu = GET_ID_CHUCYU(NameChucVuCbb.Text);
@@ -108,11 +110,35 @@ namespace QuanLyCafe.QLNhanVien
             db_quanly.SaveChanges();
 
             Helper_Project.fMain.ShowNotification("Thông báo", "Chỉnh sửa thông tin nhân viên", $"Chỉnh sửa nhân viên {namenhanvien} thành công", Helper_Project.svgImages["Success"]);
+
+            LoadAllDB();
         }
 
         private void btnDeleteNhanVien_Click(object sender, EventArgs e)
         {
+            int[] indexSelected = gridView1.GetSelectedRows();
 
+            if (XtraMessageBox.Show($"Bạn có muốn xoá topping {indexSelected.Length} dòng không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                for (int i = 0; i < indexSelected.Length; i++)
+                {
+                    int index = indexSelected[i];
+
+                    string IdNhanVien = gridView1.GetRowCellValue(index, "IdNhanVien").ToString();
+                    string NameNhanVien = gridView1.GetRowCellValue(index, "NameNhanVien").ToString();
+                    int id = Convert.ToInt32(IdNhanVien);
+
+                    NhanVien topping = db_quanly.NhanViens.Find(id);
+
+                    db_quanly.NhanViens.Remove(topping);
+
+                    Helper_Project.fMain.ShowNotification("Thông báo", "Xóa nhân viên", $"Xóa nhân viên {NameNhanVien} thành công !!!", Helper_Project.svgImages["Success"]);
+                }
+
+                db_quanly.SaveChanges();
+
+                LoadAllDB();
+            }
         }
     }
 }

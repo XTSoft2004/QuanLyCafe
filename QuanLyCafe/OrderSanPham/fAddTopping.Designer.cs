@@ -33,26 +33,25 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddTopping = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.toppingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colIdTopping = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNameTopping = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colGiaTopping = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Choose = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.danhMucToppingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colIdDanhMuc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNameDanhMuc = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toppingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Choose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.danhMucToppingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -90,7 +89,7 @@
             // 
             // gridControl1
             // 
-            this.gridControl1.DataSource = this.toppingBindingSource;
+            this.gridControl1.DataSource = this.danhMucToppingBindingSource;
             this.gridControl1.Location = new System.Drawing.Point(12, 12);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
@@ -101,48 +100,17 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
-            // toppingBindingSource
-            // 
-            this.toppingBindingSource.DataSource = typeof(QuanLyCafe.Topping);
-            // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colIdTopping,
-            this.colNameTopping,
-            this.colGiaTopping});
+            this.colIdDanhMuc,
+            this.colNameDanhMuc});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
-            // 
-            // colIdTopping
-            // 
-            this.colIdTopping.FieldName = "IdTopping";
-            this.colIdTopping.Name = "colIdTopping";
-            this.colIdTopping.Visible = true;
-            this.colIdTopping.VisibleIndex = 1;
-            this.colIdTopping.Width = 43;
-            // 
-            // colNameTopping
-            // 
-            this.colNameTopping.FieldName = "NameTopping";
-            this.colNameTopping.Name = "colNameTopping";
-            this.colNameTopping.Visible = true;
-            this.colNameTopping.VisibleIndex = 2;
-            this.colNameTopping.Width = 242;
-            // 
-            // colGiaTopping
-            // 
-            this.colGiaTopping.DisplayFormat.FormatString = "N3";
-            this.colGiaTopping.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.colGiaTopping.FieldName = "GiaTopping";
-            this.colGiaTopping.Name = "colGiaTopping";
-            this.colGiaTopping.Visible = true;
-            this.colGiaTopping.VisibleIndex = 3;
-            this.colGiaTopping.Width = 90;
             // 
             // Choose
             // 
@@ -188,6 +156,24 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // danhMucToppingBindingSource
+            // 
+            //this.danhMucToppingBindingSource.DataSource = typeof(QuanLyCafe.OrderSanPham._ModelDanhMucTopping);
+            // 
+            // colIdDanhMuc
+            // 
+            this.colIdDanhMuc.FieldName = "IdDanhMuc";
+            this.colIdDanhMuc.Name = "colIdDanhMuc";
+            this.colIdDanhMuc.Visible = true;
+            this.colIdDanhMuc.VisibleIndex = 2;
+            // 
+            // colNameDanhMuc
+            // 
+            this.colNameDanhMuc.FieldName = "NameDanhMuc";
+            this.colNameDanhMuc.Name = "colNameDanhMuc";
+            this.colNameDanhMuc.Visible = true;
+            this.colNameDanhMuc.VisibleIndex = 1;
+            // 
             // fAddTopping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,13 +186,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.toppingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Choose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.danhMucToppingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,16 +202,15 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private System.Windows.Forms.BindingSource toppingBindingSource;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colIdTopping;
-        private DevExpress.XtraGrid.Columns.GridColumn colNameTopping;
-        private DevExpress.XtraGrid.Columns.GridColumn colGiaTopping;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.SimpleButton btnAddTopping;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit Choose;
+        private System.Windows.Forms.BindingSource danhMucToppingBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colIdDanhMuc;
+        private DevExpress.XtraGrid.Columns.GridColumn colNameDanhMuc;
     }
 }

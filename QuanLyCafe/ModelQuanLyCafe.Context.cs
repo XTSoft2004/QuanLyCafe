@@ -27,6 +27,7 @@ namespace QuanLyCafe
     
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual DbSet<ChucVu> ChucVus { get; set; }
+        public virtual DbSet<DanhMucTopping> DanhMucToppings { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }

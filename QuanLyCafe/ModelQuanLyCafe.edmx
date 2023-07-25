@@ -23,6 +23,14 @@
           <Property Name="IdChucVu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameChucVu" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="DanhMucTopping">
+          <Key>
+            <PropertyRef Name="IdDanhMucTopping" />
+          </Key>
+          <Property Name="IdDanhMucTopping" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameDanhMuc" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdSanPham" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="HoaDon">
           <Key>
             <PropertyRef Name="IdHoaDon" />
@@ -98,7 +106,7 @@
           <Property Name="IdTopping" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameTopping" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="GiaTopping" Type="money" Nullable="false" />
-          <Property Name="IdSanPham" Type="int" Nullable="false" />
+          <Property Name="IdDanhMucTopping" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -129,6 +137,18 @@
               <PropertyRef Name="IdSanPham" />
             </Principal>
             <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="IdSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DanhMucTopping_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="DanhMucTopping" Type="Self.DanhMucTopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="IdSanPham" />
+            </Principal>
+            <Dependent Role="DanhMucTopping">
               <PropertyRef Name="IdSanPham" />
             </Dependent>
           </ReferentialConstraint>
@@ -205,21 +225,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Topping_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+        <Association Name="FK_Topping_DanhMucTopping">
+          <End Role="DanhMucTopping" Type="Self.DanhMucTopping" Multiplicity="1" />
           <End Role="Topping" Type="Self.Topping" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="IdSanPham" />
+            <Principal Role="DanhMucTopping">
+              <PropertyRef Name="IdDanhMucTopping" />
             </Principal>
             <Dependent Role="Topping">
-              <PropertyRef Name="IdSanPham" />
+              <PropertyRef Name="IdDanhMucTopping" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QuanLyCafeModelStoreContainer">
           <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChucVu" EntityType="Self.ChucVu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMucTopping" EntityType="Self.DanhMucTopping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
@@ -236,6 +257,10 @@
           <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="Self.FK_ChiTietHoaDon_SanPham">
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DanhMucTopping_SanPham" Association="Self.FK_DanhMucTopping_SanPham">
+            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="DanhMucTopping" EntitySet="DanhMucTopping" />
           </AssociationSet>
           <AssociationSet Name="FK_HoaDon_KhachHang" Association="Self.FK_HoaDon_KhachHang">
             <End Role="KhachHang" EntitySet="KhachHang" />
@@ -261,8 +286,8 @@
             <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
-          <AssociationSet Name="FK_Topping_SanPham" Association="Self.FK_Topping_SanPham">
-            <End Role="SanPham" EntitySet="SanPham" />
+          <AssociationSet Name="FK_Topping_DanhMucTopping" Association="Self.FK_Topping_DanhMucTopping">
+            <End Role="DanhMucTopping" EntitySet="DanhMucTopping" />
             <End Role="Topping" EntitySet="Topping" />
           </AssociationSet>
         </EntityContainer>
@@ -291,6 +316,16 @@
           <Property Name="IdChucVu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameChucVu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="NhanViens" Relationship="Self.FK_NhanVien_ChucVu" FromRole="ChucVu" ToRole="NhanVien" />
+        </EntityType>
+        <EntityType Name="DanhMucTopping">
+          <Key>
+            <PropertyRef Name="IdDanhMucTopping" />
+          </Key>
+          <Property Name="IdDanhMucTopping" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameDanhMuc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdSanPham" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SanPham" Relationship="Self.FK_DanhMucTopping_SanPham" FromRole="DanhMucTopping" ToRole="SanPham" />
+          <NavigationProperty Name="Toppings" Relationship="Self.FK_Topping_DanhMucTopping" FromRole="DanhMucTopping" ToRole="Topping" />
         </EntityType>
         <EntityType Name="HoaDon">
           <Key>
@@ -360,8 +395,8 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_SanPham" FromRole="SanPham" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="DanhMucToppings" Relationship="Self.FK_DanhMucTopping_SanPham" FromRole="SanPham" ToRole="DanhMucTopping" />
           <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
-          <NavigationProperty Name="Toppings" Relationship="Self.FK_Topping_SanPham" FromRole="SanPham" ToRole="Topping" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -380,8 +415,8 @@
           <Property Name="IdTopping" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameTopping" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GiaTopping" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="IdSanPham" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SanPham" Relationship="Self.FK_Topping_SanPham" FromRole="Topping" ToRole="SanPham" />
+          <Property Name="IdDanhMucTopping" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DanhMucTopping" Relationship="Self.FK_Topping_DanhMucTopping" FromRole="Topping" ToRole="DanhMucTopping" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -426,6 +461,30 @@
             </Principal>
             <Dependent Role="NhanVien">
               <PropertyRef Name="IdChucVu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DanhMucTopping_SanPham">
+          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+          <End Role="DanhMucTopping" Type="Self.DanhMucTopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="IdSanPham" />
+            </Principal>
+            <Dependent Role="DanhMucTopping">
+              <PropertyRef Name="IdSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topping_DanhMucTopping">
+          <End Role="DanhMucTopping" Type="Self.DanhMucTopping" Multiplicity="1" />
+          <End Role="Topping" Type="Self.Topping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMucTopping">
+              <PropertyRef Name="IdDanhMucTopping" />
+            </Principal>
+            <Dependent Role="Topping">
+              <PropertyRef Name="IdDanhMucTopping" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -489,21 +548,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Topping_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
-          <End Role="Topping" Type="Self.Topping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="IdSanPham" />
-            </Principal>
-            <Dependent Role="Topping">
-              <PropertyRef Name="IdSanPham" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="QuanLyCafeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="ChucVus" EntityType="Self.ChucVu" />
+          <EntitySet Name="DanhMucToppings" EntityType="Self.DanhMucTopping" />
           <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
           <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
           <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
@@ -525,6 +573,14 @@
             <End Role="ChucVu" EntitySet="ChucVus" />
             <End Role="NhanVien" EntitySet="NhanViens" />
           </AssociationSet>
+          <AssociationSet Name="FK_DanhMucTopping_SanPham" Association="Self.FK_DanhMucTopping_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="DanhMucTopping" EntitySet="DanhMucToppings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topping_DanhMucTopping" Association="Self.FK_Topping_DanhMucTopping">
+            <End Role="DanhMucTopping" EntitySet="DanhMucToppings" />
+            <End Role="Topping" EntitySet="Toppings" />
+          </AssociationSet>
           <AssociationSet Name="FK_HoaDon_KhachHang" Association="Self.FK_HoaDon_KhachHang">
             <End Role="KhachHang" EntitySet="KhachHangs" />
             <End Role="HoaDon" EntitySet="HoaDons" />
@@ -544,10 +600,6 @@
           <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
             <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
             <End Role="SanPham" EntitySet="SanPhams" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Topping_SanPham" Association="Self.FK_Topping_SanPham">
-            <End Role="SanPham" EntitySet="SanPhams" />
-            <End Role="Topping" EntitySet="Toppings" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -573,6 +625,15 @@
               <MappingFragment StoreEntitySet="ChucVu">
                 <ScalarProperty Name="IdChucVu" ColumnName="IdChucVu" />
                 <ScalarProperty Name="NameChucVu" ColumnName="NameChucVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucToppings">
+            <EntityTypeMapping TypeName="QuanLyCafeModel.DanhMucTopping">
+              <MappingFragment StoreEntitySet="DanhMucTopping">
+                <ScalarProperty Name="IdDanhMucTopping" ColumnName="IdDanhMucTopping" />
+                <ScalarProperty Name="NameDanhMuc" ColumnName="NameDanhMuc" />
+                <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -657,7 +718,7 @@
                 <ScalarProperty Name="IdTopping" ColumnName="IdTopping" />
                 <ScalarProperty Name="NameTopping" ColumnName="NameTopping" />
                 <ScalarProperty Name="GiaTopping" ColumnName="GiaTopping" />
-                <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
+                <ScalarProperty Name="IdDanhMucTopping" ColumnName="IdDanhMucTopping" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

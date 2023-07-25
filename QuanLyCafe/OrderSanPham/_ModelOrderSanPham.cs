@@ -15,7 +15,14 @@ namespace QuanLyCafe.OrderSanPham
         public decimal GiaSanPham { get; set; }
         public decimal TongTien { get; set; }
         public string GhiChu { get; set; }
-        public List<_ModelAddTopping> ToppingList { get; set; }
+        public List<DanhMucTopping> _list_danhmuc { get; set; }
+    }
+    public class _ModelDanhMucTopping
+    {
+        public int IdDanhMuc { get; set; }
+        public string NameDanhMuc { get; set; }
+
+        public List<_ModelAddTopping> _list_topping { get; set; }
     }
     public class _ModelAddTopping
     {

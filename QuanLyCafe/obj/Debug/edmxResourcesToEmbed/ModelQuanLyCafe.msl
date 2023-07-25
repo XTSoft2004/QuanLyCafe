@@ -21,6 +21,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DanhMucToppings">
+      <EntityTypeMapping TypeName="QuanLyCafeModel.DanhMucTopping">
+        <MappingFragment StoreEntitySet="DanhMucTopping">
+          <ScalarProperty Name="IdDanhMucTopping" ColumnName="IdDanhMucTopping" />
+          <ScalarProperty Name="NameDanhMuc" ColumnName="NameDanhMuc" />
+          <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="HoaDons">
       <EntityTypeMapping TypeName="QuanLyCafeModel.HoaDon">
         <MappingFragment StoreEntitySet="HoaDon">
@@ -102,7 +111,7 @@
           <ScalarProperty Name="IdTopping" ColumnName="IdTopping" />
           <ScalarProperty Name="NameTopping" ColumnName="NameTopping" />
           <ScalarProperty Name="GiaTopping" ColumnName="GiaTopping" />
-          <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
+          <ScalarProperty Name="IdDanhMucTopping" ColumnName="IdDanhMucTopping" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

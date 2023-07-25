@@ -33,10 +33,10 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.btnAddLinkImage = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddType = new DevExpress.XtraEditors.SimpleButton();
             this.btnDeleteSanPham = new DevExpress.XtraEditors.SimpleButton();
             this.btnChooseFile = new DevExpress.XtraEditors.SimpleButton();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.btnEditSanPham = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddSanPham = new DevExpress.XtraEditors.SimpleButton();
             this.NameSanPhamTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -45,6 +45,7 @@
             this.IdSanPhamSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.NameTypeSanPhamCbbEdit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.GiaSanPhamSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.ImagePictureEdit = new DevExpress.XtraEditors.PictureEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.ItemForIdSanPham = new DevExpress.XtraLayout.LayoutControlItem();
@@ -54,12 +55,13 @@
             this.ItemForCost = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.ItemForImage = new DevExpress.XtraLayout.LayoutControlItem();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colIdSanPham = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,21 +80,19 @@
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.modelQLSanPhamBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.btnAddLinkImage = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NameSanPhamTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelQLSanPhamBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CostSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdSanPhamSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NameTypeSanPhamCbbEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GiaSanPhamSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePictureEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForIdSanPham)).BeginInit();
@@ -102,12 +102,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeleteSanPham)).BeginInit();
@@ -118,7 +119,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelQLSanPhamBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -149,7 +149,6 @@
             this.dataLayoutControl1.Controls.Add(this.btnAddType);
             this.dataLayoutControl1.Controls.Add(this.btnDeleteSanPham);
             this.dataLayoutControl1.Controls.Add(this.btnChooseFile);
-            this.dataLayoutControl1.Controls.Add(this.pictureEdit1);
             this.dataLayoutControl1.Controls.Add(this.btnEditSanPham);
             this.dataLayoutControl1.Controls.Add(this.btnAddSanPham);
             this.dataLayoutControl1.Controls.Add(this.NameSanPhamTextEdit);
@@ -157,6 +156,7 @@
             this.dataLayoutControl1.Controls.Add(this.IdSanPhamSpinEdit);
             this.dataLayoutControl1.Controls.Add(this.NameTypeSanPhamCbbEdit);
             this.dataLayoutControl1.Controls.Add(this.GiaSanPhamSpinEdit);
+            this.dataLayoutControl1.Controls.Add(this.ImagePictureEdit);
             this.dataLayoutControl1.DataSource = this.modelQLSanPhamBindingSource;
             this.dataLayoutControl1.Location = new System.Drawing.Point(12, 12);
             this.dataLayoutControl1.Name = "dataLayoutControl1";
@@ -164,6 +164,16 @@
             this.dataLayoutControl1.Size = new System.Drawing.Size(902, 245);
             this.dataLayoutControl1.TabIndex = 5;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
+            // 
+            // btnAddLinkImage
+            // 
+            this.btnAddLinkImage.Location = new System.Drawing.Point(12, 211);
+            this.btnAddLinkImage.Name = "btnAddLinkImage";
+            this.btnAddLinkImage.Size = new System.Drawing.Size(91, 22);
+            this.btnAddLinkImage.StyleController = this.dataLayoutControl1;
+            this.btnAddLinkImage.TabIndex = 16;
+            this.btnAddLinkImage.Text = "Link Image";
+            this.btnAddLinkImage.Click += new System.EventHandler(this.btnAddLinkImage_Click);
             // 
             // btnAddType
             // 
@@ -195,16 +205,6 @@
             this.btnChooseFile.TabIndex = 13;
             this.btnChooseFile.Text = "Browser";
             this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
-            // 
-            // pictureEdit1
-            // 
-            this.pictureEdit1.Location = new System.Drawing.Point(12, 12);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(201, 195);
-            this.pictureEdit1.StyleController = this.dataLayoutControl1;
-            this.pictureEdit1.TabIndex = 12;
             // 
             // btnEditSanPham
             // 
@@ -316,6 +316,16 @@
             this.GiaSanPhamSpinEdit.StyleController = this.dataLayoutControl1;
             this.GiaSanPhamSpinEdit.TabIndex = 6;
             // 
+            // ImagePictureEdit
+            // 
+            this.ImagePictureEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.modelQLSanPhamBindingSource, "Image", true));
+            this.ImagePictureEdit.Location = new System.Drawing.Point(12, 12);
+            this.ImagePictureEdit.Name = "ImagePictureEdit";
+            this.ImagePictureEdit.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+            this.ImagePictureEdit.Size = new System.Drawing.Size(201, 195);
+            this.ImagePictureEdit.StyleController = this.dataLayoutControl1;
+            this.ImagePictureEdit.TabIndex = 18;
+            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -338,13 +348,13 @@
             this.ItemForCost,
             this.layoutControlItem4,
             this.layoutControlItem5,
-            this.layoutControlItem6,
             this.emptySpaceItem1,
             this.layoutControlItem8,
             this.layoutControlItem9,
             this.emptySpaceItem2,
             this.layoutControlItem7,
-            this.layoutControlItem10});
+            this.layoutControlItem10,
+            this.ItemForImage});
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "autoGeneratedGroup0";
             this.layoutControlGroup3.Size = new System.Drawing.Size(882, 225);
@@ -412,15 +422,6 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // layoutControlItem6
-            // 
-            this.layoutControlItem6.Control = this.pictureEdit1;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(205, 199);
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem6.TextVisible = false;
-            // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
@@ -428,15 +429,6 @@
             this.emptySpaceItem1.Name = "emptySpaceItem1";
             this.emptySpaceItem1.Size = new System.Drawing.Size(295, 24);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.btnChooseFile;
-            this.layoutControlItem7.Location = new System.Drawing.Point(95, 199);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(110, 26);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem8
             // 
@@ -463,6 +455,35 @@
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(10, 225);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.btnChooseFile;
+            this.layoutControlItem7.Location = new System.Drawing.Point(95, 199);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(110, 26);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.btnAddLinkImage;
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 199);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(95, 26);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
+            // ItemForImage
+            // 
+            this.ItemForImage.Control = this.ImagePictureEdit;
+            this.ItemForImage.Location = new System.Drawing.Point(0, 0);
+            this.ItemForImage.Name = "ItemForImage";
+            this.ItemForImage.Size = new System.Drawing.Size(205, 199);
+            this.ItemForImage.StartNewLine = true;
+            this.ItemForImage.Text = "Image";
+            this.ItemForImage.TextSize = new System.Drawing.Size(0, 0);
+            this.ItemForImage.TextVisible = false;
             // 
             // gridControl1
             // 
@@ -635,24 +656,6 @@
             // 
             this.modelQLSanPhamBindingSource1.DataSource = typeof(QuanLyCafe.QLySanPham._Model_QLSanPham);
             // 
-            // btnAddLinkImage
-            // 
-            this.btnAddLinkImage.Location = new System.Drawing.Point(12, 211);
-            this.btnAddLinkImage.Name = "btnAddLinkImage";
-            this.btnAddLinkImage.Size = new System.Drawing.Size(91, 22);
-            this.btnAddLinkImage.StyleController = this.dataLayoutControl1;
-            this.btnAddLinkImage.TabIndex = 16;
-            this.btnAddLinkImage.Text = "Link Image";
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.btnAddLinkImage;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 199);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(95, 26);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
-            // 
             // uc_QLSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -667,13 +670,13 @@
             this.layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NameSanPhamTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelQLSanPhamBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CostSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IdSanPhamSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NameTypeSanPhamCbbEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GiaSanPhamSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagePictureEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForIdSanPham)).EndInit();
@@ -683,12 +686,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.ItemForCost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemForImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DeleteSanPham)).EndInit();
@@ -699,7 +703,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.modelQLSanPhamBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -735,7 +738,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.SimpleButton btnDeleteSanPham;
         private DevExpress.XtraEditors.SimpleButton btnChooseFile;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraEditors.SimpleButton btnEditSanPham;
         private DevExpress.XtraEditors.SimpleButton btnAddSanPham;
         private DevExpress.XtraEditors.SpinEdit CostSpinEdit;
@@ -744,7 +746,6 @@
         private DevExpress.XtraEditors.SpinEdit GiaSanPhamSpinEdit;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
@@ -756,5 +757,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraEditors.SimpleButton btnAddLinkImage;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private DevExpress.XtraEditors.PictureEdit ImagePictureEdit;
+        private DevExpress.XtraLayout.LayoutControlItem ItemForImage;
     }
 }

@@ -112,7 +112,7 @@ namespace QuanLyCafe.OrderSanPham
         {
             fNhanVien fNhanVien = new fNhanVien();
             fNhanVien.ShowDialog();
-            KhachHangCbb.Text = string.IsNullOrEmpty(fNhanVien.NameNhanVien) ? "Không có tên nhân viên" : fNhanVien.NameNhanVien;
+            NVThanhToanCbb.Text = string.IsNullOrEmpty(fNhanVien.NameNhanVien) ? "Không có tên nhân viên" : fNhanVien.NameNhanVien;
         }
         private void LoadAllDuLieu()
         {

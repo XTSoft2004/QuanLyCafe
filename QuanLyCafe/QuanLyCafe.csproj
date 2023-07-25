@@ -61,6 +61,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
@@ -79,6 +80,9 @@
       <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
     </Compile>
     <Compile Include="ChucVu.cs">
+      <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DanhMucTopping.cs">
       <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
     </Compile>
     <Compile Include="fMain.cs">
@@ -158,6 +162,24 @@
     </Compile>
     <Compile Include="QLNhanVien\fChucVu.Designer.cs">
       <DependentUpon>fChucVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLySanPham\AddLinkImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLySanPham\AddLinkImage.Designer.cs">
+      <DependentUpon>AddLinkImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLySanPham\QLTopping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLySanPham\QLTopping.Designer.cs">
+      <DependentUpon>QLTopping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLySanPham\Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLySanPham\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanLyBan\uc_QuanLyBan.cs">
       <SubType>UserControl</SubType>
@@ -241,6 +263,15 @@
     <EmbeddedResource Include="QLNhanVien\fChucVu.resx">
       <DependentUpon>fChucVu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QLySanPham\AddLinkImage.resx">
+      <DependentUpon>AddLinkImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLySanPham\QLTopping.resx">
+      <DependentUpon>QLTopping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLySanPham\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuanLyBan\uc_QuanLyBan.resx">
       <DependentUpon>uc_QuanLyBan.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +300,8 @@
       <DependentUpon>ModelQuanLyCafe.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham.DanhMucTopping.datasource" />
+    <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham._ModelDanhMucTopping.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham._ModelOrderSanPham.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.QLNhanVien._Model_QLNhanVien.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.QLySanPham._Model_QLSanPham.datasource" />

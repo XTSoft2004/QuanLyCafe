@@ -6,9 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -125,16 +127,13 @@ namespace QuanLyCafe
         public static byte[] ConvertImageToByte(Image imageIn)
         {
             if (imageIn == null) return null;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                // Create an ImageConverter instance
-                ImageConverter converter = new ImageConverter();
 
-                // Convert the image to a byte array using the ImageConverter
-                byte[] byteArray = (byte[])converter.ConvertTo(imageIn, typeof(byte[]));
+            MemoryStream ms = new MemoryStream();
+            Bitmap bmpImage = new Bitmap(imageIn);
+            bmpImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            byte[] data = ms.GetBuffer();
 
-                return byteArray; 
-            }
+            return data;
         }
         public static Image ConverByteToImage(byte[] imagebyte)
         {
@@ -151,6 +150,27 @@ namespace QuanLyCafe
                 return null;
             }
         }
+        public static Image ConvertImageUrlToImage(string imageUrl)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    byte[] imageData = client.GetByteArrayAsync(imageUrl).Result;
+                    using (MemoryStream ms = new MemoryStream(imageData))
+                    {
+                        Image image = Image.FromStream(ms);
+                        return image;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi khi chuyển đổi hình ảnh: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+
         public class AlertData
         {
             public AlertData(string newMessage, string title, string message, SvgImage messageicon)

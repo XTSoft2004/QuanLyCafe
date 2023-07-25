@@ -27,8 +27,8 @@ namespace QuanLyCafe
             int selectedRowHandle = gridView1.FocusedRowHandle;
             string IdSanPham = gridView1.GetRowCellValue(selectedRowHandle, "IdSanPham").ToString();
 
-            fTopping fTopping = new fTopping(Convert.ToInt32(IdSanPham));
-            fTopping.ShowDialog();
+            QLTopping qLTopping = new QLTopping(Convert.ToInt32(IdSanPham));
+            qLTopping.Show();
 
             LoadAllDB();
         }
@@ -70,7 +70,7 @@ namespace QuanLyCafe
             {
 
                 var list_topping = db_quanly.Toppings
-                    .Where(p => p.IdSanPham == sanpham.IdSanPham)
+                    .Where(p => p.IdDanhMucTopping == sanpham.IdSanPham)
                     .ToList();
 
                 List<_Model_QlTopping> _Model_QlToppings = new List<_Model_QlTopping>();
@@ -122,7 +122,7 @@ namespace QuanLyCafe
                 fMain.ShowNotification("Thông báo", "Thêm sản phẩm", "Chưa điền đơn giá, vui lòng xem lại !!!", Helper_Project.svgImages["Error"]);
                 return;
             }
-            if (pictureEdit1.Image == null)
+            if (ImagePictureEdit.Image == null)
             {
                 fMain.ShowNotification("Thông báo", "Thêm sản phẩm", "Chưa điền đường dẫn ảnh, vui lòng xem lại !!!", Helper_Project.svgImages["Error"]);
                 return;
@@ -134,35 +134,12 @@ namespace QuanLyCafe
             }
             #endregion
 
-            //string path = ImageTextEdit.Text;
-            //if (path.Contains("https://"))
-            //{
-            //    path = Helper_Project.DownloadImage(path);
-
-            //    if (path == null)
-            //    {
-            //        fMain.ShowNotification("Thông báo", "Thêm sản phẩm", $"Download ảnh thất bại !!!!", Helper_Project.svgImages["Error"]);
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    path = Helper_Project.CopyIMGToFolder(path);
-            //}
-
-            //byte[] image = Helper_Project.ConvertImageToByte(path);
-            //if(image == null)
-            //{
-            //    fMain.ShowNotification("Thông báo", "Thêm sản phẩm", $"Thêm ảnh thất bại !!!!", Helper_Project.svgImages["Error"]);
-            //    return;
-            //}
-
             SanPham sanPham = new SanPham()
             {
                 NameSanPham = NameSanPhamTextEdit.Text,
                 GiaSanPham = GiaSanPhamSpinEdit.Value,
                 IdTypeSP = GET_ID_TYPESP(NameTypeSanPhamCbbEdit.Text),
-                Image = Helper_Project.ConvertImageToByte(pictureEdit1.Image),
+                Image = Helper_Project.ConvertImageToByte(ImagePictureEdit.Image),
                 Cost = CostSpinEdit.Value,
             };
 
@@ -183,7 +160,7 @@ namespace QuanLyCafe
             if (XtraMessageBox.Show($"Bạn có chắc chắn muốn xoá sản phẩm {NameSanPham} không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 var list_topping = db_quanly.Toppings
-                        .Where(p => p.IdSanPham == id)
+                        .Where(p => p.IdDanhMucTopping == id)
                         .ToList();
 
                 foreach (var p in list_topping)
@@ -217,7 +194,7 @@ namespace QuanLyCafe
                     int id = Convert.ToInt32(IdSanPham);
 
                     var list_topping = db_quanly.Toppings
-                        .Where(p => p.IdSanPham == id)
+                        .Where(p => p.IdDanhMucTopping == id)
                         .ToList();
 
                     foreach (var p in list_topping)
@@ -247,8 +224,7 @@ namespace QuanLyCafe
             {
                 string selectedFile = openFileDialog.FileName;
                 byte[] image = Helper_Project.ConvertImageToByte(selectedFile);
-                pictureEdit1.Image = Helper_Project.ConverByteToImage(image);
-                byte[] a = Helper_Project.ConvertImageToByte(pictureEdit1.Image);
+                ImagePictureEdit.Image = Helper_Project.ConverByteToImage(image);
             }
         }
 
@@ -260,7 +236,7 @@ namespace QuanLyCafe
             if (File.Exists(path))
             {
                 Image image = Image.FromFile(path);
-                pictureEdit1.Image = image;
+                ImagePictureEdit.Image = image;
             }
         }
 
@@ -276,7 +252,7 @@ namespace QuanLyCafe
         {
             int id = Convert.ToInt32(IdSanPhamSpinEdit.Text);
 
-            byte[] image = Helper_Project.ConvertImageToByte(pictureEdit1.Image);
+            byte[] image = Helper_Project.ConvertImageToByte(ImagePictureEdit.Image);
             if (image == null)
             {
                 fMain.ShowNotification("Thông báo", "Thêm sản phẩm", $"Chỉnh sửa ảnh thất bại !!", Helper_Project.svgImages["Error"]);
@@ -293,6 +269,13 @@ namespace QuanLyCafe
             db_quanly.SaveChanges();
 
             fMain.ShowNotification("Thông báo", "Chỉnh sửa sản phẩm", $"Chỉnh sửa sản phẩm {NameSanPhamTextEdit.Text} thành công", Helper_Project.svgImages["Success"]);
+        }
+
+        private void btnAddLinkImage_Click(object sender, EventArgs e)
+        {
+            AddLinkImage addlinkimage = new AddLinkImage();
+            addlinkimage.ShowDialog();
+            ImagePictureEdit.Image = addlinkimage.ImageSanPham;
         }
     }
 }
