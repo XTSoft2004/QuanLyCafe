@@ -66,7 +66,7 @@ namespace QuanLyCafe.OrderSanPham
         {
             int index = gridView1.FocusedRowHandle;
 
-            fAddTopping fAddTopping = new fAddTopping(_ModelOrderSanPhams[index].IdSanPham,ref _ModelOrderSanPhams);
+            fAddTopping fAddTopping = new fAddTopping(_ModelOrderSanPhams[index].IdSanPham, ref _ModelOrderSanPhams);
             fAddTopping.ShowDialog();
 
             modelOrderSanPhamBindingSource.DataSource = _ModelOrderSanPhams;
@@ -200,6 +200,14 @@ namespace QuanLyCafe.OrderSanPham
             {
                 cbtnTienMat.Checked = false;
                 cbtnMomo.Checked = false;
+            }
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if(e.Info.IsRowIndicator && e.RowHandle > 0)
+            {
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
         }
     }

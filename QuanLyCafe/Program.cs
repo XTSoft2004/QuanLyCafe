@@ -19,7 +19,7 @@ namespace QuanLyCafe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QLTopping(0));
+            Application.Run(new fMain());
         }
     }
 }

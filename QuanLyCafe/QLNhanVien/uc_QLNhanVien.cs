@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using QuanLy;
+using QuanLyCafe.Helper;
 using QuanLyCafe.OrderSanPham.Form_Helper;
 using System;
 using System.Collections.Generic;
@@ -24,12 +25,12 @@ namespace QuanLyCafe.QLNhanVien
         {
             if(string.IsNullOrEmpty(NameNhanVienTextEdit.Text) || NameNhanVienTextEdit.Text == "")
             {
-                Helper_Project.fMain.ShowNotification("Thông báo", "Kiểm tra thông tin", $"Bạn chưa điền tên nhân viên !!!", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Kiểm tra thông tin", $"Bạn chưa điền tên nhân viên !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return false;
             }
             if (string.IsNullOrEmpty(NameChucVuCbb.Text) || NameChucVuCbb.Text == "")
             {
-                Helper_Project.fMain.ShowNotification("Thông báo", "Kiểm tra thông tin", $"Bạn chưa chọn chức vụ cho nhận viên !!!", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Kiểm tra thông tin", $"Bạn chưa chọn chức vụ cho nhận viên !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return false;
             }
 
@@ -109,7 +110,7 @@ namespace QuanLyCafe.QLNhanVien
 
             db_quanly.SaveChanges();
 
-            Helper_Project.fMain.ShowNotification("Thông báo", "Chỉnh sửa thông tin nhân viên", $"Chỉnh sửa nhân viên {namenhanvien} thành công", Helper_Project.svgImages["Success"]);
+            Helper_ShowNoti.ShowThongBao("Chỉnh sửa thông tin nhân viên", $"Chỉnh sửa nhân viên {namenhanvien} thành công", Helper_ShowNoti.SvgImageIcon.Success);
 
             LoadAllDB();
         }
@@ -118,7 +119,7 @@ namespace QuanLyCafe.QLNhanVien
         {
             int[] indexSelected = gridView1.GetSelectedRows();
 
-            if (XtraMessageBox.Show($"Bạn có muốn xoá topping {indexSelected.Length} dòng không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (XtraMessageBox.Show($"Bạn có muốn xoá {indexSelected.Length} nhân viên không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 for (int i = 0; i < indexSelected.Length; i++)
                 {
@@ -132,7 +133,7 @@ namespace QuanLyCafe.QLNhanVien
 
                     db_quanly.NhanViens.Remove(topping);
 
-                    Helper_Project.fMain.ShowNotification("Thông báo", "Xóa nhân viên", $"Xóa nhân viên {NameNhanVien} thành công !!!", Helper_Project.svgImages["Success"]);
+                    Helper_ShowNoti.ShowThongBao("Xóa nhân viên", $"Xóa nhân viên {NameNhanVien} thành công !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 }
 
                 db_quanly.SaveChanges();

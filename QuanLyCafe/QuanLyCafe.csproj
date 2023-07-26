@@ -92,6 +92,7 @@
       <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\Helper_Project.cs" />
+    <Compile Include="Helper\Helper_ShowNoti.cs" />
     <Compile Include="HoaDon.cs">
       <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
     </Compile>
@@ -119,10 +120,10 @@
     <Compile Include="NhanVien.cs">
       <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderSanPham\fAddTopping.cs">
+    <Compile Include="OrderSanPham\Form_Helper\fAddTopping.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OrderSanPham\fAddTopping.Designer.cs">
+    <Compile Include="OrderSanPham\Form_Helper\fAddTopping.Designer.cs">
       <DependentUpon>fAddTopping.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderSanPham\Form_Helper\fKhachHang.cs">
@@ -169,17 +170,17 @@
     <Compile Include="QLySanPham\AddLinkImage.Designer.cs">
       <DependentUpon>AddLinkImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLySanPham\fAddDanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLySanPham\fAddDanhMuc.Designer.cs">
+      <DependentUpon>fAddDanhMuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="QLySanPham\QLTopping.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="QLySanPham\QLTopping.Designer.cs">
       <DependentUpon>QLTopping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="QLySanPham\Test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="QLySanPham\Test.Designer.cs">
-      <DependentUpon>Test.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanLyBan\uc_QuanLyBan.cs">
       <SubType>UserControl</SubType>
@@ -195,12 +196,6 @@
       <DependentUpon>uc_QLNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="QLNhanVien\_Model_QLNhanVien.cs" />
-    <Compile Include="QLySanPham\fTopping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="QLySanPham\fTopping.Designer.cs">
-      <DependentUpon>fTopping.cs</DependentUpon>
-    </Compile>
     <Compile Include="QLySanPham\fTypeSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,7 +229,7 @@
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OrderSanPham\fAddTopping.resx">
+    <EmbeddedResource Include="OrderSanPham\Form_Helper\fAddTopping.resx">
       <DependentUpon>fAddTopping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderSanPham\Form_Helper\fKhachHang.resx">
@@ -266,20 +261,17 @@
     <EmbeddedResource Include="QLySanPham\AddLinkImage.resx">
       <DependentUpon>AddLinkImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QLySanPham\fAddDanhMuc.resx">
+      <DependentUpon>fAddDanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QLySanPham\QLTopping.resx">
       <DependentUpon>QLTopping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QLySanPham\Test.resx">
-      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyBan\uc_QuanLyBan.resx">
       <DependentUpon>uc_QuanLyBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QLNhanVien\uc_QLNhanVien.resx">
       <DependentUpon>uc_QLNhanVien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QLySanPham\fTopping.resx">
-      <DependentUpon>fTopping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QLySanPham\fTypeSanPham.resx">
       <DependentUpon>fTypeSanPham.cs</DependentUpon>
@@ -300,12 +292,9 @@
       <DependentUpon>ModelQuanLyCafe.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham.DanhMucTopping.datasource" />
+    <None Include="Properties\DataSources\DanhMucTopping.datasource" />
+    <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham._ModelAddTopping.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham._ModelDanhMucTopping.datasource" />
-    <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham._ModelOrderSanPham.datasource" />
-    <None Include="Properties\DataSources\QuanLyCafe.QLNhanVien._Model_QLNhanVien.datasource" />
-    <None Include="Properties\DataSources\QuanLyCafe.QLySanPham._Model_QLSanPham.datasource" />
-    <None Include="Properties\DataSources\SanPham.datasource" />
     <None Include="Properties\DataSources\Topping.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

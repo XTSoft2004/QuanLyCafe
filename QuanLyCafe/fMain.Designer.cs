@@ -161,7 +161,7 @@
             this.svgImageCollection1.Add("Error", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Error"))));
             this.svgImageCollection1.Add("Error_Fix", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Error_Fix"))));
             this.svgImageCollection1.Add("Warning", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Warning"))));
-            this.svgImageCollection1.Add("team_work", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.team_work"))));
+            this.svgImageCollection1.Add("Team_Work", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Team_Work"))));
             // 
             // fMain
             // 

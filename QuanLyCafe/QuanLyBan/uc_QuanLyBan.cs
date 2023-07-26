@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyCafe.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,7 +39,7 @@ namespace QuanLyCafe.QuanLyBan
 
             Helper_QuanLyBan.DeleteAllTable();
 
-            Helper_Project.fMain.ShowNotification("Thông báo", "Xóa tất cả bàn", $"Xóa {count} bàn thành công !!", Helper_Project.svgImages["Success"]);
+            Helper_ShowNoti.ShowThongBao("Xóa tất cả bàn", $"Xóa {count} bàn thành công !!", Helper_ShowNoti.SvgImageIcon.Success);
         }
 
         private void btnCreateBan_Click(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace QuanLyCafe.QuanLyBan
                 pos++;
             }
 
-            Helper_Project.fMain.ShowNotification("Thông báo", "Thêm bàn", $"Đã thêm {num_createTable.Value} bàn thành công", Helper_Project.svgImages["Success"]);
+            Helper_ShowNoti.ShowThongBao("Thêm bàn", $"Đã thêm {num_createTable.Value} bàn thành công", Helper_ShowNoti.SvgImageIcon.Success);
         }
 
         private void uc_QuanLyBan_Load(object sender, EventArgs e)

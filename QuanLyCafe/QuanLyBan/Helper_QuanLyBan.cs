@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using QuanLyCafe.OrderSanPham;
+using QuanLyCafe.Helper;
 
 namespace QuanLyCafe.QuanLyBan
 {
@@ -183,7 +184,7 @@ namespace QuanLyCafe.QuanLyBan
             }
             else
             {
-                Helper_Project.fMain.ShowNotification("Thông báo", "Order sản phẩm", "Bàn đang hoạt động không thể order !!!!", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Order sản phẩm", "Bàn đang hoạt động không thể order !!!!", Helper_ShowNoti.SvgImageIcon.Success);
             }
 
         }
