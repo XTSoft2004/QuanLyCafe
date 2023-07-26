@@ -64,14 +64,14 @@
             this.colSoLuongSuDung = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Delete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnChooseVoucher = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ChooseVoucher = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.ChooseVoucher = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnChooseVoucher = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -99,13 +99,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChooseVoucher)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChooseVoucher)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -484,6 +484,23 @@
             this.btnDelete.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnChooseVoucher
+            // 
+            this.btnChooseVoucher.Caption = "Choose";
+            this.btnChooseVoucher.ColumnEdit = this.ChooseVoucher;
+            this.btnChooseVoucher.Name = "btnChooseVoucher";
+            this.btnChooseVoucher.Visible = true;
+            this.btnChooseVoucher.VisibleIndex = 4;
+            // 
+            // ChooseVoucher
+            // 
+            this.ChooseVoucher.AutoHeight = false;
+            this.ChooseVoucher.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
+            this.ChooseVoucher.Name = "ChooseVoucher";
+            this.ChooseVoucher.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.ChooseVoucher.Click += new System.EventHandler(this.ChooseVoucher_Click);
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -540,23 +557,6 @@
             this.emptySpaceItem2.Size = new System.Drawing.Size(10, 24);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // ChooseVoucher
-            // 
-            this.ChooseVoucher.AutoHeight = false;
-            this.ChooseVoucher.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
-            this.ChooseVoucher.Name = "ChooseVoucher";
-            this.ChooseVoucher.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.ChooseVoucher.Click += new System.EventHandler(this.ChooseVoucher_Click);
-            // 
-            // btnChooseVoucher
-            // 
-            this.btnChooseVoucher.Caption = "Choose";
-            this.btnChooseVoucher.ColumnEdit = this.ChooseVoucher;
-            this.btnChooseVoucher.Name = "btnChooseVoucher";
-            this.btnChooseVoucher.Visible = true;
-            this.btnChooseVoucher.VisibleIndex = 4;
-            // 
             // fVoucher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -564,7 +564,7 @@
             this.ClientSize = new System.Drawing.Size(590, 415);
             this.Controls.Add(this.layoutControl1);
             this.Name = "fVoucher";
-            this.Text = "fVoucher";
+            this.Text = "Thêm Voucher";
             this.Load += new System.EventHandler(this.fVoucher_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
@@ -593,13 +593,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChooseVoucher)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ChooseVoucher)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using QuanLyCafe.Helper;
 using QuanLyCafe.QLySanPham;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static QuanLyCafe.Helper.Helper_ShowNoti;
 
 namespace QuanLyCafe
 {
@@ -114,22 +116,22 @@ namespace QuanLyCafe
             #region Kiểm tra đầy đủ thông tin
             if (string.IsNullOrEmpty(NameSanPhamTextEdit.Text))
             {
-                fMain.ShowNotification("Thông báo", "Thêm sản phẩm", "Chưa điền tên sản phẩm, vui lòng xem lại !!!", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Chưa điền tên sản phẩm, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
             if (string.IsNullOrEmpty(NameTypeSanPhamCbbEdit.Text))
             {
-                fMain.ShowNotification("Thông báo", "Thêm sản phẩm", "Chưa điền đơn giá, vui lòng xem lại !!!", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Chưa điền đơn giá, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
             if (ImagePictureEdit.Image == null)
             {
-                fMain.ShowNotification("Thông báo", "Thêm sản phẩm", "Chưa điền đường dẫn ảnh, vui lòng xem lại !!!", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Chưa điền đường dẫn ảnh, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
             if(GiaSanPhamSpinEdit.Value < CostSpinEdit.Value)
             {
-                fMain.ShowNotification("Thông báo", "Thêm sản phẩm", "Tiền sản phẩm bé hơn tiền cost, vui lòng xem lại", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Tiền sản phẩm bé hơn tiền cost, vui lòng xem lại", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
             #endregion
@@ -146,8 +148,7 @@ namespace QuanLyCafe
             db_quanly.SanPhams.Add(sanPham);
             db_quanly.SaveChanges();
 
-            fMain.ShowNotification("Thông báo", "Thêm sản phẩm", $"Thêm sản phầm {NameSanPhamTextEdit.Text} thành công", Helper_Project.svgImages["Success"]);
-
+            Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", $"Thêm sản phầm {NameSanPhamTextEdit.Text} thành công", Helper_ShowNoti.SvgImageIcon.Success);
             LoadAllDB();
         }
 
@@ -204,7 +205,7 @@ namespace QuanLyCafe
 
                     SanPham sanpham = db_quanly.SanPhams.Find(Convert.ToInt32(IdSanPham));
                     db_quanly.SanPhams.Remove(sanpham);
-                    fMain.ShowNotification("Thông báo", "Xóa sản phẩm", $"Đã xóa sản phẩm {NameSanPham} thành công", Helper_Project.svgImages["Success"]);
+                    Helper_ShowNoti.ShowThongBao("Xóa sản phẩm", $"Đã xóa sản phẩm {NameSanPham} thành công", Helper_ShowNoti.SvgImageIcon.Success);
                 }
 
                 db_quanly.SaveChanges();
@@ -255,7 +256,7 @@ namespace QuanLyCafe
             byte[] image = Helper_Project.ConvertImageToByte(ImagePictureEdit.Image);
             if (image == null)
             {
-                fMain.ShowNotification("Thông báo", "Thêm sản phẩm", $"Chỉnh sửa ảnh thất bại !!", Helper_Project.svgImages["Error"]);
+                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", $"Chỉnh sửa ảnh thất bại !!", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
 
@@ -268,7 +269,7 @@ namespace QuanLyCafe
 
             db_quanly.SaveChanges();
 
-            fMain.ShowNotification("Thông báo", "Chỉnh sửa sản phẩm", $"Chỉnh sửa sản phẩm {NameSanPhamTextEdit.Text} thành công", Helper_Project.svgImages["Success"]);
+            Helper_ShowNoti.ShowThongBao("Chỉnh sửa sản phẩm", $"Chỉnh sửa sản phẩm {NameSanPhamTextEdit.Text} thành công", Helper_ShowNoti.SvgImageIcon.Success);
         }
 
         private void btnAddLinkImage_Click(object sender, EventArgs e)

@@ -121,7 +121,7 @@ namespace QuanLyCafe.OrderSanPham
 
             _ModelOrderSanPham _ModelOrderSanPham = new _ModelOrderSanPham()
             {
-                STT = row + 1,
+                //STT = row + 1,
                 IdSanPham = Convert.ToInt32(StrName_Panel),
                 NameSanPham = StrNameSanPham,
                 GiaSanPham = StrGiaTienSanPham,

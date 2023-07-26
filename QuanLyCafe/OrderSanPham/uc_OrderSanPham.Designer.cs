@@ -66,7 +66,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.modelOrderSanPhamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colSTT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIdSanPham = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameSanPham = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSoLuong = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -83,10 +82,10 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.fLayoutSanPham = new System.Windows.Forms.FlowLayoutPanel();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -124,10 +123,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -519,7 +518,6 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colSTT,
             this.colIdSanPham,
             this.colNameSanPham,
             this.colSoLuong,
@@ -529,31 +527,26 @@
             this.btnAddTopping,
             this.btnDeleteSanPham});
             this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.IndicatorWidth = 40;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
-            // 
-            // colSTT
-            // 
-            this.colSTT.FieldName = "STT";
-            this.colSTT.Name = "colSTT";
-            this.colSTT.Visible = true;
-            this.colSTT.VisibleIndex = 0;
             // 
             // colIdSanPham
             // 
             this.colIdSanPham.FieldName = "IdSanPham";
             this.colIdSanPham.Name = "colIdSanPham";
             this.colIdSanPham.Visible = true;
-            this.colIdSanPham.VisibleIndex = 1;
+            this.colIdSanPham.VisibleIndex = 0;
             // 
             // colNameSanPham
             // 
             this.colNameSanPham.FieldName = "NameSanPham";
             this.colNameSanPham.Name = "colNameSanPham";
             this.colNameSanPham.Visible = true;
-            this.colNameSanPham.VisibleIndex = 2;
+            this.colNameSanPham.VisibleIndex = 1;
             this.colNameSanPham.Width = 99;
             // 
             // colSoLuong
@@ -561,7 +554,7 @@
             this.colSoLuong.FieldName = "SoLuong";
             this.colSoLuong.Name = "colSoLuong";
             this.colSoLuong.Visible = true;
-            this.colSoLuong.VisibleIndex = 3;
+            this.colSoLuong.VisibleIndex = 2;
             this.colSoLuong.Width = 99;
             // 
             // colGiaSanPham
@@ -571,7 +564,7 @@
             this.colGiaSanPham.FieldName = "GiaSanPham";
             this.colGiaSanPham.Name = "colGiaSanPham";
             this.colGiaSanPham.Visible = true;
-            this.colGiaSanPham.VisibleIndex = 4;
+            this.colGiaSanPham.VisibleIndex = 3;
             this.colGiaSanPham.Width = 99;
             // 
             // colTongTien
@@ -581,7 +574,7 @@
             this.colTongTien.FieldName = "TongTien";
             this.colTongTien.Name = "colTongTien";
             this.colTongTien.Visible = true;
-            this.colTongTien.VisibleIndex = 5;
+            this.colTongTien.VisibleIndex = 4;
             this.colTongTien.Width = 99;
             // 
             // colGhiChu
@@ -589,7 +582,7 @@
             this.colGhiChu.FieldName = "GhiChu";
             this.colGhiChu.Name = "colGhiChu";
             this.colGhiChu.Visible = true;
-            this.colGhiChu.VisibleIndex = 6;
+            this.colGhiChu.VisibleIndex = 5;
             this.colGhiChu.Width = 130;
             // 
             // btnAddTopping
@@ -598,7 +591,7 @@
             this.btnAddTopping.ColumnEdit = this.AddTopping;
             this.btnAddTopping.Name = "btnAddTopping";
             this.btnAddTopping.Visible = true;
-            this.btnAddTopping.VisibleIndex = 7;
+            this.btnAddTopping.VisibleIndex = 6;
             this.btnAddTopping.Width = 77;
             // 
             // AddTopping
@@ -616,7 +609,7 @@
             this.btnDeleteSanPham.ColumnEdit = this.DeleteSanPham;
             this.btnDeleteSanPham.Name = "btnDeleteSanPham";
             this.btnDeleteSanPham.Visible = true;
-            this.btnDeleteSanPham.VisibleIndex = 8;
+            this.btnDeleteSanPham.VisibleIndex = 7;
             this.btnDeleteSanPham.Width = 92;
             // 
             // DeleteSanPham
@@ -689,14 +682,6 @@
             this.layoutControlItem8.Text = "Nhân viên thanh toán:";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(108, 13);
             // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(621, 344);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(113, 26);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnChooseNV;
@@ -724,6 +709,14 @@
             this.layoutControlItem11.Size = new System.Drawing.Size(43, 26);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(621, 344);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(113, 26);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // fLayoutSanPham
             // 
@@ -856,10 +849,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -899,7 +892,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit AddTopping;
         private DevExpress.XtraGrid.Columns.GridColumn btnDeleteSanPham;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit DeleteSanPham;
-        private DevExpress.XtraGrid.Columns.GridColumn colSTT;
         private DevExpress.XtraGrid.Columns.GridColumn colIdSanPham;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.CheckButton cbtnNganHang;

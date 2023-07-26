@@ -223,6 +223,7 @@
             0,
             0,
             0});
+            this.IdKhachHangTextEdit.Enabled = false;
             this.IdKhachHangTextEdit.Location = new System.Drawing.Point(117, 12);
             this.IdKhachHangTextEdit.Name = "IdKhachHangTextEdit";
             this.IdKhachHangTextEdit.Properties.Appearance.Options.UseTextOptions = true;
@@ -491,7 +492,7 @@
             this.ClientSize = new System.Drawing.Size(814, 489);
             this.Controls.Add(this.layoutControl1);
             this.Name = "fKhachHang";
-            this.Text = "fKhachHang";
+            this.Text = "Thêm khách hàng";
             this.Load += new System.EventHandler(this.fKhachHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

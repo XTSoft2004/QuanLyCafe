@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyCafe", "QuanLyCafe\Qu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLy", "..\QuanLy\QuanLy\QuanLy.csproj", "{DA93E510-46CF-4DD1-9490-8C4DF95ED706}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Devexpress", "Test_Devexpress\Test_Devexpress.csproj", "{880FA7E4-37DF-47C9-9002-78CB0A8DC841}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DA93E510-46CF-4DD1-9490-8C4DF95ED706}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA93E510-46CF-4DD1-9490-8C4DF95ED706}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA93E510-46CF-4DD1-9490-8C4DF95ED706}.Release|Any CPU.Build.0 = Release|Any CPU
+		{880FA7E4-37DF-47C9-9002-78CB0A8DC841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880FA7E4-37DF-47C9-9002-78CB0A8DC841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880FA7E4-37DF-47C9-9002-78CB0A8DC841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880FA7E4-37DF-47C9-9002-78CB0A8DC841}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

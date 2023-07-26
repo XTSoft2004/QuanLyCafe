@@ -4,6 +4,7 @@ using DevExpress.XtraBars.FluentDesignSystem;
 using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -21,8 +22,6 @@ namespace QuanLyCafe
     internal class Helper_Project
     {
         public static Random rnd = new Random();
-        public static SvgImageCollection svgImages;
-        public static fMain fMain = new fMain();
         public static void SaveData(string path, string data)
         {
             while (true)
@@ -171,20 +170,6 @@ namespace QuanLyCafe
             }
         }
 
-        public class AlertData
-        {
-            public AlertData(string newMessage, string title, string message, SvgImage messageicon)
-            {
-                NewMessage = newMessage;
-                Title = title;
-                Message = message;
-                MessageIcon = messageicon;
-            }
-            public string NewMessage { get; set; }
-            public string Title { get; set; }
-            public string Message { get; set; }
-            public SvgImage MessageIcon { get; set; }
-        }
         public static void CloseApp(string processName)
         {
             Process[] processes = Process.GetProcessesByName(processName);

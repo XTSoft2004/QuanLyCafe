@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils.Svg;
 using DevExpress.XtraBars;
+using QuanLyCafe.Helper;
 using QuanLyCafe.OrderSanPham;
 using QuanLyCafe.QLNhanVien;
 using QuanLyCafe.QuanLyBan;
@@ -11,6 +12,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static QuanLyCafe.Helper.Helper_ShowNoti;
 
 namespace QuanLyCafe
 {
@@ -31,8 +33,9 @@ namespace QuanLyCafe
         private void fMain_Load(object sender, EventArgs e)
         {
             Helper_Project.MainControlAdd = MainControlAdd;
-            Helper_Project.svgImages = svgImageCollection1;
-            ShowNotification("Chào mừng bạn", "Chúc bạn một ngày tốt lành", "Làm việc thật tốt nhé <3", Helper_Project.svgImages["team_work"]);
+            Helper_ShowNoti.svgImages = svgImageCollection1;
+
+            Helper_ShowNoti.ShowThongBao("Chúc bạn một ngày tốt lành", "Làm việc thật tốt nhé <3", SvgImageIcon.Team_Work);
 
             uc_QLSanPham uc_QLSanPham = new uc_QLSanPham();
             Helper_Project.ShowFormUC(uc_QLSanPham);
@@ -59,9 +62,9 @@ namespace QuanLyCafe
             uc_QuanLyBan uc_quanlyban = new uc_QuanLyBan();
             Helper_Project.ShowFormUC(uc_quanlyban);
         }
-        public void ShowNotification(string NewMessage, string Message, string Title, SvgImage MessageIcon)
+        public void ShowNotification(string Message, string Title, SvgImageIcon svgImageIcon)
         {
-            Helper_Project.AlertData alertData = new Helper_Project.AlertData(NewMessage, Message, Title, MessageIcon);
+            Helper_ShowNoti.AlertData alertData = new Helper_ShowNoti.AlertData(Message, Title, svgImageIcon);
             Noti_Single.Show(alertData, this);
         }
 
