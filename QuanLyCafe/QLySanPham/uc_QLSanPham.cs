@@ -243,6 +243,7 @@ namespace QuanLyCafe
 
         private void btnAddType_Click(object sender, EventArgs e)
         {
+
             fTypeSanPham fTypeSanPham = new fTypeSanPham();
             fTypeSanPham.ShowDialog();
 

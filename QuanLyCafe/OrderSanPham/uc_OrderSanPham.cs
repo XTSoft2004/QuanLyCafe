@@ -1,13 +1,20 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils.Extensions;
+using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using QuanLyCafe.Helper;
 using QuanLyCafe.OrderSanPham.Form_Helper;
+using QuanLyCafe.QLHoaDon;
+using QuanLyCafe.QLHoaDon;
+using QuanLyCafe.QuanLyBan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -98,14 +105,14 @@ namespace QuanLyCafe.OrderSanPham
         {
             fVoucher fVoucher = new fVoucher();
             fVoucher.ShowDialog();
-            VoucherCbb.Text = string.IsNullOrEmpty(fVoucher._NameVoucher) ? "Không sử dụng voucher" : fVoucher._NameVoucher;
+            VoucherSearchLookUp.Text = string.IsNullOrEmpty(fVoucher._NameVoucher) ? "Chọn voucher ( Không bắt buộc )" : fVoucher._NameVoucher;
         }
 
         private void btnShowKhachHang_Click(object sender, EventArgs e)
         {
             fKhachHang fKhachHang = new fKhachHang();
             fKhachHang.ShowDialog();
-            KhachHangCbb.Text = string.IsNullOrEmpty(fKhachHang._NameKhachHang) ? "Không có tên khách hàng" : fKhachHang._NameKhachHang;
+            KhachHangSearchLookUp.Text = string.IsNullOrEmpty(fKhachHang._NameKhachHang) ? "Chọn khách hàng ( Không bắt buộc )" : fKhachHang._NameKhachHang;
         }
 
         private void btnChooseNV_Click(object sender, EventArgs e)
@@ -140,6 +147,19 @@ namespace QuanLyCafe.OrderSanPham
                 //coll.Add(nhanVienThanhToan);
             }
             //coll.EndUpdate();
+
+
+            var list_voucher = db_quanly.Vouchers
+                .Select(p => new { p.NameVoucher, p.SoLuongSuDung })
+                .ToList();
+
+            VoucherSearchLookUp.Properties.DataSource = list_voucher;
+
+            var list_khachhang = db_quanly.KhachHangs
+                .Select(p => new { p.NameKhachHang, p.Phone,p.Email })
+                .ToList();
+
+            KhachHangSearchLookUp.Properties.DataSource = list_khachhang;
         }
         private void SearchEdit_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
@@ -208,6 +228,155 @@ namespace QuanLyCafe.OrderSanPham
             if(e.Info.IsRowIndicator && e.RowHandle > 0)
             {
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
+        }
+
+        private void btnCanel_Click(object sender, EventArgs e)
+        {
+            uc_QuanLyBan uc_QuanLyBan = new uc_QuanLyBan();
+            Helper_Project.ShowFormUC(uc_QuanLyBan);
+        }
+        private bool TinhTongHoaDon()
+        {
+            decimal sum_hoadon = 0;
+            for(int i = 0;i < _ModelOrderSanPhams.Count;i++)
+            {
+                decimal GiaTriSanPham = _ModelOrderSanPhams[i].GiaSanPham;
+                sum_hoadon += GiaTriSanPham;
+
+                var toppings = _ModelOrderSanPhams[i]._list_toppings;
+                foreach(var topp in toppings)
+                {
+                    sum_hoadon += topp.GiaTopping;
+                }
+            }
+            lbTongTien.Text = Helper_Project.ChuyenDoiGiaTriTien(sum_hoadon);
+
+            if(cbtnTienMat.Checked == false)
+            {
+                XtraMessageBox.Show("Chưa chọn thanh toán tiền mặt !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if(NVThanhToanCbb.Text == "Không có tên nhân viên")
+            {
+                XtraMessageBox.Show("Bạn chưa chọn nhân viên thanh toán hóa đơn !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            if (TinhTongHoaDon() == false) return;
+
+            List<_ModelChiTietHoaDon> listsanpham = new List<_ModelChiTietHoaDon>();
+            for (int index = 0; index < gridView1.RowCount; index++)
+            {
+                int idsanpham = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdSanPham"));
+                _ModelChiTietHoaDon sanPham = new _ModelChiTietHoaDon()
+                {
+                    IdSanPham = idsanpham,
+                    NameSanPham = gridView1.GetRowCellValue(index, "NameSanPham").ToString(),
+                    SoLuong = Convert.ToInt32(gridView1.GetRowCellValue(index, "SoLuong")),
+                    GiaSanPham = Convert.ToDecimal(gridView1.GetRowCellValue(index, "GiaSanPham")),
+                    GhiChu = gridView1.GetRowCellValue(index, "GhiChu").ToString(),
+                    _listtoppings = _ModelOrderSanPhams.Find(p => p.IdSanPham == idsanpham)._list_toppings,
+                };
+                listsanpham.Add(sanPham);
+            }
+
+            //string NameBan = db_quanly.QLBans.Find(IdBan).NameBan;
+            int idNhanVien = NVThanhToanCbb.Text == "Không có tên nhân viên" ? -1 : Convert.ToInt32(NVThanhToanCbb.Text.Split('_')[0]);
+            int idKhachHang = KhachHangSearchLookUp.EditValue == null ? -1 : Convert.ToInt32(KhachHangSearchLookUp.EditValue);
+            int idVoucher = VoucherSearchLookUp.EditValue == null ? -1 : Convert.ToInt32(VoucherSearchLookUp.EditValue);
+            decimal NhanTien = Convert.ToDecimal(text_Nhantien.Text);
+            decimal TongTien = Convert.ToDecimal(lbTongTien.Text.Replace(" VNĐ",""));
+            ThanhToan thanhtoan = new ThanhToan(IdBan, idNhanVien, idKhachHang, idVoucher, NhanTien, TongTien, num_Thue.Value, listsanpham);
+            thanhtoan.ThanhToanHoaDon();
+        }
+        public class ThanhToan
+        {         
+            public List<_ModelChiTietHoaDon> _ListSanPham = new List<_ModelChiTietHoaDon> ();
+            public int IdBan { get; set; }
+            public int IdNhanVien { get; set; }
+            public int? IdKhachHang { get; set; }
+            public int? IdVoucher { get; set; }
+            public decimal TienNhan { get; set; }
+            public decimal TongTien { get; set; }
+            public decimal Thue { get; set; }
+            QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
+            public ThanhToan(int idBan, int idNhanVien, int? idKhachHang, int? idVoucher, decimal tienNhan, decimal tongTien, decimal thue, List<_ModelChiTietHoaDon> _listsanpham)
+            {
+                IdBan = idBan;
+                IdNhanVien = idNhanVien;
+                IdKhachHang = idKhachHang == -1 ? null : idKhachHang;
+                IdVoucher = idVoucher == -1 ? null : idVoucher;
+                TienNhan = tienNhan;
+                TongTien = tongTien;
+                Thue = thue;
+                _ListSanPham = _listsanpham;
+            }
+            public void ThanhToanHoaDon()
+            {
+
+                string dateTimeString = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                DateTime dateTime = DateTime.ParseExact(dateTimeString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+
+                HoaDon hoaDon = new HoaDon()
+                {
+                    IdNhanVien = IdNhanVien,
+                    IdKhachHang = IdKhachHang,
+                    IdBan = IdBan,
+                    NgayMua = dateTime,
+                    TienNhan = TienNhan,
+                    TongTien = TongTien,
+                    Thue = Thue,
+                };
+
+                db_quanly.HoaDons.Add(hoaDon);
+                db_quanly.SaveChanges();
+
+                int idHoaDon = db_quanly.HoaDons
+                    .Where(p => p.NgayMua == dateTime)
+                    .Select(p => p.IdHoaDon)
+                    .FirstOrDefault();
+
+                for (int rows = 0;rows < _ListSanPham.Count; rows++)
+                {
+                    var sanphams = _ListSanPham[rows];
+                    ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon()
+                    {
+                        IdHoaDon = idHoaDon,
+                        IdSanPham = sanphams.IdSanPham,
+                        SoLuong = sanphams.SoLuong,
+                        GiaSanPham = sanphams.GiaSanPham,
+                        GhiChu = sanphams.GhiChu,
+                    };
+                    db_quanly.ChiTietHoaDons.Add(chiTietHoaDon);
+                    db_quanly.SaveChanges();
+
+                    int idchitiethoadon = db_quanly.ChiTietHoaDons
+                        .Where(p=> p.IdHoaDon == idHoaDon && p.IdSanPham == sanphams.IdSanPham && p.SoLuong == sanphams.SoLuong)
+                        .Select(p => p.IdChiTietHoaDon)
+                        .FirstOrDefault();
+
+                    var toppings = _ListSanPham[rows]._listtoppings;
+                    foreach (var item in toppings)
+                    {
+                        HoaDonTopping hoaDonTopping = new HoaDonTopping()
+                        {
+                            IdTopping = item.IdTopping,
+                            NameTopping = item.NameTopping,
+                            GiaTopping = item.GiaTopping,
+                            IdChiTietHoaDon = idchitiethoadon,
+                        };
+                        db_quanly.HoaDonToppings.Add(hoaDonTopping);
+                    }
+                    db_quanly.SaveChanges();
+                }
+
+                Helper_ShowNoti.ShowThongBao("Thanh toán hóa đơn", $"Thanh toán thành công {_ListSanPham.Count} sản phẩm !", Helper_ShowNoti.SvgImageIcon.Success);
             }
         }
     }

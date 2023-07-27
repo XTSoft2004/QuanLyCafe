@@ -36,17 +36,21 @@
             this.LoaiSanPhamCbb = new DevExpress.XtraEditors.ComboBoxEdit();
             this.SearchEdit = new DevExpress.XtraEditors.TextEdit();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.lbTongTien = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.btnChooseNV = new DevExpress.XtraEditors.SimpleButton();
             this.NVThanhToanCbb = new DevExpress.XtraEditors.ComboBoxEdit();
             this.svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(this.components);
             this.NhanVien = new DevExpress.Utils.Html.HtmlTemplate();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.text_Nhantien = new DevExpress.XtraEditors.TextEdit();
+            this.KhachHangSearchLookUp = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.VoucherSearchLookUp = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.voucherBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnShowKhachHang = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.KhachHangCbb = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -55,11 +59,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.num_Thue = new System.Windows.Forms.NumericUpDown();
-            this.VoucherCbb = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.text_Nhantien = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCanel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnThanhToan = new DevExpress.XtraEditors.SimpleButton();
             this.cbtnNganHang = new DevExpress.XtraEditors.CheckButton();
             this.cbtnMomo = new DevExpress.XtraEditors.CheckButton();
             this.cbtnTienMat = new DevExpress.XtraEditors.CheckButton();
@@ -78,7 +82,6 @@
             this.DeleteSanPham = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -106,10 +109,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.text_Nhantien.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KhachHangCbb.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KhachHangSearchLookUp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VoucherSearchLookUp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.voucherBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_Thue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VoucherCbb.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_Nhantien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -119,7 +126,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DeleteSanPham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
@@ -200,7 +206,7 @@
             // 
             // layoutControl2
             // 
-            this.layoutControl2.Controls.Add(this.labelControl9);
+            this.layoutControl2.Controls.Add(this.lbTongTien);
             this.layoutControl2.Controls.Add(this.labelControl8);
             this.layoutControl2.Controls.Add(this.btnChooseNV);
             this.layoutControl2.Controls.Add(this.NVThanhToanCbb);
@@ -214,16 +220,16 @@
             this.layoutControl2.TabIndex = 5;
             this.layoutControl2.Text = "layoutControl2";
             // 
-            // labelControl9
+            // lbTongTien
             // 
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(590, 356);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(39, 16);
-            this.labelControl9.StyleController = this.layoutControl2;
-            this.labelControl9.TabIndex = 28;
-            this.labelControl9.Text = "0 VNĐ";
+            this.lbTongTien.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongTien.Appearance.Options.UseFont = true;
+            this.lbTongTien.Location = new System.Drawing.Point(590, 356);
+            this.lbTongTien.Name = "lbTongTien";
+            this.lbTongTien.Size = new System.Drawing.Size(39, 16);
+            this.lbTongTien.StyleController = this.layoutControl2;
+            this.lbTongTien.TabIndex = 28;
+            this.lbTongTien.Text = "0 VNĐ";
             // 
             // labelControl8
             // 
@@ -276,10 +282,10 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.text_Nhantien);
+            this.groupControl1.Controls.Add(this.KhachHangSearchLookUp);
+            this.groupControl1.Controls.Add(this.VoucherSearchLookUp);
             this.groupControl1.Controls.Add(this.btnShowKhachHang);
             this.groupControl1.Controls.Add(this.labelControl7);
-            this.groupControl1.Controls.Add(this.KhachHangCbb);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.labelControl1);
@@ -288,25 +294,67 @@
             this.groupControl1.Controls.Add(this.label8);
             this.groupControl1.Controls.Add(this.labelControl3);
             this.groupControl1.Controls.Add(this.num_Thue);
-            this.groupControl1.Controls.Add(this.VoucherCbb);
             this.groupControl1.Controls.Add(this.labelControl4);
+            this.groupControl1.Controls.Add(this.text_Nhantien);
             this.groupControl1.Location = new System.Drawing.Point(12, 382);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(709, 163);
+            this.groupControl1.Size = new System.Drawing.Size(730, 163);
             this.groupControl1.TabIndex = 24;
             this.groupControl1.Text = "Tính Tổng";
             // 
-            // text_Nhantien
+            // KhachHangSearchLookUp
             // 
-            this.text_Nhantien.Enabled = false;
-            this.text_Nhantien.Location = new System.Drawing.Point(167, 101);
-            this.text_Nhantien.Name = "text_Nhantien";
-            this.text_Nhantien.Size = new System.Drawing.Size(112, 20);
-            this.text_Nhantien.TabIndex = 26;
+            this.KhachHangSearchLookUp.Location = new System.Drawing.Point(169, 129);
+            this.KhachHangSearchLookUp.Name = "KhachHangSearchLookUp";
+            this.KhachHangSearchLookUp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.KhachHangSearchLookUp.Properties.DataSource = this.khachHangBindingSource;
+            this.KhachHangSearchLookUp.Properties.DisplayMember = "NameKhachHang";
+            this.KhachHangSearchLookUp.Properties.NullText = "Chọn khách hàng ( Không bắt buộc )";
+            this.KhachHangSearchLookUp.Properties.PopupView = this.gridView2;
+            this.KhachHangSearchLookUp.Properties.ValueMember = "IdKhachHang";
+            this.KhachHangSearchLookUp.Size = new System.Drawing.Size(215, 20);
+            this.KhachHangSearchLookUp.TabIndex = 28;
+            // 
+            // khachHangBindingSource
+            // 
+            this.khachHangBindingSource.DataSource = typeof(QuanLyCafe.KhachHang);
+            // 
+            // gridView2
+            // 
+            this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // VoucherSearchLookUp
+            // 
+            this.VoucherSearchLookUp.Location = new System.Drawing.Point(167, 48);
+            this.VoucherSearchLookUp.Name = "VoucherSearchLookUp";
+            this.VoucherSearchLookUp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.VoucherSearchLookUp.Properties.DataSource = this.voucherBindingSource;
+            this.VoucherSearchLookUp.Properties.DisplayMember = "NameVoucher";
+            this.VoucherSearchLookUp.Properties.NullText = "Chọn voucher ( Không bắt buộc )";
+            this.VoucherSearchLookUp.Properties.PopupView = this.searchLookUpEdit1View;
+            this.VoucherSearchLookUp.Properties.ValueMember = "IdVoucher";
+            this.VoucherSearchLookUp.Size = new System.Drawing.Size(186, 20);
+            this.VoucherSearchLookUp.TabIndex = 27;
+            // 
+            // voucherBindingSource
+            // 
+            this.voucherBindingSource.DataSource = typeof(QuanLyCafe.Voucher);
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // btnShowKhachHang
             // 
-            this.btnShowKhachHang.Location = new System.Drawing.Point(341, 127);
+            this.btnShowKhachHang.Location = new System.Drawing.Point(390, 129);
             this.btnShowKhachHang.Name = "btnShowKhachHang";
             this.btnShowKhachHang.Size = new System.Drawing.Size(94, 21);
             this.btnShowKhachHang.TabIndex = 25;
@@ -322,16 +370,6 @@
             this.labelControl7.Size = new System.Drawing.Size(81, 16);
             this.labelControl7.TabIndex = 23;
             this.labelControl7.Text = "Khách Hàng:";
-            // 
-            // KhachHangCbb
-            // 
-            this.KhachHangCbb.EditValue = "Không có tên khách hàng";
-            this.KhachHangCbb.Location = new System.Drawing.Point(167, 128);
-            this.KhachHangCbb.Name = "KhachHangCbb";
-            this.KhachHangCbb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.KhachHangCbb.Size = new System.Drawing.Size(168, 20);
-            this.KhachHangCbb.TabIndex = 24;
             // 
             // labelControl6
             // 
@@ -372,7 +410,7 @@
             // 
             // btnShowVoucher
             // 
-            this.btnShowVoucher.Location = new System.Drawing.Point(341, 47);
+            this.btnShowVoucher.Location = new System.Drawing.Point(360, 47);
             this.btnShowVoucher.Name = "btnShowVoucher";
             this.btnShowVoucher.Size = new System.Drawing.Size(79, 21);
             this.btnShowVoucher.TabIndex = 6;
@@ -407,16 +445,6 @@
             this.num_Thue.Size = new System.Drawing.Size(53, 21);
             this.num_Thue.TabIndex = 5;
             // 
-            // VoucherCbb
-            // 
-            this.VoucherCbb.EditValue = "Không sử dụng voucher";
-            this.VoucherCbb.Location = new System.Drawing.Point(167, 48);
-            this.VoucherCbb.Name = "VoucherCbb";
-            this.VoucherCbb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.VoucherCbb.Size = new System.Drawing.Size(168, 20);
-            this.VoucherCbb.TabIndex = 3;
-            // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -427,36 +455,49 @@
             this.labelControl4.TabIndex = 4;
             this.labelControl4.Text = "Thuế / VAT :";
             // 
+            // text_Nhantien
+            // 
+            this.text_Nhantien.Enabled = false;
+            this.text_Nhantien.Location = new System.Drawing.Point(167, 101);
+            this.text_Nhantien.Name = "text_Nhantien";
+            this.text_Nhantien.Properties.DisplayFormat.FormatString = "N3";
+            this.text_Nhantien.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.text_Nhantien.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.text_Nhantien.Size = new System.Drawing.Size(112, 20);
+            this.text_Nhantien.TabIndex = 26;
+            // 
             // groupControl2
             // 
-            this.groupControl2.Controls.Add(this.simpleButton2);
-            this.groupControl2.Controls.Add(this.simpleButton1);
+            this.groupControl2.Controls.Add(this.btnCanel);
+            this.groupControl2.Controls.Add(this.btnThanhToan);
             this.groupControl2.Controls.Add(this.cbtnNganHang);
             this.groupControl2.Controls.Add(this.cbtnMomo);
             this.groupControl2.Controls.Add(this.cbtnTienMat);
             this.groupControl2.Location = new System.Drawing.Point(12, 549);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(709, 128);
+            this.groupControl2.Size = new System.Drawing.Size(730, 128);
             this.groupControl2.TabIndex = 23;
             this.groupControl2.Text = "Phương thức thanh toán";
             // 
-            // simpleButton2
+            // btnCanel
             // 
-            this.simpleButton2.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.cancel_order;
-            this.simpleButton2.Location = new System.Drawing.Point(422, 78);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(143, 43);
-            this.simpleButton2.TabIndex = 24;
-            this.simpleButton2.Text = "Hủy bỏ";
+            this.btnCanel.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.cancel_order;
+            this.btnCanel.Location = new System.Drawing.Point(429, 77);
+            this.btnCanel.Name = "btnCanel";
+            this.btnCanel.Size = new System.Drawing.Size(143, 43);
+            this.btnCanel.TabIndex = 24;
+            this.btnCanel.Text = "Hủy bỏ";
+            this.btnCanel.Click += new System.EventHandler(this.btnCanel_Click);
             // 
-            // simpleButton1
+            // btnThanhToan
             // 
-            this.simpleButton1.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.debit_card;
-            this.simpleButton1.Location = new System.Drawing.Point(571, 77);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(143, 43);
-            this.simpleButton1.TabIndex = 23;
-            this.simpleButton1.Text = "Thanh Toán";
+            this.btnThanhToan.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.debit_card;
+            this.btnThanhToan.Location = new System.Drawing.Point(578, 76);
+            this.btnThanhToan.Name = "btnThanhToan";
+            this.btnThanhToan.Size = new System.Drawing.Size(143, 43);
+            this.btnThanhToan.TabIndex = 23;
+            this.btnThanhToan.Text = "Thanh Toán";
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
             // 
             // cbtnNganHang
             // 
@@ -626,7 +667,6 @@
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem5,
-            this.emptySpaceItem2,
             this.layoutControlItem7,
             this.layoutControlItem6,
             this.layoutControlItem8,
@@ -647,20 +687,12 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(713, 370);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(21, 299);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.groupControl1;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 370);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(713, 167);
+            this.layoutControlItem7.Size = new System.Drawing.Size(734, 167);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
             // 
@@ -669,7 +701,7 @@
             this.layoutControlItem6.Control = this.groupControl2;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 537);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(713, 132);
+            this.layoutControlItem6.Size = new System.Drawing.Size(734, 132);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -703,7 +735,7 @@
             // 
             // layoutControlItem11
             // 
-            this.layoutControlItem11.Control = this.labelControl9;
+            this.layoutControlItem11.Control = this.lbTongTien;
             this.layoutControlItem11.Location = new System.Drawing.Point(578, 344);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(43, 26);
@@ -832,10 +864,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.text_Nhantien.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.KhachHangCbb.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KhachHangSearchLookUp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VoucherSearchLookUp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.voucherBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_Thue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VoucherCbb.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.text_Nhantien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -845,7 +881,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DeleteSanPham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
@@ -899,10 +934,8 @@
         private DevExpress.XtraEditors.CheckButton cbtnTienMat;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.TextEdit text_Nhantien;
         private DevExpress.XtraEditors.SimpleButton btnShowKhachHang;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.ComboBoxEdit KhachHangCbb;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl1;
@@ -911,28 +944,33 @@
         private System.Windows.Forms.Label label8;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.NumericUpDown num_Thue;
-        private DevExpress.XtraEditors.ComboBoxEdit VoucherCbb;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraEditors.ComboBoxEdit NVThanhToanCbb;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.Utils.Html.HtmlTemplate NhanVien;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl lbTongTien;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.SimpleButton btnChooseNV;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private System.Windows.Forms.BindingSource modelOrderSanPhamBindingSource;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btnCanel;
+        private DevExpress.XtraEditors.SimpleButton btnThanhToan;
         private System.Windows.Forms.Label SoluongSanPham;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private DevExpress.Utils.SvgImageCollection svgImageCollection1;
+        private System.Windows.Forms.BindingSource voucherBindingSource;
+        private DevExpress.XtraEditors.SearchLookUpEdit KhachHangSearchLookUp;
+        private System.Windows.Forms.BindingSource khachHangBindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraEditors.SearchLookUpEdit VoucherSearchLookUp;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraEditors.TextEdit text_Nhantien;
     }
 }

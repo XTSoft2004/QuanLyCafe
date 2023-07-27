@@ -14,14 +14,22 @@ namespace QuanLyCafe
     
     public partial class ChiTietHoaDon
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ChiTietHoaDon()
+        {
+            this.HoaDonToppings = new HashSet<HoaDonTopping>();
+        }
+    
         public int IdChiTietHoaDon { get; set; }
         public int IdHoaDon { get; set; }
-        public int IdSanPham { get; set; }
         public int SoLuong { get; set; }
         public decimal GiaSanPham { get; set; }
         public string GhiChu { get; set; }
+        public int IdSanPham { get; set; }
     
         public virtual HoaDon HoaDon { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HoaDonTopping> HoaDonToppings { get; set; }
         public virtual SanPham SanPham { get; set; }
     }
 }
