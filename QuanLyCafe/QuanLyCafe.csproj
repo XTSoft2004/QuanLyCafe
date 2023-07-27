@@ -37,9 +37,17 @@
     <Reference Include="DevExpress.Charts.v23.1.Core, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v23.1" />
     <Reference Include="DevExpress.Data.v23.1" />
+    <Reference Include="DevExpress.DataAccess.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v23.1.Core, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v23.1.Core, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v23.1.Drawing, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v23.1.Core, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v23.1.Core" />
+    <Reference Include="DevExpress.RichEdit.v23.1.Core, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v23.1.Export, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v23.1" />
     <Reference Include="DevExpress.Utils.v23.1.UI, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v23.1" />
     <Reference Include="DevExpress.Sparkline.v23.1.Core" />
     <Reference Include="DevExpress.XtraCharts.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -47,9 +55,14 @@
     <Reference Include="DevExpress.XtraCharts.v23.1.Wizard, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v23.1" />
     <Reference Include="DevExpress.Drawing.v23.1" />
+    <Reference Include="DevExpress.XtraGauges.v23.1.Core, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPdfViewer.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v23.1.Extensions, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v23.1, Version=23.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -85,15 +98,10 @@
     <Compile Include="DanhMucTopping.cs">
       <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="fMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fMain.Designer.cs">
-      <DependentUpon>fMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Helper\Helper_Project.cs" />
-    <Compile Include="Helper\Helper_ShowNoti.cs" />
     <Compile Include="HoaDon.cs">
+      <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HoaDonTopping.cs">
       <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
     </Compile>
     <Compile Include="KhachHang.cs">
@@ -120,6 +128,30 @@
     <Compile Include="NhanVien.cs">
       <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="QLBan.cs">
+      <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLHoaDon\fBaoCao.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QLHoaDon\fBaoCao.Designer.cs">
+      <DependentUpon>fBaoCao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLHoaDon\uc_HoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QLHoaDon\uc_HoaDon.Designer.cs">
+      <DependentUpon>uc_HoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLHoaDon\_ModelHoaDon.cs" />
+    <Compile Include="fMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMain.Designer.cs">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\Helper_Project.cs" />
+    <Compile Include="Helper\Helper_ShowNoti.cs" />
     <Compile Include="OrderSanPham\Form_Helper\fAddTopping.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,9 +187,6 @@
     <Compile Include="OrderSanPham\_ModelOrderSanPham.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QLBan.cs">
-      <DependentUpon>ModelQuanLyCafe.tt</DependentUpon>
-    </Compile>
     <Compile Include="QLNhanVien\fChucVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +284,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="QLHoaDon\fBaoCao.resx">
+      <DependentUpon>fBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLHoaDon\uc_HoaDon.resx">
+      <DependentUpon>uc_HoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QLNhanVien\fChucVu.resx">
       <DependentUpon>fChucVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,9 +328,12 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DanhMucTopping.datasource" />
+    <None Include="Properties\DataSources\KhachHang.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham._ModelAddTopping.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.OrderSanPham._ModelDanhMucTopping.datasource" />
+    <None Include="Properties\DataSources\QuanLyCafe.QLHoaDon._ModelHoaDon.datasource" />
     <None Include="Properties\DataSources\Topping.datasource" />
+    <None Include="Properties\DataSources\Voucher.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -340,6 +378,9 @@
     <None Include="Resources\trash.png" />
     <None Include="Resources\pen.png" />
     <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bill.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ModelQuanLyCafe.Context.tt">

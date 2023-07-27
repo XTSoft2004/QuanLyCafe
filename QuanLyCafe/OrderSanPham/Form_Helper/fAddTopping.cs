@@ -1,6 +1,7 @@
 ﻿using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors;
 using QuanLyCafe.Helper;
+using QuanLyCafe.QLHoaDon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
     {
         public int IdSanPham { get; set; }
         public List<_ModelOrderSanPham> _ListTopping = new List<_ModelOrderSanPham>();
-        public List<Topping> toppings = new List<Topping>();
+        public List<_ModelTopping> toppings = new List<_ModelTopping>();
         QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
         public fAddTopping(int idSanPham, ref List<_ModelOrderSanPham> listtopping)
         {
@@ -62,7 +63,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
             int idtopping = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IdTopping"));
             string nametopping = gridView1.GetFocusedRowCellValue("NameTopping").ToString();
-            decimal giatopping = Convert.ToInt32(gridView1.GetFocusedRowCellValue("GiaTopping"));
+            decimal giatopping = Convert.ToDecimal(gridView1.GetFocusedRowCellValue("GiaTopping"));
 
             if(toppings.Exists(p=> p.IdTopping == idtopping))
             {
@@ -72,12 +73,11 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
             int iddanhmuc = db_quanly.Toppings.Find(idtopping).IdDanhMucTopping;
 
-            Topping topping = new Topping()
+            _ModelTopping topping = new _ModelTopping()
             {
                 IdTopping = idtopping,
                 NameTopping = nametopping,
                 GiaTopping = giatopping,
-                IdDanhMucTopping = iddanhmuc
             };
 
             toppings.Add(topping);
@@ -99,7 +99,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
         {
             int index = gridView2.FocusedRowHandle;
             int IdTopping = Convert.ToInt32(gridView2.GetFocusedRowCellValue("IdTopping"));
-            Topping topping = toppings.Where(p => p.IdTopping == IdTopping).FirstOrDefault();
+            _ModelTopping topping = toppings.Where(p => p.IdTopping == IdTopping).FirstOrDefault();
             toppings.Remove(topping);
 
             ToppingBinding.DataSource = toppings;
@@ -121,6 +121,18 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
                 this.Close();
             }
+        }
+
+        private void searchLookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            int iddanhmuc = Convert.ToInt32(searchLookUpEdit1.EditValue);
+            var list_topping = db_quanly.Toppings
+                .Where(p=> p.IdDanhMucTopping == iddanhmuc)
+                .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping })
+                .ToList();
+            ListTopping.DataSource = list_topping;
+            gridView1.RefreshData();
+
         }
     }
 }

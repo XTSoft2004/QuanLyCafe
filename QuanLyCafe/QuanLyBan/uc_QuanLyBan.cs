@@ -92,7 +92,7 @@ namespace QuanLyCafe.QuanLyBan
         private void rbDangDuocDat_Click(object sender, EventArgs e)
         {
             List<QLBan> result = uc_QuanLyBan.db_quanly.QLBans
-                .Where(p=> p.TrangThaiBan == "Đang được đạt")
+                .Where(p=> p.TrangThaiBan == "Đang được đặt")
                 .ToList();
             Helper_QuanLyBan.LoadAllTable(result);
         }

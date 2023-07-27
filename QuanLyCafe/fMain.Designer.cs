@@ -37,6 +37,7 @@
             this.ControlElementQLSanPham = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlElementQLBan = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlElementQLNhanVien = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.ControlElementQLHoaDon = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlElementOrderSanPham = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
@@ -77,7 +78,8 @@
             this.ControlMenuQLAccount,
             this.ControlElementQLSanPham,
             this.ControlElementQLBan,
-            this.ControlElementQLNhanVien});
+            this.ControlElementQLNhanVien,
+            this.ControlElementQLHoaDon});
             this.ControlQuanLy.Expanded = true;
             this.ControlQuanLy.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("ControlQuanLy.ImageOptions.SvgImage")));
             this.ControlQuanLy.Name = "ControlQuanLy";
@@ -114,6 +116,14 @@
             this.ControlElementQLNhanVien.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.ControlElementQLNhanVien.Text = "Quản Lý Nhân Viên";
             this.ControlElementQLNhanVien.Click += new System.EventHandler(this.ControlElementQLNhanVien_Click);
+            // 
+            // ControlElementQLHoaDon
+            // 
+            this.ControlElementQLHoaDon.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.bill;
+            this.ControlElementQLHoaDon.Name = "ControlElementQLHoaDon";
+            this.ControlElementQLHoaDon.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.ControlElementQLHoaDon.Text = "Quản Lý Hóa Đơn";
+            this.ControlElementQLHoaDon.Click += new System.EventHandler(this.ControlElementQLHoaDon_Click);
             // 
             // ControlElementOrderSanPham
             // 
@@ -161,6 +171,8 @@
             this.svgImageCollection1.Add("Error", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Error"))));
             this.svgImageCollection1.Add("Error_Fix", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Error_Fix"))));
             this.svgImageCollection1.Add("Warning", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Warning"))));
+            this.svgImageCollection1.Add("Close", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Close"))));
+            this.svgImageCollection1.Add("Add_Bookmark", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Add_Bookmark"))));
             this.svgImageCollection1.Add("Team_Work", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Team_Work"))));
             // 
             // fMain
@@ -201,6 +213,7 @@
         private DevExpress.XtraBars.Alerter.AlertControl Noti_Single;
         private DevExpress.Utils.SvgImageCollection svgImageCollection1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ControlElementOrderSanPham;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement ControlElementQLHoaDon;
     }
 }
 

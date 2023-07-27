@@ -4,17 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyCafeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLyCafeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChiTietHoaDon">
           <Key>
             <PropertyRef Name="IdChiTietHoaDon" />
           </Key>
           <Property Name="IdChiTietHoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdHoaDon" Type="int" Nullable="false" />
-          <Property Name="IdSanPham" Type="int" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
           <Property Name="GiaSanPham" Type="money" Nullable="false" />
-          <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+          <Property Name="IdSanPham" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ChucVu">
           <Key>
@@ -43,7 +43,17 @@
           <Property Name="TienNhan" Type="money" Nullable="false" />
           <Property Name="IdVoucher" Type="int" />
           <Property Name="TongTien" Type="money" Nullable="false" />
-          <Property Name="Thue" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="Thue" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HoaDonTopping">
+          <Key>
+            <PropertyRef Name="IdHoaDonTopping" />
+          </Key>
+          <Property Name="IdHoaDonTopping" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTopping" Type="int" Nullable="false" />
+          <Property Name="NameTopping" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GiaTopping" Type="money" Nullable="false" />
+          <Property Name="IdChiTietHoaDon" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -201,6 +211,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HoaDonTopping_ChiTietHoaDon">
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="1" />
+          <End Role="HoaDonTopping" Type="Self.HoaDonTopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChiTietHoaDon">
+              <PropertyRef Name="IdChiTietHoaDon" />
+            </Principal>
+            <Dependent Role="HoaDonTopping">
+              <PropertyRef Name="IdChiTietHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NhanVien_ChucVu">
           <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
@@ -242,6 +264,7 @@
           <EntitySet Name="ChucVu" EntityType="Self.ChucVu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DanhMucTopping" EntityType="Self.DanhMucTopping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HoaDonTopping" EntityType="Self.HoaDonTopping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
@@ -278,6 +301,10 @@
             <End Role="Voucher" EntitySet="Voucher" />
             <End Role="HoaDon" EntitySet="HoaDon" />
           </AssociationSet>
+          <AssociationSet Name="FK_HoaDonTopping_ChiTietHoaDon" Association="Self.FK_HoaDonTopping_ChiTietHoaDon">
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+            <End Role="HoaDonTopping" EntitySet="HoaDonTopping" />
+          </AssociationSet>
           <AssociationSet Name="FK_NhanVien_ChucVu" Association="Self.FK_NhanVien_ChucVu">
             <End Role="ChucVu" EntitySet="ChucVu" />
             <End Role="NhanVien" EntitySet="NhanVien" />
@@ -291,8 +318,7 @@
             <End Role="Topping" EntitySet="Topping" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyCafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -302,12 +328,13 @@
           </Key>
           <Property Name="IdChiTietHoaDon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdHoaDon" Type="Int32" Nullable="false" />
-          <Property Name="IdSanPham" Type="Int32" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
           <Property Name="GiaSanPham" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="GhiChu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdSanPham" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HoaDon" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="ChiTietHoaDon" ToRole="HoaDon" />
-          <NavigationProperty Name="SanPham" Relationship="Self.FK_ChiTietHoaDon_SanPham" FromRole="ChiTietHoaDon" ToRole="SanPham" />
+          <NavigationProperty Name="HoaDonToppings" Relationship="Self.FK_HoaDonTopping_ChiTietHoaDon" FromRole="ChiTietHoaDon" ToRole="HoaDonTopping" />
+          <NavigationProperty Name="SanPham" Relationship="QuanLyCafeModel.FK_ChiTietHoaDon_SanPham" FromRole="ChiTietHoaDon" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="ChucVu">
           <Key>
@@ -339,12 +366,23 @@
           <Property Name="TienNhan" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="IdVoucher" Type="Int32" />
           <Property Name="TongTien" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Thue" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="Thue" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
           <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK_HoaDon_KhachHang" FromRole="HoaDon" ToRole="KhachHang" />
           <NavigationProperty Name="NhanVien" Relationship="Self.FK_HoaDon_NhanVien" FromRole="HoaDon" ToRole="NhanVien" />
           <NavigationProperty Name="QLBan" Relationship="Self.FK_HoaDon_QLBan" FromRole="HoaDon" ToRole="QLBan" />
           <NavigationProperty Name="Voucher" Relationship="Self.FK_HoaDon_Voucher" FromRole="HoaDon" ToRole="Voucher" />
+        </EntityType>
+        <EntityType Name="HoaDonTopping">
+          <Key>
+            <PropertyRef Name="IdHoaDonTopping" />
+          </Key>
+          <Property Name="IdHoaDonTopping" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTopping" Type="Int32" Nullable="false" />
+          <Property Name="NameTopping" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GiaTopping" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IdChiTietHoaDon" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChiTietHoaDon" Relationship="Self.FK_HoaDonTopping_ChiTietHoaDon" FromRole="HoaDonTopping" ToRole="ChiTietHoaDon" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -394,9 +432,9 @@
           <Property Name="IdTypeSP" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_SanPham" FromRole="SanPham" ToRole="ChiTietHoaDon" />
           <NavigationProperty Name="DanhMucToppings" Relationship="Self.FK_DanhMucTopping_SanPham" FromRole="SanPham" ToRole="DanhMucTopping" />
           <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
+          <NavigationProperty Name="ChiTietHoaDons" Relationship="QuanLyCafeModel.FK_ChiTietHoaDon_SanPham" FromRole="SanPham" ToRole="ChiTietHoaDon" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -440,15 +478,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ChiTietHoaDon_SanPham">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
-          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+        <Association Name="FK_HoaDonTopping_ChiTietHoaDon">
+          <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="1" />
+          <End Role="HoaDonTopping" Type="Self.HoaDonTopping" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="IdSanPham" />
+            <Principal Role="ChiTietHoaDon">
+              <PropertyRef Name="IdChiTietHoaDon" />
             </Principal>
-            <Dependent Role="ChiTietHoaDon">
-              <PropertyRef Name="IdSanPham" />
+            <Dependent Role="HoaDonTopping">
+              <PropertyRef Name="IdChiTietHoaDon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -553,6 +591,7 @@
           <EntitySet Name="ChucVus" EntityType="Self.ChucVu" />
           <EntitySet Name="DanhMucToppings" EntityType="Self.DanhMucTopping" />
           <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+          <EntitySet Name="HoaDonToppings" EntityType="Self.HoaDonTopping" />
           <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
           <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
           <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
@@ -565,9 +604,9 @@
             <End Role="HoaDon" EntitySet="HoaDons" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
-          <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="Self.FK_ChiTietHoaDon_SanPham">
-            <End Role="SanPham" EntitySet="SanPhams" />
+          <AssociationSet Name="FK_HoaDonTopping_ChiTietHoaDon" Association="Self.FK_HoaDonTopping_ChiTietHoaDon">
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+            <End Role="HoaDonTopping" EntitySet="HoaDonToppings" />
           </AssociationSet>
           <AssociationSet Name="FK_NhanVien_ChucVu" Association="Self.FK_NhanVien_ChucVu">
             <End Role="ChucVu" EntitySet="ChucVus" />
@@ -601,7 +640,23 @@
             <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
             <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
+          <AssociationSet Name="FK_ChiTietHoaDon_SanPham" Association="QuanLyCafeModel.FK_ChiTietHoaDon_SanPham">
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_ChiTietHoaDon_SanPham">
+          <End Type="QuanLyCafeModel.SanPham" Role="SanPham" Multiplicity="1" />
+          <End Type="QuanLyCafeModel.ChiTietHoaDon" Role="ChiTietHoaDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SanPham">
+              <PropertyRef Name="IdSanPham" />
+            </Principal>
+            <Dependent Role="ChiTietHoaDon">
+              <PropertyRef Name="IdSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -613,10 +668,10 @@
               <MappingFragment StoreEntitySet="ChiTietHoaDon">
                 <ScalarProperty Name="IdChiTietHoaDon" ColumnName="IdChiTietHoaDon" />
                 <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
-                <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="GiaSanPham" ColumnName="GiaSanPham" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -649,6 +704,17 @@
                 <ScalarProperty Name="IdVoucher" ColumnName="IdVoucher" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
                 <ScalarProperty Name="Thue" ColumnName="Thue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoaDonToppings">
+            <EntityTypeMapping TypeName="QuanLyCafeModel.HoaDonTopping">
+              <MappingFragment StoreEntitySet="HoaDonTopping">
+                <ScalarProperty Name="IdHoaDonTopping" ColumnName="IdHoaDonTopping" />
+                <ScalarProperty Name="IdTopping" ColumnName="IdTopping" />
+                <ScalarProperty Name="NameTopping" ColumnName="NameTopping" />
+                <ScalarProperty Name="GiaTopping" ColumnName="GiaTopping" />
+                <ScalarProperty Name="IdChiTietHoaDon" ColumnName="IdChiTietHoaDon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

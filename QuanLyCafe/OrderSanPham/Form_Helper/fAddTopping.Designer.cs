@@ -135,6 +135,7 @@
             this.searchLookUpEdit1.Size = new System.Drawing.Size(309, 20);
             this.searchLookUpEdit1.StyleController = this.layoutControl1;
             this.searchLookUpEdit1.TabIndex = 6;
+            this.searchLookUpEdit1.EditValueChanged += new System.EventHandler(this.searchLookUpEdit1_EditValueChanged);
             // 
             // danhMucToppingBindingSource
             // 

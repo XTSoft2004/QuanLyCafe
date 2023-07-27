@@ -17,8 +17,8 @@ namespace QuanLyCafe
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SanPham()
         {
-            this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
             this.DanhMucToppings = new HashSet<DanhMucTopping>();
+            this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
         }
     
         public int IdSanPham { get; set; }
@@ -29,9 +29,9 @@ namespace QuanLyCafe
         public decimal Cost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DanhMucTopping> DanhMucToppings { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
     }
 }

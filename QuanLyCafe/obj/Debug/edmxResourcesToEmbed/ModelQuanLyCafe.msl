@@ -6,10 +6,10 @@
         <MappingFragment StoreEntitySet="ChiTietHoaDon">
           <ScalarProperty Name="IdChiTietHoaDon" ColumnName="IdChiTietHoaDon" />
           <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
-          <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
           <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
           <ScalarProperty Name="GiaSanPham" ColumnName="GiaSanPham" />
           <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -42,6 +42,17 @@
           <ScalarProperty Name="IdVoucher" ColumnName="IdVoucher" />
           <ScalarProperty Name="TongTien" ColumnName="TongTien" />
           <ScalarProperty Name="Thue" ColumnName="Thue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDonToppings">
+      <EntityTypeMapping TypeName="QuanLyCafeModel.HoaDonTopping">
+        <MappingFragment StoreEntitySet="HoaDonTopping">
+          <ScalarProperty Name="IdHoaDonTopping" ColumnName="IdHoaDonTopping" />
+          <ScalarProperty Name="IdTopping" ColumnName="IdTopping" />
+          <ScalarProperty Name="NameTopping" ColumnName="NameTopping" />
+          <ScalarProperty Name="GiaTopping" ColumnName="GiaTopping" />
+          <ScalarProperty Name="IdChiTietHoaDon" ColumnName="IdChiTietHoaDon" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

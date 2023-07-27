@@ -1,6 +1,8 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Columns;
+using QuanLyCafe.QLHoaDon;
+using QuanLyCafe.QLHoaDon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace QuanLyCafe.OrderSanPham
         public decimal GiaSanPham { get; set; }
         public decimal TongTien { get; set; }
         public string GhiChu { get; set; }
-        public List<Topping> _list_toppings { get; set; }
+        public List<_ModelTopping> _list_toppings { get; set; }
     }
     public class _ModelDanhMucTopping
     {
@@ -26,11 +28,5 @@ namespace QuanLyCafe.OrderSanPham
         public string NameDanhMuc { get; set; }
 
         //public List<_ModelAddTopping> _list_topping { get; set; }
-    }
-    public class _ModelAddTopping
-    {
-        public int IdTopping { get; set; }
-        public string NameTopping { get; set; }
-        public decimal GiaTopping { get; set; }
     }
 }

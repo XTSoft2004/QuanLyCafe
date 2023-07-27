@@ -170,7 +170,7 @@ namespace QuanLyCafe.QuanLyBan
             // Access the Label control directly from the panel's Controls collection using its name.
             Label label_status = (Label)panel_click_1.Controls["TrangBai_Id_" + idban];
 
-            label_status.Text = "A";      
+            //label_status.Text = "A";      
             
             QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
             var TrangThaiBan = db_quanly.QLBans

@@ -25,8 +25,14 @@ namespace QuanLyCafe.QLySanPham
         private void QLTopping_Load(object sender, EventArgs e)
         {
             LoadAllDB();
+            var result = db_quanly.DanhMucToppings
+                .Where(p => p.IdSanPham == IdSanPham)
+                .FirstOrDefault();
+
+            if (result == null) return;
 
             var list_topping = db_quanly.Toppings
+                .Where(p=> p.IdDanhMucTopping == result.IdDanhMucTopping)
                 .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping })
                 .ToList();
 

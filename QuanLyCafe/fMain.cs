@@ -2,6 +2,7 @@
 using DevExpress.XtraBars;
 using QuanLyCafe.Helper;
 using QuanLyCafe.OrderSanPham;
+using QuanLyCafe.QLHoaDon;
 using QuanLyCafe.QLNhanVien;
 using QuanLyCafe.QuanLyBan;
 using System;
@@ -23,7 +24,7 @@ namespace QuanLyCafe
             InitializeComponent();
             Noti_Single.HtmlElementMouseClick += (s, e) =>
             {
-                if (e.ElementId == "okButton")
+                if (e.ElementId == "okButton" || e.ElementId == "close-button")
                 {
                     e.HtmlPopup.Close();
                 }
@@ -77,6 +78,12 @@ namespace QuanLyCafe
         private void fMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Helper_Project.CloseApp("QuanLyCafe");
+        }
+
+        private void ControlElementQLHoaDon_Click(object sender, EventArgs e)
+        {
+            uc_HoaDon uc_HoaDon = new uc_HoaDon();
+            Helper_Project.ShowFormUC(uc_HoaDon);
         }
     }
 }

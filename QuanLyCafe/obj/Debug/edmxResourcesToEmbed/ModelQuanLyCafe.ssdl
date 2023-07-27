@@ -6,10 +6,10 @@
     </Key>
     <Property Name="IdChiTietHoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdHoaDon" Type="int" Nullable="false" />
-    <Property Name="IdSanPham" Type="int" Nullable="false" />
     <Property Name="SoLuong" Type="int" Nullable="false" />
     <Property Name="GiaSanPham" Type="money" Nullable="false" />
-    <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
+    <Property Name="GhiChu" Type="nvarchar(max)" />
+    <Property Name="IdSanPham" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ChucVu">
     <Key>
@@ -38,7 +38,17 @@
     <Property Name="TienNhan" Type="money" Nullable="false" />
     <Property Name="IdVoucher" Type="int" />
     <Property Name="TongTien" Type="money" Nullable="false" />
-    <Property Name="Thue" Type="decimal" Precision="4" Scale="1" />
+    <Property Name="Thue" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HoaDonTopping">
+    <Key>
+      <PropertyRef Name="IdHoaDonTopping" />
+    </Key>
+    <Property Name="IdHoaDonTopping" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTopping" Type="int" Nullable="false" />
+    <Property Name="NameTopping" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GiaTopping" Type="money" Nullable="false" />
+    <Property Name="IdChiTietHoaDon" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="KhachHang">
     <Key>
@@ -196,6 +206,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HoaDonTopping_ChiTietHoaDon">
+    <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="1" />
+    <End Role="HoaDonTopping" Type="Self.HoaDonTopping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChiTietHoaDon">
+        <PropertyRef Name="IdChiTietHoaDon" />
+      </Principal>
+      <Dependent Role="HoaDonTopping">
+        <PropertyRef Name="IdChiTietHoaDon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_NhanVien_ChucVu">
     <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
     <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
@@ -237,6 +259,7 @@
     <EntitySet Name="ChucVu" EntityType="Self.ChucVu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DanhMucTopping" EntityType="Self.DanhMucTopping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDonTopping" EntityType="Self.HoaDonTopping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
@@ -272,6 +295,10 @@
     <AssociationSet Name="FK_HoaDon_Voucher" Association="Self.FK_HoaDon_Voucher">
       <End Role="Voucher" EntitySet="Voucher" />
       <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonTopping_ChiTietHoaDon" Association="Self.FK_HoaDonTopping_ChiTietHoaDon">
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+      <End Role="HoaDonTopping" EntitySet="HoaDonTopping" />
     </AssociationSet>
     <AssociationSet Name="FK_NhanVien_ChucVu" Association="Self.FK_NhanVien_ChucVu">
       <End Role="ChucVu" EntitySet="ChucVu" />
