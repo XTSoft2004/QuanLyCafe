@@ -95,18 +95,20 @@ namespace QuanLyCafe.QLHoaDon
 
             //System.IO.Directory.CreateDirectory("PDF_HOADON");
             //string NameFile = Application.StartupPath + "\\PDF_HOADON\\HoaDon_" + DateTime.Now.ToString("dd-MM-yyyy HH.mm.ss") + ".pdf"; 
-            fBaoCao fBaocao = new fBaoCao();
+            fBaoCao fBaocao = new fBaoCao(hoadon);
             fBaocao.DataSource = hoadon;
             //fBaocao.ExportToPdf(NameFile);
 
             //pdfViewer1.DocumentFilePath = NameFile;
 
             ReportPrintTool tool = new ReportPrintTool(fBaocao);
-            tool.ShowPreview();
+            tool.ShowRibbonPreview();
+            //tool.ShowPreview();
 
             //pdfViewer1.LoadDocument();
 
             //documentViewer1.DocumentSource = fBaocao;
+            //fBaocao.CreateDocument();
         }
 
         private void uc_HoaDon_Load(object sender, EventArgs e)

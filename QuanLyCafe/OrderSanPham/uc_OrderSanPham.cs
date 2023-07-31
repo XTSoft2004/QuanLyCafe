@@ -42,7 +42,8 @@ namespace QuanLyCafe.OrderSanPham
             LoadAllDuLieu();
         }
         QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
-        private List<_ModelOrderSanPham> _ModelOrderSanPhams = new List<_ModelOrderSanPham>();
+        public List<_ModelOrderSanPham> _ModelOrderSanPhams = new List<_ModelOrderSanPham>();
+
         private void LoadAllSanPham()
         {
             Helper_Project.ClearAllPanel(fLayoutSanPham);
@@ -236,7 +237,7 @@ namespace QuanLyCafe.OrderSanPham
             uc_QuanLyBan uc_QuanLyBan = new uc_QuanLyBan();
             Helper_Project.ShowFormUC(uc_QuanLyBan);
         }
-        private bool TinhTongHoaDon()
+        public bool TinhTongHoaDon()
         {
             decimal sum_hoadon = 0;
             for(int i = 0;i < _ModelOrderSanPhams.Count;i++)
@@ -244,27 +245,47 @@ namespace QuanLyCafe.OrderSanPham
                 decimal GiaTriSanPham = _ModelOrderSanPhams[i].GiaSanPham;
                 sum_hoadon += GiaTriSanPham;
 
-                var toppings = _ModelOrderSanPhams[i]._list_toppings;
-                foreach(var topp in toppings)
+                if (_ModelOrderSanPhams[i]._list_toppings != null)
                 {
-                    sum_hoadon += topp.GiaTopping;
+                    var toppings = _ModelOrderSanPhams[i]._list_toppings;
+                    foreach (var topp in toppings)
+                    {
+                        sum_hoadon += topp.GiaTopping;
+                    }
                 }
             }
+            sum_hoadon *= 1 - (num_Thue.Value / 100);
+
+            int giamgia = VoucherSearchLookUp.EditValue == null ? -1 : Convert.ToInt32(VoucherSearchLookUp.EditValue);
+
+            sum_hoadon *= 1 - (GET_VOUCHER(giamgia) / 100);
+
             lbTongTien.Text = Helper_Project.ChuyenDoiGiaTriTien(sum_hoadon);
 
-            if(cbtnTienMat.Checked == false)
-            {
-                XtraMessageBox.Show("Chưa chọn thanh toán tiền mặt !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            //if(cbtnTienMat.Checked == false)
+            //{
+            //    XtraMessageBox.Show("Chưa chọn thanh toán tiền mặt !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
 
-            if(NVThanhToanCbb.Text == "Không có tên nhân viên")
-            {
-                XtraMessageBox.Show("Bạn chưa chọn nhân viên thanh toán hóa đơn !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            //if(NVThanhToanCbb.Text == "Không có tên nhân viên")
+            //{
+            //    XtraMessageBox.Show("Bạn chưa chọn nhân viên thanh toán hóa đơn !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return false;
+            //}
 
             return true;
+        }
+        private decimal GET_VOUCHER(int idvoucher)
+        {
+            if(idvoucher < 0) return 0;
+
+            var discount = db_quanly.Vouchers
+                .Where(p=> p.IdVoucher == idvoucher)
+                .Select(p=> p.Discount)
+                .FirstOrDefault();
+
+            return discount;
         }
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
@@ -361,23 +382,47 @@ namespace QuanLyCafe.OrderSanPham
                         .Select(p => p.IdChiTietHoaDon)
                         .FirstOrDefault();
 
-                    var toppings = _ListSanPham[rows]._listtoppings;
-                    foreach (var item in toppings)
+                    if(_ListSanPham[rows]._listtoppings != null)
                     {
-                        HoaDonTopping hoaDonTopping = new HoaDonTopping()
+                        var toppings = _ListSanPham[rows]._listtoppings;
+                        foreach (var item in toppings)
                         {
-                            IdTopping = item.IdTopping,
-                            NameTopping = item.NameTopping,
-                            GiaTopping = item.GiaTopping,
-                            IdChiTietHoaDon = idchitiethoadon,
-                        };
-                        db_quanly.HoaDonToppings.Add(hoaDonTopping);
+                            HoaDonTopping hoaDonTopping = new HoaDonTopping()
+                            {
+                                IdTopping = item.IdTopping,
+                                NameTopping = item.NameTopping,
+                                GiaTopping = item.GiaTopping,
+                                IdChiTietHoaDon = idchitiethoadon,
+                            };
+                            db_quanly.HoaDonToppings.Add(hoaDonTopping);
+                        }
                     }
                     db_quanly.SaveChanges();
                 }
 
                 Helper_ShowNoti.ShowThongBao("Thanh toán hóa đơn", $"Thanh toán thành công {_ListSanPham.Count} sản phẩm !", Helper_ShowNoti.SvgImageIcon.Success);
             }
+        }
+
+        private void btnSumHoaDon_Click(object sender, EventArgs e)
+        {
+            TinhTongHoaDon();
+        }
+
+        private void DeleteSanPham_Click(object sender, EventArgs e)
+        {
+            int index = gridView1.FocusedRowHandle;
+
+            int IdSanPham = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdSanPham"));
+
+            _ModelOrderSanPham order = Helper_AddSanPham._ListOrder
+                .Where(p => p.IdSanPham == IdSanPham)
+                .FirstOrDefault();
+            Helper_AddSanPham._ListOrder.Remove(order);
+
+            modelOrderSanPhamBindingSource.DataSource = Helper_AddSanPham._ListOrder;
+            gridView1.RefreshData();
+
         }
     }
 }

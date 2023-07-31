@@ -62,6 +62,7 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.text_Nhantien = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnSumHoaDon = new DevExpress.XtraEditors.SimpleButton();
             this.btnCanel = new DevExpress.XtraEditors.SimpleButton();
             this.btnThanhToan = new DevExpress.XtraEditors.SimpleButton();
             this.cbtnNganHang = new DevExpress.XtraEditors.CheckButton();
@@ -468,6 +469,7 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.btnSumHoaDon);
             this.groupControl2.Controls.Add(this.btnCanel);
             this.groupControl2.Controls.Add(this.btnThanhToan);
             this.groupControl2.Controls.Add(this.cbtnNganHang);
@@ -478,6 +480,16 @@
             this.groupControl2.Size = new System.Drawing.Size(730, 128);
             this.groupControl2.TabIndex = 23;
             this.groupControl2.Text = "Phương thức thanh toán";
+            // 
+            // btnSumHoaDon
+            // 
+            this.btnSumHoaDon.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.cancel_order;
+            this.btnSumHoaDon.Location = new System.Drawing.Point(429, 28);
+            this.btnSumHoaDon.Name = "btnSumHoaDon";
+            this.btnSumHoaDon.Size = new System.Drawing.Size(143, 43);
+            this.btnSumHoaDon.TabIndex = 25;
+            this.btnSumHoaDon.Text = "Tính tổng hóa đơn";
+            this.btnSumHoaDon.Click += new System.EventHandler(this.btnSumHoaDon_Click);
             // 
             // btnCanel
             // 
@@ -660,6 +672,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.DeleteSanPham.Name = "DeleteSanPham";
             this.DeleteSanPham.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.DeleteSanPham.Click += new System.EventHandler(this.DeleteSanPham_Click);
             // 
             // layoutControlGroup1
             // 
@@ -972,5 +985,6 @@
         private DevExpress.XtraEditors.SearchLookUpEdit VoucherSearchLookUp;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraEditors.TextEdit text_Nhantien;
+        private DevExpress.XtraEditors.SimpleButton btnSumHoaDon;
     }
 }
