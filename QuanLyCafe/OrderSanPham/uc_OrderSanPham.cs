@@ -260,7 +260,7 @@ namespace QuanLyCafe.OrderSanPham
 
             sum_hoadon *= 1 - (GET_VOUCHER(giamgia) / 100);
 
-            lbTongTien.Text = Helper_Project.ChuyenDoiGiaTriTien(sum_hoadon);
+            lbTongTien.Text = Helper_Project.ChuyenDoiGiaTriTien(sum_hoadon) + " VNĐ";
 
             //if(cbtnTienMat.Checked == false)
             //{
@@ -287,8 +287,48 @@ namespace QuanLyCafe.OrderSanPham
 
             return discount;
         }
+        private bool KiemTraThanhToan()
+        {
+            if (NVThanhToanCbb.Text == "Không có tên nhân viên")
+            {
+                XtraMessageBox.Show("Chưa chọn nhân viên thanh toán hóa đơn !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if(gridView1.RowCount == 0)
+            {
+                XtraMessageBox.Show("Chưa thêm sản phẩm, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (text_Nhantien.Text == "")
+            {
+                XtraMessageBox.Show("Chưa nhập tiền khách đưa, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (text_Nhantien.Text == "")
+            {
+                XtraMessageBox.Show("Chưa nhập tiền khách đưa, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            decimal tiennhan = Convert.ToDecimal(text_Nhantien.Text);
+            decimal tongtien = Convert.ToDecimal(lbTongTien.Text.Replace(" VNĐ",""));
+
+            if (tiennhan < tongtien)
+            {
+                XtraMessageBox.Show($"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            TinhTongHoaDon();
+
+            if (!KiemTraThanhToan()) return;
+
             if (TinhTongHoaDon() == false) return;
 
             List<_ModelChiTietHoaDon> listsanpham = new List<_ModelChiTietHoaDon>();

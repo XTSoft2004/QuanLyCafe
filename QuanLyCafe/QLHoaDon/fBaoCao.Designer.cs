@@ -403,7 +403,7 @@
             // xrLabel16
             // 
             this.xrLabel16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TongTien] + ToStr(\' VNĐ\')")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "FormatString(\'{0:N3} VNĐ\',[TongTien])")});
             this.xrLabel16.Font = new DevExpress.Drawing.DXFont("Arial", 12F, DevExpress.Drawing.DXFontStyle.Bold, DevExpress.Drawing.DXGraphicsUnit.Point, new DevExpress.Drawing.DXFontAdditionalProperty[] {
             new DevExpress.Drawing.DXFontAdditionalProperty("GdiCharSet", ((byte)(0)))});
             this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(544.8462F, 36.04167F);
@@ -433,7 +433,7 @@
             // xrLabel21
             // 
             this.xrLabel21.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", " [TienNhan] - [TongTien] + ToStr(\' VNĐ\')")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", " FormatString(\'{0:N3} VNĐ\',[TienNhan] - [TongTien])")});
             this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(544.8462F, 190.143F);
             this.xrLabel21.Multiline = true;
             this.xrLabel21.Name = "xrLabel21";
@@ -459,7 +459,7 @@
             // xrLabel18
             // 
             this.xrLabel18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TienNhan] + ToStr(\' VNĐ\')")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "FormatString(\'{0:N3} VNĐ\',[TienNhan])\n")});
             this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(544.8462F, 149.9347F);
             this.xrLabel18.Multiline = true;
             this.xrLabel18.Name = "xrLabel18";
@@ -486,8 +486,8 @@
             // xrLabel9
             // 
             this.xrLabel9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif(IsNullOrEmpty([TienThue]) , ToStr(\'0.0 %\'), ToStr([TienThue]) + ToStr(\' %\'))\n" +
-                    "\n")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "Iif(IsNullOrEmpty([TienThue]) , ToStr(\'0.0 %\'), FormatString(\'{0:N3}%\',[Thue]))\n\n" +
+                    "")});
             this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(544.8462F, 71.9999F);
             this.xrLabel9.Multiline = true;
             this.xrLabel9.Name = "xrLabel9";
