@@ -81,7 +81,7 @@
             this.Controls.Add(this.LinkImage);
             this.Name = "AddLinkImage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AddLinkImage";
+            this.Text = "Thêm link ảnh của sản phẩm";
             this.Load += new System.EventHandler(this.AddLinkImage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LinkImage.Properties)).EndInit();
             this.ResumeLayout(false);

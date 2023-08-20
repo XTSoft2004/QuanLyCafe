@@ -1,6 +1,8 @@
 ﻿using DevExpress.Utils.Extensions;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraSplashScreen;
 using QuanLyCafe.Helper;
 using QuanLyCafe.OrderSanPham.Form_Helper;
 using QuanLyCafe.QLHoaDon;
@@ -16,6 +18,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static QuanLyCafe.OrderSanPham.Helper_OrderSanPham;
@@ -107,6 +110,7 @@ namespace QuanLyCafe.OrderSanPham
             fVoucher fVoucher = new fVoucher();
             fVoucher.ShowDialog();
             VoucherSearchLookUp.Text = string.IsNullOrEmpty(fVoucher._NameVoucher) ? "Chọn voucher ( Không bắt buộc )" : fVoucher._NameVoucher;
+            LoadAllDuLieu();
         }
 
         private void btnShowKhachHang_Click(object sender, EventArgs e)
@@ -114,6 +118,7 @@ namespace QuanLyCafe.OrderSanPham
             fKhachHang fKhachHang = new fKhachHang();
             fKhachHang.ShowDialog();
             KhachHangSearchLookUp.Text = string.IsNullOrEmpty(fKhachHang._NameKhachHang) ? "Chọn khách hàng ( Không bắt buộc )" : fKhachHang._NameKhachHang;
+            LoadAllDuLieu();
         }
 
         private void btnChooseNV_Click(object sender, EventArgs e)
@@ -151,13 +156,13 @@ namespace QuanLyCafe.OrderSanPham
 
 
             var list_voucher = db_quanly.Vouchers
-                .Select(p => new { p.NameVoucher, p.SoLuongSuDung })
+                .Select(p => new { p.IdVoucher,p.NameVoucher, p.SoLuongSuDung })
                 .ToList();
 
             VoucherSearchLookUp.Properties.DataSource = list_voucher;
 
             var list_khachhang = db_quanly.KhachHangs
-                .Select(p => new { p.NameKhachHang, p.Phone,p.Email })
+                .Select(p => new { p.IdKhachHang,p.NameKhachHang, p.Phone,p.Email })
                 .ToList();
 
             KhachHangSearchLookUp.Properties.DataSource = list_khachhang;
@@ -242,9 +247,8 @@ namespace QuanLyCafe.OrderSanPham
             decimal sum_hoadon = 0;
             for(int i = 0;i < _ModelOrderSanPhams.Count;i++)
             {
-                decimal GiaTriSanPham = _ModelOrderSanPhams[i].GiaSanPham;
+                decimal GiaTriSanPham = _ModelOrderSanPhams[i].GiaSanPham * _ModelOrderSanPhams[i].SoLuong;
                 sum_hoadon += GiaTriSanPham;
-
                 if (_ModelOrderSanPhams[i]._list_toppings != null)
                 {
                     var toppings = _ModelOrderSanPhams[i]._list_toppings;
@@ -261,6 +265,8 @@ namespace QuanLyCafe.OrderSanPham
             sum_hoadon *= 1 - (GET_VOUCHER(giamgia) / 100);
 
             lbTongTien.Text = Helper_Project.ChuyenDoiGiaTriTien(sum_hoadon) + " VNĐ";
+
+            SoluongSanPham.Text = $"{gridView1.RowCount} sản phẩm";
 
             //if(cbtnTienMat.Checked == false)
             //{
@@ -325,6 +331,25 @@ namespace QuanLyCafe.OrderSanPham
         }
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(this, typeof(frmWaitForm), true, true);
+            SplashScreenManager.Default.SetWaitFormDescription("Đang chờ thanh toán ....");
+            Thread.Sleep(3000);
+
+            if (VoucherSearchLookUp.EditValue != null)
+            {
+                int idvoucher = Convert.ToInt32(VoucherSearchLookUp.EditValue);
+                Voucher voucher = db_quanly.Vouchers
+                    .Where(p => p.IdVoucher == idvoucher)
+                    .FirstOrDefault();
+
+                if(voucher.SoLuongSuDung <= 0)
+                {
+                    XtraMessageBox.Show($"Voucher {voucher.NameVoucher} đã hết lượt sử dụng, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+            }
+
             TinhTongHoaDon();
 
             if (!KiemTraThanhToan()) return;
@@ -353,8 +378,14 @@ namespace QuanLyCafe.OrderSanPham
             int idVoucher = VoucherSearchLookUp.EditValue == null ? -1 : Convert.ToInt32(VoucherSearchLookUp.EditValue);
             decimal NhanTien = Convert.ToDecimal(text_Nhantien.Text);
             decimal TongTien = Convert.ToDecimal(lbTongTien.Text.Replace(" VNĐ",""));
-            ThanhToan thanhtoan = new ThanhToan(IdBan, idNhanVien, idKhachHang, idVoucher, NhanTien, TongTien, num_Thue.Value, listsanpham);
+
+            string DatDoUong = string.Empty;
+            if (rbMangVe.Checked) DatDoUong = "Mang về";
+            else if (rbUongTaiQuan.Checked) DatDoUong = "Uống tại quán";
+            ThanhToan thanhtoan = new ThanhToan(IdBan, idNhanVien, idKhachHang, idVoucher, NhanTien, TongTien, num_Thue.Value, listsanpham, DatDoUong);
             thanhtoan.ThanhToanHoaDon();
+
+            SplashScreenManager.CloseForm();
         }
         public class ThanhToan
         {         
@@ -366,8 +397,9 @@ namespace QuanLyCafe.OrderSanPham
             public decimal TienNhan { get; set; }
             public decimal TongTien { get; set; }
             public decimal Thue { get; set; }
+            public string DatDoUong { get; set; }
             QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
-            public ThanhToan(int idBan, int idNhanVien, int? idKhachHang, int? idVoucher, decimal tienNhan, decimal tongTien, decimal thue, List<_ModelChiTietHoaDon> _listsanpham)
+            public ThanhToan(int idBan, int idNhanVien, int? idKhachHang, int? idVoucher, decimal tienNhan, decimal tongTien, decimal thue, List<_ModelChiTietHoaDon> _listsanpham,string datdouong)
             {
                 IdBan = idBan;
                 IdNhanVien = idNhanVien;
@@ -377,10 +409,10 @@ namespace QuanLyCafe.OrderSanPham
                 TongTien = tongTien;
                 Thue = thue;
                 _ListSanPham = _listsanpham;
+                DatDoUong = datdouong;
             }
             public void ThanhToanHoaDon()
             {
-
                 string dateTimeString = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 DateTime dateTime = DateTime.ParseExact(dateTimeString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
@@ -388,12 +420,23 @@ namespace QuanLyCafe.OrderSanPham
                 {
                     IdNhanVien = IdNhanVien,
                     IdKhachHang = IdKhachHang,
+                    IdVoucher = IdVoucher,
                     IdBan = IdBan,
                     NgayMua = dateTime,
                     TienNhan = TienNhan,
                     TongTien = TongTien,
                     Thue = Thue,
+                    DatDoUong = DatDoUong,
                 };
+
+                if(IdVoucher != null)
+                {
+                    Voucher voucher = db_quanly.Vouchers
+                        .Where(p => p.IdVoucher == IdVoucher)
+                        .FirstOrDefault();
+                    voucher.SoLuongSuDung = voucher.SoLuongSuDung - 1;
+                    db_quanly.SaveChanges();
+                }
 
                 db_quanly.HoaDons.Add(hoaDon);
                 db_quanly.SaveChanges();
@@ -439,6 +482,35 @@ namespace QuanLyCafe.OrderSanPham
                     }
                     db_quanly.SaveChanges();
                 }
+                db_quanly.SaveChanges();
+
+                List<_ModelHoaDon> _ModelHoaDons = new List<_ModelHoaDon>();
+                var list_hoadon = db_quanly.HoaDons
+                    .Where(p => p.NgayMua == dateTime)
+                    .FirstOrDefault();
+
+                _ModelHoaDons = new List<_ModelHoaDon>();
+
+                //var _Hoadon = new _ModelHoaDon();
+                //foreach (var item in list_hoadon)
+                //{
+                //    if(item.NgayMua == dateTime)
+                //    {
+                //        break;
+                //    }
+                //}
+
+                _ModelHoaDon _Hoadon = uc_HoaDon.ImportHoaDon(list_hoadon, ref _ModelHoaDons);
+
+                ReportPhaChe fBaocao = new ReportPhaChe();
+                fBaocao.DataSource = _ModelHoaDons;
+                ReportPrintTool tool = new ReportPrintTool(fBaocao);
+                tool.ShowRibbonPreview();
+
+                ReportHoaDon fHoadon = new ReportHoaDon();
+                fHoadon.DataSource = _ModelHoaDons;
+                ReportPrintTool tool123 = new ReportPrintTool(fHoadon);
+                tool123.ShowRibbonPreview();
 
                 Helper_ShowNoti.ShowThongBao("Thanh toán hóa đơn", $"Thanh toán thành công {_ListSanPham.Count} sản phẩm !", Helper_ShowNoti.SvgImageIcon.Success);
             }
@@ -463,6 +535,26 @@ namespace QuanLyCafe.OrderSanPham
             modelOrderSanPhamBindingSource.DataSource = Helper_AddSanPham._ListOrder;
             gridView1.RefreshData();
 
+        }
+
+        private void NVThanhToanCbb_EditValueChanged(object sender, EventArgs e)
+        {
+            TinhTongHoaDon();
+        }
+
+        private void VoucherSearchLookUp_EditValueChanged(object sender, EventArgs e)
+        {
+            TinhTongHoaDon();
+        }
+
+        private void num_Thue_ValueChanged(object sender, EventArgs e)
+        {
+            TinhTongHoaDon();
+        }
+
+        private void gridControl1_ControlAdded(object sender, ControlEventArgs e)
+        {
+            TinhTongHoaDon();
         }
     }
 }

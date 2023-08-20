@@ -39,6 +39,7 @@
     <Property Name="IdVoucher" Type="int" />
     <Property Name="TongTien" Type="money" Nullable="false" />
     <Property Name="Thue" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+    <Property Name="DatDoUong" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="HoaDonTopping">
     <Key>
@@ -88,7 +89,7 @@
       <PropertyRef Name="IdSanPham" />
     </Key>
     <Property Name="IdSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NameSanPham" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NameSanPham" Type="nvarchar(max)" Nullable="false" />
     <Property Name="GiaSanPham" Type="money" Nullable="false" />
     <Property Name="IdTypeSP" Type="int" Nullable="false" />
     <Property Name="Image" Type="image" />

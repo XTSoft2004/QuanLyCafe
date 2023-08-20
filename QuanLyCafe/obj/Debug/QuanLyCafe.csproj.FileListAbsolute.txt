@@ -107,3 +107,11 @@ G:\Project_Truong\QuanLyCafe\QuanLyCafe\bin\Debug\DevExpress.DataAccess.v23.1.UI
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\bin\Debug\DevExpress.XtraPivotGrid.v23.1.xml
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\bin\Debug\DevExpress.XtraDiagram.v23.1.xml
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\bin\Debug\DevExpress.Diagram.v23.1.Core.xml
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.ThongTinQuan.uc_ThongTinQuan.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\bin\Debug\Newtonsoft.Json.dll
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\bin\Debug\Newtonsoft.Json.xml
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLHoaDon.ReportHoaDon.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLHoaDon.ReportPhaChe.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLHoaDon.XtraReport1.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.SplashScreenMain.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.frmWaitForm.resources

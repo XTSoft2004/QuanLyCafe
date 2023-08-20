@@ -131,8 +131,11 @@ namespace QuanLyCafe.QuanLyBan
                 Size = new Size(85, 30),
                 Location = new Point(165, 0),  // Đặt vị trí cho button nhỏ bên trong p1
                 Text = "Order",
+                //TextAlign = ContentAlignment.MiddleRight,
                 Font = new Font("Times New Roman", 8),
                 Name = "btn_Order_" + id,
+                Image = Properties.Resources.coffee,
+                ImageAlign = ContentAlignment.MiddleLeft,
                 //BackColor = Color.LightPink,
             };
             btnOrder.Click += new EventHandler(btnOrderBan_Click);
@@ -309,10 +312,47 @@ namespace QuanLyCafe.QuanLyBan
             foreach (var item in result)
             {
                 QLBan qLBan = item;
+
+                int idBan = item.IdBan;
+
+                List<HoaDon> LhoaDon = db_quanly.HoaDons // Query ra các hóa đơn
+                    .Where(p => p.IdBan == idBan)
+                    .ToList();
+
+                foreach(var item_hoadon in LhoaDon) // Xóa hóa đơn
+                {
+                    int idHoaDon = item_hoadon.IdHoaDon;
+
+                    List<ChiTietHoaDon> LChitietHoadon = db_quanly.ChiTietHoaDons // Query ra các chi tiết hóa đơn
+                        .Where(p => p.IdHoaDon == idHoaDon)
+                        .ToList();
+
+                    foreach(var item_chitiethoadon in LChitietHoadon) // Xóa chi tiết hóa đơn
+                    {
+                        int idchitiethoadon = item_chitiethoadon.IdChiTietHoaDon;
+
+                         List<HoaDonTopping> LHoaDonTopping = db_quanly.HoaDonToppings // Query ra hóa đơn của toppings
+                                .Where(p => p.IdChiTietHoaDon == idchitiethoadon)
+                                .ToList();
+                        foreach (var item_hoadontopping in LHoaDonTopping) // Xóa hóa đơn toppings
+                        {
+                            db_quanly.HoaDonToppings.Remove(item_hoadontopping);
+                        }
+
+                        db_quanly.ChiTietHoaDons.Remove(item_chitiethoadon);
+                    }
+
+                    db_quanly.HoaDons.Remove(item_hoadon);
+                }
+
                 db_quanly.QLBans.Remove(qLBan);
             }
 
             db_quanly.SaveChanges();
+
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xóa {result.Count} bàn !!", Helper_ShowNoti.SvgImageIcon.Success);
+
+            LoadAllTable();
         }
     }
 }

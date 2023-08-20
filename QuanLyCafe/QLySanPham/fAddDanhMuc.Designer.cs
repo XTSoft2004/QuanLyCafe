@@ -79,7 +79,7 @@
             this.Controls.Add(this.NameDanhMucEditText);
             this.Name = "fAddDanhMuc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "fAddDanhMuc";
+            this.Text = "Thêm danh mục";
             ((System.ComponentModel.ISupportInitialize)(this.NameDanhMucEditText.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

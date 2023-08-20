@@ -160,18 +160,7 @@ namespace QuanLyCafe
             int id = Convert.ToInt32(IdSanPham);
             if (XtraMessageBox.Show($"Bạn có chắc chắn muốn xoá sản phẩm {NameSanPham} không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                var list_topping = db_quanly.Toppings
-                        .Where(p => p.IdDanhMucTopping == id)
-                        .ToList();
-
-                foreach (var p in list_topping)
-                {
-                    db_quanly.Toppings.Remove(p);
-                }
-
-                SanPham sanpham = db_quanly.SanPhams.Find(Convert.ToInt32(IdSanPham));
-
-                db_quanly.SanPhams.Remove(sanpham);
+                RemoveSanPham(id);
 
                 db_quanly.SaveChanges();        
             }
@@ -198,44 +187,8 @@ namespace QuanLyCafe
                     string NameSanPham = gridView1.GetRowCellValue(index, "NameSanPham").ToString();
 
                     int id = Convert.ToInt32(IdSanPham);
+                    RemoveSanPham(id);
 
-                    var list_chitiethoadon = db_quanly.ChiTietHoaDons
-                        .Where(p => p.IdSanPham == id)
-                        .ToList();
-
-                    foreach (var p in list_chitiethoadon)
-                    {
-                        var list_hoadontopping = db_quanly.HoaDonToppings
-                            .Where(t => t.IdChiTietHoaDon == p.IdChiTietHoaDon)
-                            .ToList();
-                        foreach (var t in list_hoadontopping)
-                        {
-                            db_quanly.HoaDonToppings.Remove(t);
-                        }
-
-                        db_quanly.ChiTietHoaDons.Remove(p);
-                    }
-
-
-                    var list_danhmuc = db_quanly.DanhMucToppings
-                        .Where(p => p.IdSanPham == id)
-                        .ToList();
-
-                    foreach (var p in list_danhmuc)
-                    {
-                        var list_topping = db_quanly.Toppings
-                                 .Where(t => t.IdDanhMucTopping == p.IdDanhMucTopping)
-                                 .ToList();
-                        foreach (var t in list_topping)
-                        {
-                            db_quanly.Toppings.Remove(t);
-                        }
-
-                        db_quanly.DanhMucToppings.Remove(p);
-                    }
-
-                    SanPham sanpham = db_quanly.SanPhams.Find(Convert.ToInt32(IdSanPham));
-                    db_quanly.SanPhams.Remove(sanpham);
                     Helper_ShowNoti.ShowThongBao("Xóa sản phẩm", $"Đã xóa sản phẩm {NameSanPham} thành công", Helper_ShowNoti.SvgImageIcon.Success);
                 }
 
@@ -245,7 +198,46 @@ namespace QuanLyCafe
             }
 
         }
+        private void RemoveSanPham(int IdSanPham)
+        {
+            var list_chitiethoadon = db_quanly.ChiTietHoaDons
+                .Where(p => p.IdSanPham == IdSanPham)
+                .ToList();
 
+            foreach (var p in list_chitiethoadon)
+            {
+                var list_hoadontopping = db_quanly.HoaDonToppings
+                    .Where(t => t.IdChiTietHoaDon == p.IdChiTietHoaDon)
+                    .ToList();
+                foreach (var t in list_hoadontopping)
+                {
+                    db_quanly.HoaDonToppings.Remove(t);
+                }
+
+                db_quanly.ChiTietHoaDons.Remove(p);
+            }
+
+
+            var list_danhmuc = db_quanly.DanhMucToppings
+                .Where(p => p.IdSanPham == IdSanPham)
+                .ToList();
+
+            foreach (var p in list_danhmuc)
+            {
+                var list_topping = db_quanly.Toppings
+                         .Where(t => t.IdDanhMucTopping == p.IdDanhMucTopping)
+                         .ToList();
+                foreach (var t in list_topping)
+                {
+                    db_quanly.Toppings.Remove(t);
+                }
+
+                db_quanly.DanhMucToppings.Remove(p);
+            }
+
+            SanPham sanpham = db_quanly.SanPhams.Find(Convert.ToInt32(IdSanPham));
+            db_quanly.SanPhams.Remove(sanpham);
+        }
         private void btnChooseFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
