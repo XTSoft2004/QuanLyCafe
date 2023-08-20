@@ -14,11 +14,20 @@ namespace QuanLyCafe
     
     public partial class Topping
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Topping()
+        {
+            this.HoaDonToppings = new HashSet<HoaDonTopping>();
+        }
+    
         public int IdTopping { get; set; }
         public string NameTopping { get; set; }
         public decimal GiaTopping { get; set; }
         public int IdDanhMucTopping { get; set; }
+        public Nullable<decimal> Cost { get; set; }
     
         public virtual DanhMucTopping DanhMucTopping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HoaDonTopping> HoaDonToppings { get; set; }
     }
 }

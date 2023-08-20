@@ -82,6 +82,8 @@ namespace QuanLyCafe.OrderSanPham
 
             modelOrderSanPhamBindingSource.DataSource = _ModelOrderSanPhams;
             gridView1.RefreshData();
+
+            TinhTongHoaDon();
         }
 
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -297,25 +299,22 @@ namespace QuanLyCafe.OrderSanPham
         {
             if (NVThanhToanCbb.Text == "Không có tên nhân viên")
             {
-                XtraMessageBox.Show("Chưa chọn nhân viên thanh toán hóa đơn !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa chọn nhân viên thanh toán hóa đơn !!", Helper_ShowNoti.SvgImageIcon.Error);
+                //XtraMessageBox.Show("Chưa chọn nhân viên thanh toán hóa đơn !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if(gridView1.RowCount == 0)
             {
-                XtraMessageBox.Show("Chưa thêm sản phẩm, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa thêm sản phẩm, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Error);
+                //XtraMessageBox.Show("Chưa thêm sản phẩm, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
             if (text_Nhantien.Text == "")
             {
-                XtraMessageBox.Show("Chưa nhập tiền khách đưa, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (text_Nhantien.Text == "")
-            {
-                XtraMessageBox.Show("Chưa nhập tiền khách đưa, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa nhập tiền khách đưa, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Error);
+                //XtraMessageBox.Show("Chưa nhập tiền khách đưa, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -324,7 +323,8 @@ namespace QuanLyCafe.OrderSanPham
 
             if (tiennhan < tongtien)
             {
-                XtraMessageBox.Show($"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helper_ShowNoti.ShowThongBao("Thông báo", $"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", Helper_ShowNoti.SvgImageIcon.Error);
+                //XtraMessageBox.Show($"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -352,9 +352,11 @@ namespace QuanLyCafe.OrderSanPham
 
             TinhTongHoaDon();
 
-            if (!KiemTraThanhToan()) return;
-
-            if (TinhTongHoaDon() == false) return;
+            if (!KiemTraThanhToan() || TinhTongHoaDon() == false)
+            {
+                SplashScreenManager.CloseForm();
+                return;
+            }
 
             List<_ModelChiTietHoaDon> listsanpham = new List<_ModelChiTietHoaDon>();
             for (int index = 0; index < gridView1.RowCount; index++)
@@ -417,6 +419,7 @@ namespace QuanLyCafe.OrderSanPham
                 string dateTimeString = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 DateTime dateTime = DateTime.ParseExact(dateTimeString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
 
+                decimal? TotalCost = 0;
                 HoaDon hoaDon = new HoaDon()
                 {
                     IdNhanVien = IdNhanVien,
@@ -460,6 +463,9 @@ namespace QuanLyCafe.OrderSanPham
                     };
                     db_quanly.ChiTietHoaDons.Add(chiTietHoaDon);
                     db_quanly.SaveChanges();
+                    TotalCost += db_quanly.SanPhams
+                        .Where(p=> p.IdSanPham == sanphams.IdSanPham)
+                        .Select(p=> p.Cost).FirstOrDefault();
 
                     int idchitiethoadon = db_quanly.ChiTietHoaDons
                         .Where(p=> p.IdHoaDon == idHoaDon && p.IdSanPham == sanphams.IdSanPham && p.SoLuong == sanphams.SoLuong)
@@ -479,10 +485,12 @@ namespace QuanLyCafe.OrderSanPham
                                 IdChiTietHoaDon = idchitiethoadon,
                             };
                             db_quanly.HoaDonToppings.Add(hoaDonTopping);
+                            TotalCost += item.Cost == null ? 0 : item.Cost;
                         }
                     }
                     db_quanly.SaveChanges();
                 }
+                hoaDon.TotalCost = TotalCost;
                 db_quanly.SaveChanges();
 
                 List<_ModelHoaDon> _ModelHoaDons = new List<_ModelHoaDon>();

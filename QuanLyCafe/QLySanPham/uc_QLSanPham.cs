@@ -30,7 +30,7 @@ namespace QuanLyCafe
             string IdSanPham = gridView1.GetRowCellValue(selectedRowHandle, "IdSanPham").ToString();
 
             QLTopping qLTopping = new QLTopping(Convert.ToInt32(IdSanPham));
-            qLTopping.Show();
+            qLTopping.ShowDialog();
 
             LoadAllDB();
         }

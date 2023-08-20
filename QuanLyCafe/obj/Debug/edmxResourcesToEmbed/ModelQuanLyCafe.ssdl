@@ -37,6 +37,7 @@
     <Property Name="NgayMua" Type="datetime" Nullable="false" />
     <Property Name="TienNhan" Type="money" Nullable="false" />
     <Property Name="IdVoucher" Type="int" />
+    <Property Name="TotalCost" Type="money" />
     <Property Name="TongTien" Type="money" Nullable="false" />
     <Property Name="Thue" Type="decimal" Precision="4" Scale="1" Nullable="false" />
     <Property Name="DatDoUong" Type="nvarchar" MaxLength="50" />
@@ -113,6 +114,7 @@
     <Property Name="NameTopping" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="GiaTopping" Type="money" Nullable="false" />
     <Property Name="IdDanhMucTopping" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="money" />
   </EntityType>
   <EntityType Name="Voucher">
     <Key>
@@ -219,6 +221,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HoaDonTopping_Topping">
+    <End Role="Topping" Type="Self.Topping" Multiplicity="1" />
+    <End Role="HoaDonTopping" Type="Self.HoaDonTopping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topping">
+        <PropertyRef Name="IdTopping" />
+      </Principal>
+      <Dependent Role="HoaDonTopping">
+        <PropertyRef Name="IdTopping" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_NhanVien_ChucVu">
     <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
     <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
@@ -299,6 +313,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_HoaDonTopping_ChiTietHoaDon" Association="Self.FK_HoaDonTopping_ChiTietHoaDon">
       <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
+      <End Role="HoaDonTopping" EntitySet="HoaDonTopping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDonTopping_Topping" Association="Self.FK_HoaDonTopping_Topping">
+      <End Role="Topping" EntitySet="Topping" />
       <End Role="HoaDonTopping" EntitySet="HoaDonTopping" />
     </AssociationSet>
     <AssociationSet Name="FK_NhanVien_ChucVu" Association="Self.FK_NhanVien_ChucVu">

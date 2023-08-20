@@ -115,3 +115,4 @@ G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLHoaDon.ReportPhaC
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.QLHoaDon.XtraReport1.resources
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.SplashScreenMain.resources
 G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.frmWaitForm.resources
+G:\Project_Truong\QuanLyCafe\QuanLyCafe\obj\Debug\QuanLyCafe.TongQuan.uc_TongQuan.resources

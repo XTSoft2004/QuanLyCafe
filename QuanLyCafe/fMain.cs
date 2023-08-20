@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils.Svg;
 using DevExpress.XtraBars;
+using DevExpress.XtraSplashScreen;
 using QuanLyCafe.Helper;
 using QuanLyCafe.OrderSanPham;
 using QuanLyCafe.QLHoaDon;
@@ -34,15 +35,19 @@ namespace QuanLyCafe
 
         private void fMain_Load(object sender, EventArgs e)
         {
-            Thread.Sleep(5000);
-            
+            //SplashScreenManager.ShowForm(this, typeof(SplashScreenMain), true, true);
+            ////SplashScreenManager.Default.SetWaitFormDescription("Đang chờ thanh toán ....");
+            //Thread.Sleep(2000);
+
+            //SplashScreenManager.CloseForm();
+
             Helper_Project.MainControlAdd = MainControlAdd;
             Helper_ShowNoti.svgImages = svgImageCollection1;
 
             Helper_ShowNoti.ShowThongBao("Chúc bạn một ngày tốt lành", "Làm việc thật tốt nhé <3", SvgImageIcon.Team_Work);
 
-            uc_QLSanPham uc_QLSanPham = new uc_QLSanPham();
-            Helper_Project.ShowFormUC(uc_QLSanPham);
+            TongQuan.uc_TongQuan uc_HoaDon = new TongQuan.uc_TongQuan();
+            Helper_Project.ShowFormUC(uc_HoaDon);
         }
 
         private void ControlElementQLSanPham_Click(object sender, EventArgs e)
@@ -93,6 +98,12 @@ namespace QuanLyCafe
         {
             ThongTinQuan.uc_ThongTinQuan uc_thongtinquan = new ThongTinQuan.uc_ThongTinQuan();
             Helper_Project.ShowFormUC(uc_thongtinquan);
+        }
+
+        private void ControlMenuQLAccount_Click(object sender, EventArgs e)
+        {
+            TongQuan.uc_TongQuan uc_HoaDon = new TongQuan.uc_TongQuan();
+            Helper_Project.ShowFormUC(uc_HoaDon);
         }
     }
 }

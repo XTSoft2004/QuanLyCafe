@@ -63,13 +63,14 @@
             this.labelStatus.Location = new System.Drawing.Point(24, 215);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(50, 13);
+            this.labelStatus.Size = new System.Drawing.Size(150, 13);
             this.labelStatus.TabIndex = 7;
-            this.labelStatus.Text = "Starting...";
+            this.labelStatus.Text = "Đang khởi động phần mềm .....";
             // 
             // peImage
             // 
             this.peImage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.peImage.EditValue = ((object)(resources.GetObject("peImage.EditValue")));
             this.peImage.Location = new System.Drawing.Point(1, 1);
             this.peImage.Name = "peImage";
             this.peImage.Properties.AllowFocused = false;

@@ -36,7 +36,6 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.modelHoaDonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colIdHoaDon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameBan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameKhachHang = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -127,6 +126,7 @@
             this.printPreviewBarCheckItem17 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem18 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem19 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
+            this.colTotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -198,7 +198,6 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colIdHoaDon,
             this.colNameNhanVien,
             this.colNameBan,
             this.colNameKhachHang,
@@ -206,6 +205,7 @@
             this.colNgayMua,
             this.colTienNhan,
             this.colTongTien,
+            this.colTotalCost,
             this.colThue,
             this.btnViewHoaDon,
             this.colDatDoUong});
@@ -215,14 +215,6 @@
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
-            // 
-            // colIdHoaDon
-            // 
-            this.colIdHoaDon.FieldName = "IdHoaDon";
-            this.colIdHoaDon.Name = "colIdHoaDon";
-            this.colIdHoaDon.Visible = true;
-            this.colIdHoaDon.VisibleIndex = 0;
-            this.colIdHoaDon.Width = 49;
             // 
             // colNameNhanVien
             // 
@@ -291,7 +283,7 @@
             this.colThue.FieldName = "Thue";
             this.colThue.Name = "colThue";
             this.colThue.Visible = true;
-            this.colThue.VisibleIndex = 8;
+            this.colThue.VisibleIndex = 9;
             this.colThue.Width = 73;
             // 
             // btnViewHoaDon
@@ -318,7 +310,7 @@
             this.colDatDoUong.FieldName = "DatDoUong";
             this.colDatDoUong.Name = "colDatDoUong";
             this.colDatDoUong.Visible = true;
-            this.colDatDoUong.VisibleIndex = 9;
+            this.colDatDoUong.VisibleIndex = 10;
             // 
             // layoutControlGroup1
             // 
@@ -1172,6 +1164,13 @@
             this.printPreviewBarCheckItem19.Id = 58;
             this.printPreviewBarCheckItem19.Name = "printPreviewBarCheckItem19";
             // 
+            // colTotalCost
+            // 
+            this.colTotalCost.FieldName = "TotalCost";
+            this.colTotalCost.Name = "colTotalCost";
+            this.colTotalCost.Visible = true;
+            this.colTotalCost.VisibleIndex = 8;
+            // 
             // uc_HoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1229,7 +1228,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private System.Windows.Forms.BindingSource modelHoaDonBindingSource;
-        private DevExpress.XtraGrid.Columns.GridColumn colIdHoaDon;
         private DevExpress.XtraGrid.Columns.GridColumn colNameNhanVien;
         private DevExpress.XtraGrid.Columns.GridColumn colNameKhachHang;
         private DevExpress.XtraGrid.Columns.GridColumn colNgayMua;
@@ -1311,5 +1309,6 @@
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem17;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem18;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem19;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotalCost;
     }
 }

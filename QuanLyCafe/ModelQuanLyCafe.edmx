@@ -42,6 +42,7 @@
           <Property Name="NgayMua" Type="datetime" Nullable="false" />
           <Property Name="TienNhan" Type="money" Nullable="false" />
           <Property Name="IdVoucher" Type="int" />
+          <Property Name="TotalCost" Type="money" />
           <Property Name="TongTien" Type="money" Nullable="false" />
           <Property Name="Thue" Type="decimal" Precision="4" Scale="1" Nullable="false" />
           <Property Name="DatDoUong" Type="nvarchar" MaxLength="50" />
@@ -118,6 +119,7 @@
           <Property Name="NameTopping" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="GiaTopping" Type="money" Nullable="false" />
           <Property Name="IdDanhMucTopping" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="money" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -224,6 +226,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HoaDonTopping_Topping">
+          <End Role="Topping" Type="Self.Topping" Multiplicity="1" />
+          <End Role="HoaDonTopping" Type="Self.HoaDonTopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topping">
+              <PropertyRef Name="IdTopping" />
+            </Principal>
+            <Dependent Role="HoaDonTopping">
+              <PropertyRef Name="IdTopping" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NhanVien_ChucVu">
           <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
@@ -306,6 +320,10 @@
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
             <End Role="HoaDonTopping" EntitySet="HoaDonTopping" />
           </AssociationSet>
+          <AssociationSet Name="FK_HoaDonTopping_Topping" Association="Self.FK_HoaDonTopping_Topping">
+            <End Role="Topping" EntitySet="Topping" />
+            <End Role="HoaDonTopping" EntitySet="HoaDonTopping" />
+          </AssociationSet>
           <AssociationSet Name="FK_NhanVien_ChucVu" Association="Self.FK_NhanVien_ChucVu">
             <End Role="ChucVu" EntitySet="ChucVu" />
             <End Role="NhanVien" EntitySet="NhanVien" />
@@ -374,6 +392,7 @@
           <NavigationProperty Name="QLBan" Relationship="Self.FK_HoaDon_QLBan" FromRole="HoaDon" ToRole="QLBan" />
           <NavigationProperty Name="Voucher" Relationship="Self.FK_HoaDon_Voucher" FromRole="HoaDon" ToRole="Voucher" />
           <Property Name="DatDoUong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalCost" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="HoaDonTopping">
           <Key>
@@ -385,6 +404,7 @@
           <Property Name="GiaTopping" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="IdChiTietHoaDon" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ChiTietHoaDon" Relationship="Self.FK_HoaDonTopping_ChiTietHoaDon" FromRole="HoaDonTopping" ToRole="ChiTietHoaDon" />
+          <NavigationProperty Name="Topping" Relationship="QuanLyCafeModel.FK_HoaDonTopping_Topping" FromRole="HoaDonTopping" ToRole="Topping" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -457,6 +477,8 @@
           <Property Name="GiaTopping" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="IdDanhMucTopping" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DanhMucTopping" Relationship="Self.FK_Topping_DanhMucTopping" FromRole="Topping" ToRole="DanhMucTopping" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="HoaDonToppings" Relationship="QuanLyCafeModel.FK_HoaDonTopping_Topping" FromRole="Topping" ToRole="HoaDonTopping" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -646,6 +668,10 @@
             <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
           </AssociationSet>
+          <AssociationSet Name="FK_HoaDonTopping_Topping" Association="QuanLyCafeModel.FK_HoaDonTopping_Topping">
+            <End Role="Topping" EntitySet="Toppings" />
+            <End Role="HoaDonTopping" EntitySet="HoaDonToppings" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_ChiTietHoaDon_SanPham">
           <End Type="QuanLyCafeModel.SanPham" Role="SanPham" Multiplicity="1" />
@@ -656,6 +682,18 @@
             </Principal>
             <Dependent Role="ChiTietHoaDon">
               <PropertyRef Name="IdSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HoaDonTopping_Topping">
+          <End Type="QuanLyCafeModel.Topping" Role="Topping" Multiplicity="1" />
+          <End Type="QuanLyCafeModel.HoaDonTopping" Role="HoaDonTopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topping">
+              <PropertyRef Name="IdTopping" />
+            </Principal>
+            <Dependent Role="HoaDonTopping">
+              <PropertyRef Name="IdTopping" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -697,6 +735,7 @@
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="QuanLyCafeModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
                 <ScalarProperty Name="DatDoUong" ColumnName="DatDoUong" />
                 <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
                 <ScalarProperty Name="IdNhanVien" ColumnName="IdNhanVien" />
@@ -784,6 +823,7 @@
           <EntitySetMapping Name="Toppings">
             <EntityTypeMapping TypeName="QuanLyCafeModel.Topping">
               <MappingFragment StoreEntitySet="Topping">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="IdTopping" ColumnName="IdTopping" />
                 <ScalarProperty Name="NameTopping" ColumnName="NameTopping" />
                 <ScalarProperty Name="GiaTopping" ColumnName="GiaTopping" />

@@ -15,6 +15,7 @@ namespace QuanLyCafe.QLHoaDon
         public string NameVoucher { get; set; }
         public DateTime? NgayMua { get;set; }    
         public decimal? TienNhan { get; set; }
+        public decimal? TotalCost { get; set; }
         public decimal? TongTien { get; set; }
         public decimal? Thue { get; set; }
         public string DatDoUong { get; set; }   
@@ -36,5 +37,6 @@ namespace QuanLyCafe.QLHoaDon
         public int IdTopping { get; set; }
         public string NameTopping { get; set; }
         public decimal GiaTopping { get; set; }
+        public decimal? Cost { get; set; }
     }
 }

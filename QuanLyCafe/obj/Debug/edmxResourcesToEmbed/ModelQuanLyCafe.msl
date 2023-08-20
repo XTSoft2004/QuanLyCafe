@@ -33,6 +33,7 @@
     <EntitySetMapping Name="HoaDons">
       <EntityTypeMapping TypeName="QuanLyCafeModel.HoaDon">
         <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
           <ScalarProperty Name="DatDoUong" ColumnName="DatDoUong" />
           <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
           <ScalarProperty Name="IdNhanVien" ColumnName="IdNhanVien" />
@@ -120,6 +121,7 @@
     <EntitySetMapping Name="Toppings">
       <EntityTypeMapping TypeName="QuanLyCafeModel.Topping">
         <MappingFragment StoreEntitySet="Topping">
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
           <ScalarProperty Name="IdTopping" ColumnName="IdTopping" />
           <ScalarProperty Name="NameTopping" ColumnName="NameTopping" />
           <ScalarProperty Name="GiaTopping" ColumnName="GiaTopping" />

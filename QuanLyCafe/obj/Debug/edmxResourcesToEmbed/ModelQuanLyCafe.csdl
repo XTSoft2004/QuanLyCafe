@@ -51,6 +51,7 @@
     <NavigationProperty Name="QLBan" Relationship="Self.FK_HoaDon_QLBan" FromRole="HoaDon" ToRole="QLBan" />
     <NavigationProperty Name="Voucher" Relationship="Self.FK_HoaDon_Voucher" FromRole="HoaDon" ToRole="Voucher" />
     <Property Name="DatDoUong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TotalCost" Type="Decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="HoaDonTopping">
     <Key>
@@ -62,6 +63,7 @@
     <Property Name="GiaTopping" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="IdChiTietHoaDon" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ChiTietHoaDon" Relationship="Self.FK_HoaDonTopping_ChiTietHoaDon" FromRole="HoaDonTopping" ToRole="ChiTietHoaDon" />
+    <NavigationProperty Name="Topping" Relationship="QuanLyCafeModel.FK_HoaDonTopping_Topping" FromRole="HoaDonTopping" ToRole="Topping" />
   </EntityType>
   <EntityType Name="KhachHang">
     <Key>
@@ -134,6 +136,8 @@
     <Property Name="GiaTopping" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="IdDanhMucTopping" Type="Int32" Nullable="false" />
     <NavigationProperty Name="DanhMucTopping" Relationship="Self.FK_Topping_DanhMucTopping" FromRole="Topping" ToRole="DanhMucTopping" />
+    <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="HoaDonToppings" Relationship="QuanLyCafeModel.FK_HoaDonTopping_Topping" FromRole="Topping" ToRole="HoaDonTopping" />
   </EntityType>
   <EntityType Name="Voucher">
     <Key>
@@ -323,6 +327,10 @@
       <End Role="SanPham" EntitySet="SanPhams" />
       <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
     </AssociationSet>
+    <AssociationSet Name="FK_HoaDonTopping_Topping" Association="QuanLyCafeModel.FK_HoaDonTopping_Topping">
+      <End Role="Topping" EntitySet="Toppings" />
+      <End Role="HoaDonTopping" EntitySet="HoaDonToppings" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_ChiTietHoaDon_SanPham">
     <End Type="QuanLyCafeModel.SanPham" Role="SanPham" Multiplicity="1" />
@@ -333,6 +341,18 @@
       </Principal>
       <Dependent Role="ChiTietHoaDon">
         <PropertyRef Name="IdSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDonTopping_Topping">
+    <End Type="QuanLyCafeModel.Topping" Role="Topping" Multiplicity="1" />
+    <End Type="QuanLyCafeModel.HoaDonTopping" Role="HoaDonTopping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topping">
+        <PropertyRef Name="IdTopping" />
+      </Principal>
+      <Dependent Role="HoaDonTopping">
+        <PropertyRef Name="IdTopping" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

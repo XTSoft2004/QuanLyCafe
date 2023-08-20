@@ -50,6 +50,7 @@ namespace QuanLyCafe.QLHoaDon
                 NameVoucher = NameVoucher,
                 NgayMua = _hoadon.NgayMua,
                 TienNhan = _hoadon.TienNhan,
+                TotalCost = _hoadon?.TotalCost,
                 TongTien = _hoadon.TongTien,
                 Thue = _hoadon.Thue,
                 DatDoUong = _hoadon.DatDoUong,
@@ -84,6 +85,7 @@ namespace QuanLyCafe.QLHoaDon
                         IdTopping = toppings.IdTopping,
                         NameTopping = toppings.NameTopping,
                         GiaTopping = toppings.GiaTopping,
+                        Cost = toppings.Topping.Cost,
                     };
                     _ModelToppings.Add(_chitiettoppings);
                 }

@@ -21,5 +21,6 @@ namespace QuanLyCafe
         public int IdChiTietHoaDon { get; set; }
     
         public virtual ChiTietHoaDon ChiTietHoaDon { get; set; }
+        public virtual Topping Topping { get; set; }
     }
 }

@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMain));
-            DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::QuanLyCafe.SplashScreenMain), true, true);
             this.MainControlAdd = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.ControlQuanLy = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -92,7 +91,8 @@
             this.ControlMenuQLAccount.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.customer;
             this.ControlMenuQLAccount.Name = "ControlMenuQLAccount";
             this.ControlMenuQLAccount.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.ControlMenuQLAccount.Text = "Quản Lý Account";
+            this.ControlMenuQLAccount.Text = "Tổng quát";
+            this.ControlMenuQLAccount.Click += new System.EventHandler(this.ControlMenuQLAccount_Click);
             // 
             // ControlElementQLSanPham
             // 
@@ -175,10 +175,6 @@
             this.svgImageCollection1.Add("Close", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Close"))));
             this.svgImageCollection1.Add("Add_Bookmark", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Add_Bookmark"))));
             this.svgImageCollection1.Add("Team_Work", ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("svgImageCollection1.Team_Work"))));
-            // 
-            // splashScreenManager1
-            // 
-            splashScreenManager1.ClosingDelay = 100;
             // 
             // fMain
             // 
