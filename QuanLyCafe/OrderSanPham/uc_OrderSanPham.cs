@@ -385,6 +385,7 @@ namespace QuanLyCafe.OrderSanPham
             ThanhToan thanhtoan = new ThanhToan(IdBan, idNhanVien, idKhachHang, idVoucher, NhanTien, TongTien, num_Thue.Value, listsanpham, DatDoUong);
             thanhtoan.ThanhToanHoaDon();
 
+
             SplashScreenManager.CloseForm();
         }
         public class ThanhToan
