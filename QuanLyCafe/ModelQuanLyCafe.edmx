@@ -44,6 +44,7 @@
           <Property Name="IdVoucher" Type="int" />
           <Property Name="TongTien" Type="money" Nullable="false" />
           <Property Name="Thue" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="DatDoUong" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HoaDonTopping">
           <Key>
@@ -93,7 +94,7 @@
             <PropertyRef Name="IdSanPham" />
           </Key>
           <Property Name="IdSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameSanPham" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NameSanPham" Type="nvarchar(max)" Nullable="false" />
           <Property Name="GiaSanPham" Type="money" Nullable="false" />
           <Property Name="IdTypeSP" Type="int" Nullable="false" />
           <Property Name="Image" Type="image" />
@@ -372,6 +373,7 @@
           <NavigationProperty Name="NhanVien" Relationship="Self.FK_HoaDon_NhanVien" FromRole="HoaDon" ToRole="NhanVien" />
           <NavigationProperty Name="QLBan" Relationship="Self.FK_HoaDon_QLBan" FromRole="HoaDon" ToRole="QLBan" />
           <NavigationProperty Name="Voucher" Relationship="Self.FK_HoaDon_Voucher" FromRole="HoaDon" ToRole="Voucher" />
+          <Property Name="DatDoUong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HoaDonTopping">
           <Key>
@@ -427,7 +429,7 @@
             <PropertyRef Name="IdSanPham" />
           </Key>
           <Property Name="IdSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameSanPham" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GiaSanPham" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="IdTypeSP" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -695,6 +697,7 @@
           <EntitySetMapping Name="HoaDons">
             <EntityTypeMapping TypeName="QuanLyCafeModel.HoaDon">
               <MappingFragment StoreEntitySet="HoaDon">
+                <ScalarProperty Name="DatDoUong" ColumnName="DatDoUong" />
                 <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
                 <ScalarProperty Name="IdNhanVien" ColumnName="IdNhanVien" />
                 <ScalarProperty Name="IdKhachHang" ColumnName="IdKhachHang" />

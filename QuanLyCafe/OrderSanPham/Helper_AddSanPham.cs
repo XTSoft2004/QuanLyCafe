@@ -23,8 +23,8 @@ namespace QuanLyCafe.OrderSanPham
         public static BindingSource _ModelAddSanPham;
 
         public static GridView Grid_SanPham;
-        public List<_ModelOrderSanPham> _ListOrder { get; set; }
-        public Helper_AddSanPham(ref List<_ModelOrderSanPham> listorder,string Name_Panel, string NameSanPham,decimal GiaTienSanPham,byte[] PathSanPham)
+        public static List<_ModelOrderSanPham> _ListOrder { get; set; }
+        public Helper_AddSanPham(ref List<_ModelOrderSanPham> listorder,string Name_Panel = null, string NameSanPham = null, decimal GiaTienSanPham = 0, byte[] PathSanPham = null)
         {
             StrName_Panel = Name_Panel;
             StrNameSanPham = NameSanPham;

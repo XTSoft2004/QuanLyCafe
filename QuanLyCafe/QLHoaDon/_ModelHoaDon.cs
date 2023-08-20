@@ -8,15 +8,16 @@ namespace QuanLyCafe.QLHoaDon
 {
     public class _ModelHoaDon
     {
-        public int IdHoaDon { get;set; }
+        public int? IdHoaDon { get;set; }
         public string NameNhanVien { get;set; }  
         public string NameKhachHang { get;set; }
         public string NameBan { get;set; }
         public string NameVoucher { get; set; }
-        public DateTime NgayMua { get;set; }    
-        public decimal TienNhan { get; set; }
-        public decimal TongTien { get; set; }
-        public decimal Thue { get; set; }
+        public DateTime? NgayMua { get;set; }    
+        public decimal? TienNhan { get; set; }
+        public decimal? TongTien { get; set; }
+        public decimal? Thue { get; set; }
+        public string DatDoUong { get; set; }   
         public List<_ModelChiTietHoaDon> _listChiTietHoaDon { get; set; }
     }
     public class _ModelChiTietHoaDon

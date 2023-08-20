@@ -392,7 +392,7 @@
             this.ClientSize = new System.Drawing.Size(708, 447);
             this.Controls.Add(this.layoutControl1);
             this.Name = "fTypeSanPham";
-            this.Text = "fTypeSanPham";
+            this.Text = "Thêm loại sản phẩm";
             this.Load += new System.EventHandler(this.fTypeSanPham_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

@@ -33,6 +33,7 @@
     <EntitySetMapping Name="HoaDons">
       <EntityTypeMapping TypeName="QuanLyCafeModel.HoaDon">
         <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="DatDoUong" ColumnName="DatDoUong" />
           <ScalarProperty Name="IdHoaDon" ColumnName="IdHoaDon" />
           <ScalarProperty Name="IdNhanVien" ColumnName="IdNhanVien" />
           <ScalarProperty Name="IdKhachHang" ColumnName="IdKhachHang" />

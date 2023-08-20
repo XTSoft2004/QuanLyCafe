@@ -43,12 +43,22 @@
             this.svgImageCollection1 = new DevExpress.Utils.SvgImageCollection(this.components);
             this.NhanVien = new DevExpress.Utils.Html.HtmlTemplate();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.KhachHangSearchLookUp = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.rbMangVe = new System.Windows.Forms.RadioButton();
+            this.rbUongTaiQuan = new System.Windows.Forms.RadioButton();
             this.VoucherSearchLookUp = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.voucherBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colIdVoucher = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNameVoucher = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoLuongSuDung = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.KhachHangSearchLookUp = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colIdKhachHang = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNameKhachHang = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEmail = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPhone = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnShowKhachHang = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -62,6 +72,7 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.text_Nhantien = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.btnSumHoaDon = new DevExpress.XtraEditors.SimpleButton();
             this.btnCanel = new DevExpress.XtraEditors.SimpleButton();
             this.btnThanhToan = new DevExpress.XtraEditors.SimpleButton();
             this.cbtnNganHang = new DevExpress.XtraEditors.CheckButton();
@@ -88,7 +99,6 @@
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.fLayoutSanPham = new System.Windows.Forms.FlowLayoutPanel();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -109,12 +119,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.svgImageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.KhachHangSearchLookUp.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VoucherSearchLookUp.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.voucherBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KhachHangSearchLookUp.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_Thue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_Nhantien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -132,7 +144,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -224,9 +235,9 @@
             // 
             this.lbTongTien.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTongTien.Appearance.Options.UseFont = true;
-            this.lbTongTien.Location = new System.Drawing.Point(590, 356);
+            this.lbTongTien.Location = new System.Drawing.Point(580, 356);
             this.lbTongTien.Name = "lbTongTien";
-            this.lbTongTien.Size = new System.Drawing.Size(39, 16);
+            this.lbTongTien.Size = new System.Drawing.Size(162, 22);
             this.lbTongTien.StyleController = this.layoutControl2;
             this.lbTongTien.TabIndex = 28;
             this.lbTongTien.Text = "0 VNĐ";
@@ -235,16 +246,16 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(455, 356);
+            this.labelControl8.Location = new System.Drawing.Point(445, 356);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(131, 16);
+            this.labelControl8.Size = new System.Drawing.Size(131, 22);
             this.labelControl8.StyleController = this.layoutControl2;
             this.labelControl8.TabIndex = 27;
             this.labelControl8.Text = "Tổng tiền sản phẩm:";
             // 
             // btnChooseNV
             // 
-            this.btnChooseNV.Location = new System.Drawing.Point(369, 356);
+            this.btnChooseNV.Location = new System.Drawing.Point(359, 356);
             this.btnChooseNV.Name = "btnChooseNV";
             this.btnChooseNV.Size = new System.Drawing.Size(82, 22);
             this.btnChooseNV.StyleController = this.layoutControl2;
@@ -265,10 +276,11 @@
             this.NVThanhToanCbb.Properties.HtmlTemplates.AddRange(new DevExpress.Utils.Html.HtmlTemplate[] {
             this.NhanVien});
             this.NVThanhToanCbb.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.NVThanhToanCbb.Size = new System.Drawing.Size(233, 20);
+            this.NVThanhToanCbb.Size = new System.Drawing.Size(223, 20);
             this.NVThanhToanCbb.StyleController = this.layoutControl2;
             this.NVThanhToanCbb.TabIndex = 0;
             this.NVThanhToanCbb.TabStop = false;
+            this.NVThanhToanCbb.EditValueChanged += new System.EventHandler(this.NVThanhToanCbb_EditValueChanged);
             // 
             // svgImageCollection1
             // 
@@ -282,8 +294,9 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.KhachHangSearchLookUp);
+            this.groupControl1.Controls.Add(this.groupControl3);
             this.groupControl1.Controls.Add(this.VoucherSearchLookUp);
+            this.groupControl1.Controls.Add(this.KhachHangSearchLookUp);
             this.groupControl1.Controls.Add(this.btnShowKhachHang);
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.labelControl6);
@@ -301,6 +314,92 @@
             this.groupControl1.Size = new System.Drawing.Size(730, 163);
             this.groupControl1.TabIndex = 24;
             this.groupControl1.Text = "Tính Tổng";
+            // 
+            // groupControl3
+            // 
+            this.groupControl3.Controls.Add(this.rbMangVe);
+            this.groupControl3.Controls.Add(this.rbUongTaiQuan);
+            this.groupControl3.Location = new System.Drawing.Point(543, 92);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(178, 58);
+            this.groupControl3.TabIndex = 32;
+            this.groupControl3.Text = "Chọn dữ liệu";
+            // 
+            // rbMangVe
+            // 
+            this.rbMangVe.AutoSize = true;
+            this.rbMangVe.Checked = true;
+            this.rbMangVe.Location = new System.Drawing.Point(5, 33);
+            this.rbMangVe.Name = "rbMangVe";
+            this.rbMangVe.Size = new System.Drawing.Size(66, 17);
+            this.rbMangVe.TabIndex = 30;
+            this.rbMangVe.TabStop = true;
+            this.rbMangVe.Text = "Mang về";
+            this.rbMangVe.UseVisualStyleBackColor = true;
+            // 
+            // rbUongTaiQuan
+            // 
+            this.rbUongTaiQuan.AutoSize = true;
+            this.rbUongTaiQuan.Location = new System.Drawing.Point(77, 33);
+            this.rbUongTaiQuan.Name = "rbUongTaiQuan";
+            this.rbUongTaiQuan.Size = new System.Drawing.Size(92, 17);
+            this.rbUongTaiQuan.TabIndex = 31;
+            this.rbUongTaiQuan.Text = "Uống tại quán";
+            this.rbUongTaiQuan.UseVisualStyleBackColor = true;
+            // 
+            // VoucherSearchLookUp
+            // 
+            this.VoucherSearchLookUp.Location = new System.Drawing.Point(168, 50);
+            this.VoucherSearchLookUp.Name = "VoucherSearchLookUp";
+            this.VoucherSearchLookUp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.VoucherSearchLookUp.Properties.DataSource = this.voucherBindingSource;
+            this.VoucherSearchLookUp.Properties.DisplayMember = "NameVoucher";
+            this.VoucherSearchLookUp.Properties.NullText = "Chọn voucher ( Không bắt buộc )";
+            this.VoucherSearchLookUp.Properties.PopupView = this.searchLookUpEdit1View;
+            this.VoucherSearchLookUp.Properties.ValueMember = "IdVoucher";
+            this.VoucherSearchLookUp.Size = new System.Drawing.Size(185, 20);
+            this.VoucherSearchLookUp.TabIndex = 29;
+            this.VoucherSearchLookUp.EditValueChanged += new System.EventHandler(this.VoucherSearchLookUp_EditValueChanged);
+            // 
+            // voucherBindingSource
+            // 
+            this.voucherBindingSource.DataSource = typeof(QuanLyCafe.Voucher);
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIdVoucher,
+            this.colNameVoucher,
+            this.colSoLuongSuDung});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colIdVoucher
+            // 
+            this.colIdVoucher.FieldName = "IdVoucher";
+            this.colIdVoucher.Name = "colIdVoucher";
+            this.colIdVoucher.Visible = true;
+            this.colIdVoucher.VisibleIndex = 0;
+            this.colIdVoucher.Width = 88;
+            // 
+            // colNameVoucher
+            // 
+            this.colNameVoucher.FieldName = "NameVoucher";
+            this.colNameVoucher.Name = "colNameVoucher";
+            this.colNameVoucher.Visible = true;
+            this.colNameVoucher.VisibleIndex = 1;
+            this.colNameVoucher.Width = 471;
+            // 
+            // colSoLuongSuDung
+            // 
+            this.colSoLuongSuDung.FieldName = "SoLuongSuDung";
+            this.colSoLuongSuDung.Name = "colSoLuongSuDung";
+            this.colSoLuongSuDung.Visible = true;
+            this.colSoLuongSuDung.VisibleIndex = 2;
+            this.colSoLuongSuDung.Width = 126;
             // 
             // KhachHangSearchLookUp
             // 
@@ -322,35 +421,43 @@
             // 
             // gridView2
             // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIdKhachHang,
+            this.colNameKhachHang,
+            this.colEmail,
+            this.colPhone});
             this.gridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             // 
-            // VoucherSearchLookUp
+            // colIdKhachHang
             // 
-            this.VoucherSearchLookUp.Location = new System.Drawing.Point(167, 48);
-            this.VoucherSearchLookUp.Name = "VoucherSearchLookUp";
-            this.VoucherSearchLookUp.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.VoucherSearchLookUp.Properties.DataSource = this.voucherBindingSource;
-            this.VoucherSearchLookUp.Properties.DisplayMember = "NameVoucher";
-            this.VoucherSearchLookUp.Properties.NullText = "Chọn voucher ( Không bắt buộc )";
-            this.VoucherSearchLookUp.Properties.PopupView = this.searchLookUpEdit1View;
-            this.VoucherSearchLookUp.Properties.ValueMember = "IdVoucher";
-            this.VoucherSearchLookUp.Size = new System.Drawing.Size(186, 20);
-            this.VoucherSearchLookUp.TabIndex = 27;
+            this.colIdKhachHang.FieldName = "IdKhachHang";
+            this.colIdKhachHang.Name = "colIdKhachHang";
+            this.colIdKhachHang.Visible = true;
+            this.colIdKhachHang.VisibleIndex = 0;
             // 
-            // voucherBindingSource
+            // colNameKhachHang
             // 
-            this.voucherBindingSource.DataSource = typeof(QuanLyCafe.Voucher);
+            this.colNameKhachHang.FieldName = "NameKhachHang";
+            this.colNameKhachHang.Name = "colNameKhachHang";
+            this.colNameKhachHang.Visible = true;
+            this.colNameKhachHang.VisibleIndex = 1;
             // 
-            // searchLookUpEdit1View
+            // colEmail
             // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.colEmail.FieldName = "Email";
+            this.colEmail.Name = "colEmail";
+            this.colEmail.Visible = true;
+            this.colEmail.VisibleIndex = 2;
+            // 
+            // colPhone
+            // 
+            this.colPhone.FieldName = "Phone";
+            this.colPhone.Name = "colPhone";
+            this.colPhone.Visible = true;
+            this.colPhone.VisibleIndex = 3;
             // 
             // btnShowKhachHang
             // 
@@ -410,7 +517,7 @@
             // 
             // btnShowVoucher
             // 
-            this.btnShowVoucher.Location = new System.Drawing.Point(360, 47);
+            this.btnShowVoucher.Location = new System.Drawing.Point(360, 50);
             this.btnShowVoucher.Name = "btnShowVoucher";
             this.btnShowVoucher.Size = new System.Drawing.Size(79, 21);
             this.btnShowVoucher.TabIndex = 6;
@@ -444,6 +551,7 @@
             this.num_Thue.Name = "num_Thue";
             this.num_Thue.Size = new System.Drawing.Size(53, 21);
             this.num_Thue.TabIndex = 5;
+            this.num_Thue.ValueChanged += new System.EventHandler(this.num_Thue_ValueChanged);
             // 
             // labelControl4
             // 
@@ -468,6 +576,7 @@
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.btnSumHoaDon);
             this.groupControl2.Controls.Add(this.btnCanel);
             this.groupControl2.Controls.Add(this.btnThanhToan);
             this.groupControl2.Controls.Add(this.cbtnNganHang);
@@ -478,6 +587,16 @@
             this.groupControl2.Size = new System.Drawing.Size(730, 128);
             this.groupControl2.TabIndex = 23;
             this.groupControl2.Text = "Phương thức thanh toán";
+            // 
+            // btnSumHoaDon
+            // 
+            this.btnSumHoaDon.ImageOptions.Image = global::QuanLyCafe.Properties.Resources.cancel_order;
+            this.btnSumHoaDon.Location = new System.Drawing.Point(429, 28);
+            this.btnSumHoaDon.Name = "btnSumHoaDon";
+            this.btnSumHoaDon.Size = new System.Drawing.Size(143, 43);
+            this.btnSumHoaDon.TabIndex = 25;
+            this.btnSumHoaDon.Text = "Tính tổng hóa đơn";
+            this.btnSumHoaDon.Click += new System.EventHandler(this.btnSumHoaDon_Click);
             // 
             // btnCanel
             // 
@@ -551,6 +670,7 @@
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.gridControl1_ControlAdded);
             // 
             // modelOrderSanPhamBindingSource
             // 
@@ -660,6 +780,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
             this.DeleteSanPham.Name = "DeleteSanPham";
             this.DeleteSanPham.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.DeleteSanPham.Click += new System.EventHandler(this.DeleteSanPham_Click);
             // 
             // layoutControlGroup1
             // 
@@ -672,8 +793,7 @@
             this.layoutControlItem8,
             this.layoutControlItem9,
             this.layoutControlItem10,
-            this.layoutControlItem11,
-            this.emptySpaceItem3});
+            this.layoutControlItem11});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(754, 689);
             this.layoutControlGroup1.TextVisible = false;
@@ -710,14 +830,14 @@
             this.layoutControlItem8.Control = this.NVThanhToanCbb;
             this.layoutControlItem8.Location = new System.Drawing.Point(0, 344);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(357, 26);
+            this.layoutControlItem8.Size = new System.Drawing.Size(347, 26);
             this.layoutControlItem8.Text = "Nhân viên thanh toán:";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(108, 13);
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnChooseNV;
-            this.layoutControlItem9.Location = new System.Drawing.Point(357, 344);
+            this.layoutControlItem9.Location = new System.Drawing.Point(347, 344);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(86, 26);
             this.layoutControlItem9.Text = "Chọn nhân viên";
@@ -727,28 +847,24 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.labelControl8;
-            this.layoutControlItem10.Location = new System.Drawing.Point(443, 344);
+            this.layoutControlItem10.Location = new System.Drawing.Point(433, 344);
+            this.layoutControlItem10.MinSize = new System.Drawing.Size(135, 20);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(135, 26);
+            this.layoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.lbTongTien;
-            this.layoutControlItem11.Location = new System.Drawing.Point(578, 344);
+            this.layoutControlItem11.Location = new System.Drawing.Point(568, 344);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(43, 20);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(43, 26);
+            this.layoutControlItem11.Size = new System.Drawing.Size(166, 26);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
-            // 
-            // emptySpaceItem3
-            // 
-            this.emptySpaceItem3.AllowHotTrack = false;
-            this.emptySpaceItem3.Location = new System.Drawing.Point(621, 344);
-            this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(113, 26);
-            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // fLayoutSanPham
             // 
@@ -864,12 +980,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.KhachHangSearchLookUp.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            this.groupControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VoucherSearchLookUp.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.voucherBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.KhachHangSearchLookUp.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khachHangBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_Thue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.text_Nhantien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
@@ -887,7 +1006,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
@@ -949,7 +1067,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit NVThanhToanCbb;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.Utils.Html.HtmlTemplate NhanVien;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraEditors.LabelControl lbTongTien;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.SimpleButton btnChooseNV;
@@ -969,8 +1086,19 @@
         private DevExpress.XtraEditors.SearchLookUpEdit KhachHangSearchLookUp;
         private System.Windows.Forms.BindingSource khachHangBindingSource;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraEditors.TextEdit text_Nhantien;
+        private DevExpress.XtraEditors.SimpleButton btnSumHoaDon;
         private DevExpress.XtraEditors.SearchLookUpEdit VoucherSearchLookUp;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraEditors.TextEdit text_Nhantien;
+        private DevExpress.XtraGrid.Columns.GridColumn colIdVoucher;
+        private DevExpress.XtraGrid.Columns.GridColumn colNameVoucher;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoLuongSuDung;
+        private DevExpress.XtraGrid.Columns.GridColumn colIdKhachHang;
+        private DevExpress.XtraGrid.Columns.GridColumn colNameKhachHang;
+        private DevExpress.XtraGrid.Columns.GridColumn colEmail;
+        private DevExpress.XtraGrid.Columns.GridColumn colPhone;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private System.Windows.Forms.RadioButton rbMangVe;
+        private System.Windows.Forms.RadioButton rbUongTaiQuan;
     }
 }

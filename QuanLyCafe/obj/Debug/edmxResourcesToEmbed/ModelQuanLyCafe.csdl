@@ -50,6 +50,7 @@
     <NavigationProperty Name="NhanVien" Relationship="Self.FK_HoaDon_NhanVien" FromRole="HoaDon" ToRole="NhanVien" />
     <NavigationProperty Name="QLBan" Relationship="Self.FK_HoaDon_QLBan" FromRole="HoaDon" ToRole="QLBan" />
     <NavigationProperty Name="Voucher" Relationship="Self.FK_HoaDon_Voucher" FromRole="HoaDon" ToRole="Voucher" />
+    <Property Name="DatDoUong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="HoaDonTopping">
     <Key>
@@ -105,7 +106,7 @@
       <PropertyRef Name="IdSanPham" />
     </Key>
     <Property Name="IdSanPham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NameSanPham" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NameSanPham" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="GiaSanPham" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="IdTypeSP" Type="Int32" Nullable="false" />
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />

@@ -12,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using static QuanLyCafe.Helper.Helper_ShowNoti;
 
@@ -33,6 +34,8 @@ namespace QuanLyCafe
 
         private void fMain_Load(object sender, EventArgs e)
         {
+            Thread.Sleep(5000);
+            
             Helper_Project.MainControlAdd = MainControlAdd;
             Helper_ShowNoti.svgImages = svgImageCollection1;
 
@@ -84,6 +87,12 @@ namespace QuanLyCafe
         {
             uc_HoaDon uc_HoaDon = new uc_HoaDon();
             Helper_Project.ShowFormUC(uc_HoaDon);
+        }
+
+        private void ControlElementThongTinQuan_Click(object sender, EventArgs e)
+        {
+            ThongTinQuan.uc_ThongTinQuan uc_thongtinquan = new ThongTinQuan.uc_ThongTinQuan();
+            Helper_Project.ShowFormUC(uc_thongtinquan);
         }
     }
 }

@@ -31,9 +31,16 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
         {
             LoadAllDB();
 
+            var result = db_quanly.DanhMucToppings
+                   .Where(p => p.IdSanPham == IdSanPham)
+                   .Select(p => p.IdDanhMucTopping)
+                   .FirstOrDefault();
+
             var list_topping = db_quanly.Toppings
+                .Where(p=> p.IdDanhMucTopping == result)
                 .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping })
                 .ToList();
+
             ListTopping.DataSource = list_topping;
             gridView1.RefreshData();
         }

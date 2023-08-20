@@ -29,6 +29,7 @@ namespace QuanLyCafe
         public Nullable<int> IdVoucher { get; set; }
         public decimal TongTien { get; set; }
         public decimal Thue { get; set; }
+        public string DatDoUong { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
