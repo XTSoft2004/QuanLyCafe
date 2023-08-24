@@ -18,6 +18,7 @@ namespace QuanLyCafe
         public NhanVien()
         {
             this.HoaDons = new HashSet<HoaDon>();
+            this.Accounts = new HashSet<Account>();
         }
     
         public int IdNhanVien { get; set; }
@@ -28,5 +29,7 @@ namespace QuanLyCafe
         public virtual ChucVu ChucVu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

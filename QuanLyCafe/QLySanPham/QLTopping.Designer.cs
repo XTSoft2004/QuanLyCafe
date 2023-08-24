@@ -46,7 +46,7 @@
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colIdDanhMucTopping1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameDanhMuc = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.CostToppingSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.CostSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.ItemForIdTopping = new DevExpress.XtraLayout.LayoutControlItem();
@@ -65,7 +65,6 @@
             this.colIdTopping = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameTopping = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colGiaTopping = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DeleteTopping = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colIdDanhMucTopping = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -74,6 +73,7 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.colCost = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -87,7 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NameDanhMucSearchLook.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.danhMucToppingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CostToppingSpinEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CostSpinEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForIdTopping)).BeginInit();
@@ -144,7 +144,7 @@
             this.dataLayoutControl1.Controls.Add(this.NameToppingTextEdit);
             this.dataLayoutControl1.Controls.Add(this.GiaToppingSpinEdit);
             this.dataLayoutControl1.Controls.Add(this.NameDanhMucSearchLook);
-            this.dataLayoutControl1.Controls.Add(this.CostToppingSpinEdit);
+            this.dataLayoutControl1.Controls.Add(this.CostSpinEdit);
             this.dataLayoutControl1.DataSource = this.toppingBindingSource;
             this.dataLayoutControl1.Location = new System.Drawing.Point(12, 12);
             this.dataLayoutControl1.Name = "dataLayoutControl1";
@@ -252,11 +252,9 @@
             this.GiaToppingSpinEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.GiaToppingSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.GiaToppingSpinEdit.Properties.DisplayFormat.FormatString = "N3";
-            this.GiaToppingSpinEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.GiaToppingSpinEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.GiaToppingSpinEdit.Properties.Mask.EditMask = "G";
             this.GiaToppingSpinEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.GiaToppingSpinEdit.Properties.MaskSettings.Set("mask", "G");
             this.GiaToppingSpinEdit.Size = new System.Drawing.Size(317, 20);
             this.GiaToppingSpinEdit.StyleController = this.dataLayoutControl1;
             this.GiaToppingSpinEdit.TabIndex = 6;
@@ -311,29 +309,27 @@
             this.colNameDanhMuc.VisibleIndex = 1;
             this.colNameDanhMuc.Width = 574;
             // 
-            // CostToppingSpinEdit
+            // CostSpinEdit
             // 
-            this.CostToppingSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.toppingBindingSource, "Cost", true));
-            this.CostToppingSpinEdit.EditValue = new decimal(new int[] {
+            this.CostSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.toppingBindingSource, "Cost", true));
+            this.CostSpinEdit.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.CostToppingSpinEdit.Location = new System.Drawing.Point(101, 110);
-            this.CostToppingSpinEdit.Name = "CostToppingSpinEdit";
-            this.CostToppingSpinEdit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
-            this.CostToppingSpinEdit.Properties.Appearance.Options.UseTextOptions = true;
-            this.CostToppingSpinEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.CostToppingSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.CostSpinEdit.Location = new System.Drawing.Point(101, 110);
+            this.CostSpinEdit.Name = "CostSpinEdit";
+            this.CostSpinEdit.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.True;
+            this.CostSpinEdit.Properties.Appearance.Options.UseTextOptions = true;
+            this.CostSpinEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.CostSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.CostToppingSpinEdit.Properties.DisplayFormat.FormatString = "N3";
-            this.CostToppingSpinEdit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.CostToppingSpinEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
-            this.CostToppingSpinEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.CostToppingSpinEdit.Properties.MaskSettings.Set("mask", "G");
-            this.CostToppingSpinEdit.Size = new System.Drawing.Size(317, 20);
-            this.CostToppingSpinEdit.StyleController = this.dataLayoutControl1;
-            this.CostToppingSpinEdit.TabIndex = 13;
+            this.CostSpinEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            this.CostSpinEdit.Properties.Mask.EditMask = "G";
+            this.CostSpinEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.CostSpinEdit.Size = new System.Drawing.Size(317, 20);
+            this.CostSpinEdit.StyleController = this.dataLayoutControl1;
+            this.CostSpinEdit.TabIndex = 13;
             // 
             // layoutControlGroup2
             // 
@@ -456,11 +452,11 @@
             // 
             // ItemForCost
             // 
-            this.ItemForCost.Control = this.CostToppingSpinEdit;
+            this.ItemForCost.Control = this.CostSpinEdit;
             this.ItemForCost.Location = new System.Drawing.Point(0, 98);
             this.ItemForCost.Name = "ItemForCost";
             this.ItemForCost.Size = new System.Drawing.Size(410, 24);
-            this.ItemForCost.Text = "Cost Topping";
+            this.ItemForCost.Text = "Cost";
             this.ItemForCost.TextSize = new System.Drawing.Size(77, 13);
             // 
             // gridControl1
@@ -518,15 +514,6 @@
             this.colGiaTopping.Visible = true;
             this.colGiaTopping.VisibleIndex = 2;
             this.colGiaTopping.Width = 118;
-            // 
-            // colCost
-            // 
-            this.colCost.DisplayFormat.FormatString = "N3";
-            this.colCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.colCost.FieldName = "Cost";
-            this.colCost.Name = "colCost";
-            this.colCost.Visible = true;
-            this.colCost.VisibleIndex = 3;
             // 
             // btnDelete
             // 
@@ -599,6 +586,15 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
+            // colCost
+            // 
+            this.colCost.DisplayFormat.FormatString = "N3";
+            this.colCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.colCost.FieldName = "Cost";
+            this.colCost.Name = "colCost";
+            this.colCost.Visible = true;
+            this.colCost.VisibleIndex = 3;
+            // 
             // QLTopping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -622,7 +618,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NameDanhMucSearchLook.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.danhMucToppingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CostToppingSpinEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CostSpinEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemForIdTopping)).EndInit();
@@ -691,9 +687,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn btnDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit DeleteTopping;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraGrid.Columns.GridColumn colCost;
-        private DevExpress.XtraEditors.SpinEdit CostToppingSpinEdit;
+        private DevExpress.XtraEditors.SpinEdit CostSpinEdit;
         private DevExpress.XtraLayout.LayoutControlItem ItemForCost;
         private DevExpress.XtraGrid.Columns.GridColumn colIdDanhMucTopping;
+        private DevExpress.XtraGrid.Columns.GridColumn colCost;
     }
 }

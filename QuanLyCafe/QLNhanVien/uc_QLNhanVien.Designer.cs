@@ -63,6 +63,8 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.AddAccount = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnAddAccount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -92,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddAccount)).BeginInit();
             this.SuspendLayout();
             // 
             // dataLayoutControl1
@@ -348,6 +351,8 @@
             this.gridControl1.Location = new System.Drawing.Point(12, 156);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.AddAccount});
             this.gridControl1.Size = new System.Drawing.Size(987, 246);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -359,7 +364,8 @@
             this.colIdNhanVien,
             this.colNameNhanVien,
             this.colNameChucVu,
-            this.colThongtin});
+            this.colThongtin,
+            this.btnAddAccount});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -372,7 +378,7 @@
             this.colIdNhanVien.Name = "colIdNhanVien";
             this.colIdNhanVien.Visible = true;
             this.colIdNhanVien.VisibleIndex = 0;
-            this.colIdNhanVien.Width = 89;
+            this.colIdNhanVien.Width = 82;
             // 
             // colNameNhanVien
             // 
@@ -380,7 +386,7 @@
             this.colNameNhanVien.Name = "colNameNhanVien";
             this.colNameNhanVien.Visible = true;
             this.colNameNhanVien.VisibleIndex = 1;
-            this.colNameNhanVien.Width = 178;
+            this.colNameNhanVien.Width = 165;
             // 
             // colNameChucVu
             // 
@@ -388,7 +394,7 @@
             this.colNameChucVu.Name = "colNameChucVu";
             this.colNameChucVu.Visible = true;
             this.colNameChucVu.VisibleIndex = 2;
-            this.colNameChucVu.Width = 190;
+            this.colNameChucVu.Width = 176;
             // 
             // colThongtin
             // 
@@ -396,7 +402,7 @@
             this.colThongtin.Name = "colThongtin";
             this.colThongtin.Visible = true;
             this.colThongtin.VisibleIndex = 3;
-            this.colThongtin.Width = 505;
+            this.colThongtin.Width = 456;
             // 
             // Root
             // 
@@ -446,6 +452,25 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
+            // AddAccount
+            // 
+            this.AddAccount.AutoHeight = false;
+            this.AddAccount.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
+            this.AddAccount.Name = "AddAccount";
+            this.AddAccount.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.AddAccount.UseAdvancedMode = DevExpress.Utils.DefaultBoolean.True;
+            this.AddAccount.Click += new System.EventHandler(this.AddAccount_Click);
+            // 
+            // btnAddAccount
+            // 
+            this.btnAddAccount.Caption = "Thêm Account";
+            this.btnAddAccount.ColumnEdit = this.AddAccount;
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Visible = true;
+            this.btnAddAccount.VisibleIndex = 4;
+            this.btnAddAccount.Width = 83;
+            // 
             // uc_QLNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +508,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddAccount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -523,5 +549,7 @@
         private DevExpress.XtraEditors.SpinEdit IdNhanVienTextEdit;
         private DevExpress.XtraEditors.ComboBoxEdit NameChucVuCbb;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraGrid.Columns.GridColumn btnAddAccount;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit AddAccount;
     }
 }

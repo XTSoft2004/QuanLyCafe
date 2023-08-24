@@ -39,6 +39,7 @@
             this.ControlElementQLNhanVien = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlElementQLHoaDon = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.ControlElementThongTinQuan = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlSeparator1 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.htmlTemplateCollection1 = new DevExpress.Utils.Html.HtmlTemplateCollection();
@@ -54,9 +55,9 @@
             // MainControlAdd
             // 
             this.MainControlAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainControlAdd.Location = new System.Drawing.Point(260, 31);
+            this.MainControlAdd.Location = new System.Drawing.Point(251, 31);
             this.MainControlAdd.Name = "MainControlAdd";
-            this.MainControlAdd.Size = new System.Drawing.Size(1331, 718);
+            this.MainControlAdd.Size = new System.Drawing.Size(1340, 718);
             this.MainControlAdd.TabIndex = 0;
             // 
             // accordionControl1
@@ -64,11 +65,12 @@
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.ControlQuanLy,
-            this.ControlElementThongTinQuan});
+            this.ControlElementThongTinQuan,
+            this.accordionControlSeparator1});
             this.accordionControl1.Location = new System.Drawing.Point(0, 31);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(260, 718);
+            this.accordionControl1.Size = new System.Drawing.Size(251, 718);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -133,6 +135,10 @@
             this.ControlElementThongTinQuan.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.ControlElementThongTinQuan.Text = "Thêm Thông Tin Quán";
             this.ControlElementThongTinQuan.Click += new System.EventHandler(this.ControlElementThongTinQuan_Click);
+            // 
+            // accordionControlSeparator1
+            // 
+            this.accordionControlSeparator1.Name = "accordionControlSeparator1";
             // 
             // fluentDesignFormControl1
             // 
@@ -215,6 +221,7 @@
         private DevExpress.Utils.SvgImageCollection svgImageCollection1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ControlElementQLHoaDon;
         private DevExpress.XtraBars.Navigation.AccordionControlElement ControlElementThongTinQuan;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator1;
     }
 }
 

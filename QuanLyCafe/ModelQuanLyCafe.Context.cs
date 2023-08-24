@@ -38,5 +38,7 @@ namespace QuanLyCafe
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Topping> Toppings { get; set; }
         public virtual DbSet<Voucher> Vouchers { get; set; }
+        public virtual DbSet<LogRepository> LogRepositories { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     }
 }

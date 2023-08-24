@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DevExpress.Xpo.Helpers.AssociatedCollectionCriteriaHelper;
 
 namespace QuanLyCafe.QLySanPham
 {
@@ -25,18 +24,8 @@ namespace QuanLyCafe.QLySanPham
 
         private void QLTopping_Load(object sender, EventArgs e)
         {
-            NameDanhMucSearchLook.Properties.NullText = "Chọn danh mục";
-
             LoadAllDB();
-
-            //LoadAllToppings();
-
-            //var hoadon = db_quanly.DanhMucToppings
-            //    .Where(p => p.IdSanPham == IdSanPham)
-            //    .Select(p => new { p.IdDanhMucTopping, p.NameDanhMuc })
-            //    .FirstOrDefault();
-
-            //NameDanhMucSearchLook.EditValue = hoadon.IdDanhMucTopping;
+            LoadAllToppings();
         }
         private void LoadAllToppings()
         {
@@ -49,7 +38,7 @@ namespace QuanLyCafe.QLySanPham
             {
                 var list_topping = db_quanly.Toppings
                     .Where(p => p.IdDanhMucTopping == item.IdDanhMucTopping)
-                    //.Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping })
+                    .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping,p.Cost,p.IdDanhMucTopping })
                     .ToList();
                 foreach (var topping in list_topping)
                 {
@@ -58,8 +47,8 @@ namespace QuanLyCafe.QLySanPham
                         IdTopping = topping.IdTopping,
                         NameTopping = topping.NameTopping,
                         GiaTopping = topping.GiaTopping,
-                        IdDanhMucTopping = item.IdDanhMucTopping,
                         Cost = topping.Cost,
+                        IdDanhMucTopping = item.IdDanhMucTopping,
                     };
                     toppings.Add(t);
                 }
@@ -69,8 +58,7 @@ namespace QuanLyCafe.QLySanPham
         }
         private void LoadAllDB()
         {
-            //if (NameDanhMucSearchLook.EditValue == null) LoadAllToppings();
-
+            NameDanhMucSearchLook.Properties.NullText = "Chọn danh mục";
             var result = db_quanly.DanhMucToppings
                 .Where(p=> p.IdSanPham == IdSanPham)
                 .Select(p => new { p.IdDanhMucTopping, p.NameDanhMuc })
@@ -82,7 +70,7 @@ namespace QuanLyCafe.QLySanPham
 
             var list_topping = db_quanly.Toppings
                 .Where(p => p.IdDanhMucTopping == iddanhmuc)
-                //.Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping,p.Cost })
+                .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping,p.Cost,p.IdDanhMucTopping })
                 .ToList();
 
             toppingBindingSource.DataSource = list_topping;
@@ -93,6 +81,7 @@ namespace QuanLyCafe.QLySanPham
         {
             LoadAllDB();
         }
+
         private void DeleteTopping_Click(object sender, EventArgs e)
         {
             int index = gridView1.FocusedRowHandle;
@@ -100,22 +89,14 @@ namespace QuanLyCafe.QLySanPham
             int IdTopping = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdTopping"));
 
             string NameTopping = gridView1.GetRowCellValue(index, "NameTopping").ToString();
-            
-            if(XtraMessageBox.Show($"Bạn chắc chắn xóa topping {NameTopping} không ?\n" +
-                $"  + Xóa hóa đơn topping có liên quan đến topping này","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Error) == DialogResult.Yes)
+
+            if (XtraMessageBox.Show($"Bạn chắc chắn xóa topping {NameTopping} không ?\n" +
+                $"  + Xóa hóa đơn topping có liên quan đến topping này", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
             {
-                Topping topping = db_quanly.Toppings.Find(IdTopping);
 
-                var hoadontopping = db_quanly.HoaDonToppings
-                    .Where(p => p.IdTopping == IdTopping)
-                    .ToList();
-                foreach(var hoadon in hoadontopping) db_quanly.HoaDonToppings.Remove(hoadon);
+                RemoveTopping(IdTopping);
 
-                db_quanly.Toppings.Remove(topping);
-
-                db_quanly.SaveChanges();
-
-                Helper_ShowNoti.fMain.ShowNotification("Xóa topping", $"Xóa topping {NameTopping} thành công !!!",Helper_ShowNoti.SvgImageIcon.Success);
+                Helper_ShowNoti.fMain.ShowNotification("Xóa topping", $"Xóa topping {NameTopping} thành công !!!", Helper_ShowNoti.SvgImageIcon.Success);
 
                 LoadAllDB();
             }
@@ -140,27 +121,48 @@ namespace QuanLyCafe.QLySanPham
             int iddanhmuc = Convert.ToInt32(NameDanhMucSearchLook.EditValue);
             string NameDanhMuc = db_quanly.DanhMucToppings.Find(iddanhmuc).NameDanhMuc;
 
-            if (XtraMessageBox.Show($"Bạn chắc chắn xóa topping {NameDanhMuc} không ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+            if (XtraMessageBox.Show($"Bạn chắc chắn xóa topping {NameDanhMuc} không ?\n" +
+                $"⚠️ Cảnh báo:\n" +
+                $"+ Sẽ xóa dữ liệu topping của danh mục {NameDanhMuc}\n" +
+                $"+ Sẽ xóa dữ liệu hóa đơn topping của các topping được xóa\n", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
             {
+
                 var list_topping = db_quanly.Toppings
                     .Where(p => p.IdDanhMucTopping == iddanhmuc)
                     .ToList();
 
                 foreach (var item in list_topping)
                 {
-                    db_quanly.Toppings.Remove(item);
+                    RemoveTopping(item.IdTopping);
                 }
 
-
-                DanhMucTopping danhmuc = db_quanly.DanhMucToppings.Find(iddanhmuc);
+                DanhMucTopping danhmuc = db_quanly.DanhMucToppings.Find(iddanhmuc); // Xóa danh mục
                 db_quanly.DanhMucToppings.Remove(danhmuc);
-
                 db_quanly.SaveChanges();
 
                 Helper_ShowNoti.fMain.ShowNotification("Xóa topping", $"Xóa danh mục {NameDanhMuc} thành công !!!", Helper_ShowNoti.SvgImageIcon.Success);
 
                 LoadAllDB();
             }
+        }
+        private bool CheckingTopping()
+        {
+            if (string.IsNullOrEmpty(NameToppingTextEdit.Text))
+            {
+                XtraMessageBox.Show("Bạn chưa nhập tên topping !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (CostSpinEdit.Value > GiaToppingSpinEdit.Value)
+            {
+                XtraMessageBox.Show("Giá trị Cost lớn hơn giá trị của sản phẩm !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (NameDanhMucSearchLook.EditValue == null)
+            {
+                XtraMessageBox.Show("Bạn chưa chọn tên danh mục !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
         }
         private bool CheckExistTopping_Name()
         {
@@ -175,42 +177,22 @@ namespace QuanLyCafe.QLySanPham
             else return false;
 
         }
-        private bool CheckingTopping()
-        {
-            LoadAllDB();
-            if (string.IsNullOrEmpty(NameToppingTextEdit.Text))
-            {
-                XtraMessageBox.Show("Bạn chưa nhập tên topping !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (CostToppingSpinEdit.Value > GiaToppingSpinEdit.Value)
-            {
-                XtraMessageBox.Show("Giá trị Cost lớn hơn giá trị của sản phẩm !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            if (NameDanhMucSearchLook.EditValue == null)
-            {
-                XtraMessageBox.Show("Bạn chưa chọn tên danh mục !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return true;
-        }
         private void btnAddTopping_Click(object sender, EventArgs e)
         {
             if (CheckingTopping() == false) return;
 
-            //if (!string.IsNullOrEmpty(NameToppingTextEdit.Text) && CheckExistTopping_Name())
-            //{
-            //    XtraMessageBox.Show("Tên toppings này đã tồn tại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+            if (!string.IsNullOrEmpty(NameToppingTextEdit.Text) && CheckExistTopping_Name())
+            {
+                XtraMessageBox.Show("Tên toppings này đã tồn tại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             Topping topping = new Topping()
             {
                 NameTopping = NameToppingTextEdit.Text,
                 GiaTopping = GiaToppingSpinEdit.Value,
                 IdDanhMucTopping = Convert.ToInt32(NameDanhMucSearchLook.EditValue),
-                Cost = CostToppingSpinEdit.Value,
+                Cost = CostSpinEdit.Value == null ? 0 : CostSpinEdit.Value,
             };
 
             db_quanly.Toppings.Add(topping);
@@ -230,7 +212,8 @@ namespace QuanLyCafe.QLySanPham
             topping.NameTopping = NameToppingTextEdit.Text; 
             topping.GiaTopping = GiaToppingSpinEdit.Value;
             topping.IdDanhMucTopping = Convert.ToInt32(NameDanhMucSearchLook.EditValue);
-            topping.Cost = CostToppingSpinEdit.Value;
+            topping.Cost = CostSpinEdit.Value;
+
             db_quanly.SaveChanges();
 
             Helper_ShowNoti.ShowThongBao("Chỉnh sửa topping", $"Chỉnh sửa {NameToppingTextEdit.Text} thành công !!", Helper_ShowNoti.SvgImageIcon.Success);
@@ -242,7 +225,10 @@ namespace QuanLyCafe.QLySanPham
         {
             int[] indexSelected = gridView1.GetSelectedRows();
 
-            if (XtraMessageBox.Show($"Bạn có muốn xoá {indexSelected.Length} topping không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (XtraMessageBox.Show($"Bạn có muốn xoá {indexSelected.Length} topping không ?\n" +
+                $"⚠️ Cảnh báo:\n" +
+                $"+ Sẽ xóa đi các topping được chọn\n" +
+                $"+ Xóa các dữ liệu hóa đơn liên quan đến topping được xóa !!!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 for (int i = 0; i < indexSelected.Length; i++)
                 {
@@ -252,9 +238,7 @@ namespace QuanLyCafe.QLySanPham
                     string NameTopping = gridView1.GetRowCellValue(index, "NameTopping").ToString();
                     int id = Convert.ToInt32(IdTopping);
 
-                    Topping topping = db_quanly.Toppings.Find(id);
-
-                    db_quanly.Toppings.Remove(topping);
+                    RemoveTopping(id);
 
                     Helper_ShowNoti.ShowThongBao("Xóa Topping", $"Xóa topping {NameTopping} thành công !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 }
@@ -264,9 +248,19 @@ namespace QuanLyCafe.QLySanPham
                 LoadAllDB();
             }
         }
-
-        private void NameToppingTextEdit_EditValueChanged(object sender, EventArgs e)
+        private void RemoveTopping(int IdTopping)
         {
+            var hoadontopping = db_quanly.HoaDonToppings
+                .Where(p => p.IdTopping == IdTopping)
+                .ToList();
+
+            foreach (var hoadon in hoadontopping) db_quanly.HoaDonToppings.Remove(hoadon);
+
+            Topping topping = db_quanly.Toppings.Find(IdTopping);
+
+            db_quanly.Toppings.Remove(topping);
+
+            db_quanly.SaveChanges();
         }
     }
 }

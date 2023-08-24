@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static QuanLyCafe.Helper.Helper_ShowNoti;
 
 namespace QuanLy
 {
@@ -45,7 +46,7 @@ namespace QuanLy
             };
             db_quanly.ChucVus.Add(chucvu);
             db_quanly.SaveChanges();
-            
+
             XtraMessageBox.Show("Đã thêm thông tin chức vụ !!","Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             LoadAllChucVu();

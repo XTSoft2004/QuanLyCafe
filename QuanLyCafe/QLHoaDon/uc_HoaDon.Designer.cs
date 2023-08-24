@@ -43,6 +43,7 @@
             this.colNgayMua = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTienNhan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTongTien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colThue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnViewHoaDon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.HoaDon = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -126,7 +127,6 @@
             this.printPreviewBarCheckItem17 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem18 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
             this.printPreviewBarCheckItem19 = new DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem();
-            this.colTotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -221,7 +221,7 @@
             this.colNameNhanVien.FieldName = "NameNhanVien";
             this.colNameNhanVien.Name = "colNameNhanVien";
             this.colNameNhanVien.Visible = true;
-            this.colNameNhanVien.VisibleIndex = 1;
+            this.colNameNhanVien.VisibleIndex = 0;
             this.colNameNhanVien.Width = 82;
             // 
             // colNameBan
@@ -229,7 +229,7 @@
             this.colNameBan.FieldName = "NameBan";
             this.colNameBan.Name = "colNameBan";
             this.colNameBan.Visible = true;
-            this.colNameBan.VisibleIndex = 3;
+            this.colNameBan.VisibleIndex = 2;
             this.colNameBan.Width = 82;
             // 
             // colNameKhachHang
@@ -237,7 +237,7 @@
             this.colNameKhachHang.FieldName = "NameKhachHang";
             this.colNameKhachHang.Name = "colNameKhachHang";
             this.colNameKhachHang.Visible = true;
-            this.colNameKhachHang.VisibleIndex = 2;
+            this.colNameKhachHang.VisibleIndex = 1;
             this.colNameKhachHang.Width = 82;
             // 
             // colNameVoucher
@@ -245,7 +245,7 @@
             this.colNameVoucher.FieldName = "NameVoucher";
             this.colNameVoucher.Name = "colNameVoucher";
             this.colNameVoucher.Visible = true;
-            this.colNameVoucher.VisibleIndex = 4;
+            this.colNameVoucher.VisibleIndex = 3;
             this.colNameVoucher.Width = 82;
             // 
             // colNgayMua
@@ -255,7 +255,7 @@
             this.colNgayMua.FieldName = "NgayMua";
             this.colNgayMua.Name = "colNgayMua";
             this.colNgayMua.Visible = true;
-            this.colNgayMua.VisibleIndex = 5;
+            this.colNgayMua.VisibleIndex = 4;
             this.colNgayMua.Width = 115;
             // 
             // colTienNhan
@@ -265,7 +265,7 @@
             this.colTienNhan.FieldName = "TienNhan";
             this.colTienNhan.Name = "colTienNhan";
             this.colTienNhan.Visible = true;
-            this.colTienNhan.VisibleIndex = 6;
+            this.colTienNhan.VisibleIndex = 5;
             this.colTienNhan.Width = 105;
             // 
             // colTongTien
@@ -275,15 +275,24 @@
             this.colTongTien.FieldName = "TongTien";
             this.colTongTien.Name = "colTongTien";
             this.colTongTien.Visible = true;
-            this.colTongTien.VisibleIndex = 7;
+            this.colTongTien.VisibleIndex = 6;
             this.colTongTien.Width = 73;
+            // 
+            // colTotalCost
+            // 
+            this.colTotalCost.DisplayFormat.FormatString = "N3";
+            this.colTotalCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.colTotalCost.FieldName = "TotalCost";
+            this.colTotalCost.Name = "colTotalCost";
+            this.colTotalCost.Visible = true;
+            this.colTotalCost.VisibleIndex = 7;
             // 
             // colThue
             // 
             this.colThue.FieldName = "Thue";
             this.colThue.Name = "colThue";
             this.colThue.Visible = true;
-            this.colThue.VisibleIndex = 9;
+            this.colThue.VisibleIndex = 8;
             this.colThue.Width = 73;
             // 
             // btnViewHoaDon
@@ -293,7 +302,7 @@
             this.btnViewHoaDon.FieldName = "btnViewHoaDon";
             this.btnViewHoaDon.Name = "btnViewHoaDon";
             this.btnViewHoaDon.Visible = true;
-            this.btnViewHoaDon.VisibleIndex = 10;
+            this.btnViewHoaDon.VisibleIndex = 9;
             this.btnViewHoaDon.Width = 91;
             // 
             // HoaDon
@@ -1163,13 +1172,6 @@
             this.printPreviewBarCheckItem19.Hint = "Image File";
             this.printPreviewBarCheckItem19.Id = 58;
             this.printPreviewBarCheckItem19.Name = "printPreviewBarCheckItem19";
-            // 
-            // colTotalCost
-            // 
-            this.colTotalCost.FieldName = "TotalCost";
-            this.colTotalCost.Name = "colTotalCost";
-            this.colTotalCost.Visible = true;
-            this.colTotalCost.VisibleIndex = 8;
             // 
             // uc_HoaDon
             // 

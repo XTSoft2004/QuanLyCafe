@@ -30,6 +30,9 @@
         <AssociationConnector Association="QuanLyCafeModel.FK_SanPham_LoaiSanPham" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyCafeModel.FK_ChiTietHoaDon_SanPham" />
         <AssociationConnector Association="QuanLyCafeModel.FK_HoaDonTopping_Topping" />
+        <EntityTypeShape EntityType="QuanLyCafeModel.LogRepository" Width="1.5" PointX="8.375" PointY="9.75" />
+        <EntityTypeShape EntityType="QuanLyCafeModel.Account" Width="1.5" PointX="5.25" PointY="12.875" />
+        <AssociationConnector Association="QuanLyCafeModel.FK_Account_NhanVien" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

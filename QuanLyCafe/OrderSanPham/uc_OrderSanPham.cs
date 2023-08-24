@@ -21,6 +21,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static QuanLyCafe.Helper.Helper_ShowNoti;
 using static QuanLyCafe.OrderSanPham.Helper_OrderSanPham;
 
 namespace QuanLyCafe.OrderSanPham
@@ -331,9 +332,7 @@ namespace QuanLyCafe.OrderSanPham
         }
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(this, typeof(frmWaitForm), true, true);
-            SplashScreenManager.Default.SetWaitFormDescription("Đang chờ thanh toán ....");
-            Thread.Sleep(3000);
+            TinhTongHoaDon();
 
             if (VoucherSearchLookUp.EditValue != null)
             {
@@ -342,7 +341,7 @@ namespace QuanLyCafe.OrderSanPham
                     .Where(p => p.IdVoucher == idvoucher)
                     .FirstOrDefault();
 
-                if(voucher.SoLuongSuDung <= 0)
+                if (voucher.SoLuongSuDung <= 0)
                 {
                     XtraMessageBox.Show($"Voucher {voucher.NameVoucher} đã hết lượt sử dụng, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -350,13 +349,14 @@ namespace QuanLyCafe.OrderSanPham
 
             }
 
-            TinhTongHoaDon();
-
             if (!KiemTraThanhToan() || TinhTongHoaDon() == false)
             {
-                SplashScreenManager.CloseForm();
                 return;
             }
+
+            SplashScreenManager.ShowForm(this, typeof(frmWaitForm), true, true);
+            SplashScreenManager.Default.SetWaitFormDescription("Đang chờ thanh toán ....");
+            Thread.Sleep(3000);
 
             List<_ModelChiTietHoaDon> listsanpham = new List<_ModelChiTietHoaDon>();
             for (int index = 0; index < gridView1.RowCount; index++)
@@ -383,10 +383,9 @@ namespace QuanLyCafe.OrderSanPham
 
             string DatDoUong = string.Empty;
             if (rbMangVe.Checked) DatDoUong = "Mang về";
-            else if (rbUongTaiQuan.Checked) DatDoUong = "Uống tại quán";
+            else if (rbTaiQuan.Checked) DatDoUong = "Tại quán";
             ThanhToan thanhtoan = new ThanhToan(IdBan, idNhanVien, idKhachHang, idVoucher, NhanTien, TongTien, num_Thue.Value, listsanpham, DatDoUong);
             thanhtoan.ThanhToanHoaDon();
-
 
             SplashScreenManager.CloseForm();
         }
@@ -465,7 +464,7 @@ namespace QuanLyCafe.OrderSanPham
                     db_quanly.SaveChanges();
                     TotalCost += db_quanly.SanPhams
                         .Where(p=> p.IdSanPham == sanphams.IdSanPham)
-                        .Select(p=> p.Cost).FirstOrDefault();
+                        .Select(p=> p.Cost).FirstOrDefault() * _ListSanPham[rows].SoLuong; // Tính cost của sản phẩm
 
                     int idchitiethoadon = db_quanly.ChiTietHoaDons
                         .Where(p=> p.IdHoaDon == idHoaDon && p.IdSanPham == sanphams.IdSanPham && p.SoLuong == sanphams.SoLuong)
@@ -485,7 +484,7 @@ namespace QuanLyCafe.OrderSanPham
                                 IdChiTietHoaDon = idchitiethoadon,
                             };
                             db_quanly.HoaDonToppings.Add(hoaDonTopping);
-                            TotalCost += item.Cost == null ? 0 : item.Cost;
+                            TotalCost += item.Cost == null ? 0 : item.Cost * _ListSanPham[rows].SoLuong; // Tính cost của toppings
                         }
                     }
                     db_quanly.SaveChanges();
@@ -493,21 +492,11 @@ namespace QuanLyCafe.OrderSanPham
                 hoaDon.TotalCost = TotalCost;
                 db_quanly.SaveChanges();
 
-                List<_ModelHoaDon> _ModelHoaDons = new List<_ModelHoaDon>();
                 var list_hoadon = db_quanly.HoaDons
                     .Where(p => p.NgayMua == dateTime)
                     .FirstOrDefault();
 
-                _ModelHoaDons = new List<_ModelHoaDon>();
-
-                //var _Hoadon = new _ModelHoaDon();
-                //foreach (var item in list_hoadon)
-                //{
-                //    if(item.NgayMua == dateTime)
-                //    {
-                //        break;
-                //    }
-                //}
+                List<_ModelHoaDon> _ModelHoaDons = new List<_ModelHoaDon>();
 
                 _ModelHoaDon _Hoadon = uc_HoaDon.ImportHoaDon(list_hoadon, ref _ModelHoaDons);
 
@@ -520,6 +509,10 @@ namespace QuanLyCafe.OrderSanPham
                 fHoadon.DataSource = _ModelHoaDons;
                 ReportPrintTool tool123 = new ReportPrintTool(fHoadon);
                 tool123.ShowRibbonPreview();
+
+                var NhanVien = db_quanly.NhanViens.Find(IdNhanVien);
+
+                CafeLog.SaveLog($"Mã hóa đơn: {list_hoadon.IdHoaDon} | {NhanVien.NameNhanVien} đã thanh toán hóa đơn {TongTien} VNĐ | Trạng thái: Thành công");
 
                 Helper_ShowNoti.ShowThongBao("Thanh toán hóa đơn", $"Thanh toán thành công {_ListSanPham.Count} sản phẩm !", Helper_ShowNoti.SvgImageIcon.Success);
             }

@@ -88,11 +88,12 @@
       <PropertyRef Name="IdNhanVien" />
     </Key>
     <Property Name="IdNhanVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NameNhanVien" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NameNhanVien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="IdChucVu" Type="Int32" Nullable="false" />
-    <Property Name="Thongtin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Thongtin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChucVu" Relationship="Self.FK_NhanVien_ChucVu" FromRole="NhanVien" ToRole="ChucVu" />
     <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_NhanVien" FromRole="NhanVien" ToRole="HoaDon" />
+    <NavigationProperty Name="Accounts" Relationship="QuanLyCafeModel.FK_Account_NhanVien" FromRole="NhanVien" ToRole="Account" />
   </EntityType>
   <EntityType Name="QLBan">
     <Key>
@@ -331,6 +332,12 @@
       <End Role="Topping" EntitySet="Toppings" />
       <End Role="HoaDonTopping" EntitySet="HoaDonToppings" />
     </AssociationSet>
+    <EntitySet Name="LogRepositories" EntityType="QuanLyCafeModel.LogRepository" />
+    <EntitySet Name="Accounts" EntityType="QuanLyCafeModel.Account" />
+    <AssociationSet Name="FK_Account_NhanVien" Association="QuanLyCafeModel.FK_Account_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_ChiTietHoaDon_SanPham">
     <End Type="QuanLyCafeModel.SanPham" Role="SanPham" Multiplicity="1" />
@@ -353,6 +360,37 @@
       </Principal>
       <Dependent Role="HoaDonTopping">
         <PropertyRef Name="IdTopping" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LogRepository">
+    <Key>
+      <PropertyRef Name="IdLog" />
+    </Key>
+    <Property Name="IdLog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TextLog" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateLog" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="IdAccount" />
+    </Key>
+    <Property Name="IdAccount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdNhanVien" Type="Int32" Nullable="false" />
+    <Property Name="Admin" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NhanVien" Relationship="QuanLyCafeModel.FK_Account_NhanVien" FromRole="Account" ToRole="NhanVien" />
+  </EntityType>
+  <Association Name="FK_Account_NhanVien">
+    <End Type="QuanLyCafeModel.NhanVien" Role="NhanVien" Multiplicity="1" />
+    <End Type="QuanLyCafeModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="IdNhanVien" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="IdNhanVien" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -38,7 +38,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
             var list_topping = db_quanly.Toppings
                 .Where(p=> p.IdDanhMucTopping == result)
-                .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping })
+                .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping, p.Cost })
                 .ToList();
 
             ListTopping.DataSource = list_topping;
@@ -58,7 +58,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
             var list_topping = db_quanly.Toppings
                 .Where(p => p.IdDanhMucTopping == iddanhmuc)
-                .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping })
+                .Select(p => new { p.IdTopping, p.NameTopping, p.GiaTopping,p.Cost })
                 .ToList();
 
             ListTopping.DataSource = list_topping;
@@ -78,13 +78,14 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
                 return;
             }
 
-            int iddanhmuc = db_quanly.Toppings.Find(idtopping).IdDanhMucTopping;
+            var topping_choose = db_quanly.Toppings.Where(p=> p.IdTopping == idtopping).FirstOrDefault();
 
             _ModelTopping topping = new _ModelTopping()
             {
-                IdTopping = idtopping,
-                NameTopping = nametopping,
-                GiaTopping = giatopping,
+                IdTopping = topping_choose.IdTopping,
+                NameTopping = topping_choose.NameTopping,
+                GiaTopping = topping_choose.GiaTopping,
+                Cost = topping_choose.Cost,
             };
 
             toppings.Add(topping);

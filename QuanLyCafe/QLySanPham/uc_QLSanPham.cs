@@ -22,8 +22,6 @@ namespace QuanLyCafe
         {
             InitializeComponent();
         }
-
-        private fMain fMain = new fMain();
         private void AddTopping_Click(object sender, EventArgs e)
         {
             int selectedRowHandle = gridView1.FocusedRowHandle;

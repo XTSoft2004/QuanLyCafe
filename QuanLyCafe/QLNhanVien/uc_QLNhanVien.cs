@@ -141,5 +141,15 @@ namespace QuanLyCafe.QLNhanVien
                 LoadAllDB();
             }
         }
+
+        private void AddAccount_Click(object sender, EventArgs e)
+        {
+            int index = gridView1.FocusedRowHandle;
+            int idnhanvien = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdNhanVien"));
+            string namenhanvien = gridView1.GetRowCellValue(index, "NameNhanVien").ToString();
+
+            CreateAccount createAccount = new CreateAccount(idnhanvien);
+            createAccount.ShowDialog();
+        }
     }
 }

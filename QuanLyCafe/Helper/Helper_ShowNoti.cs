@@ -2,6 +2,7 @@
 using DevExpress.Utils.Svg;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +57,22 @@ namespace QuanLyCafe.Helper
             Error_Fix,
             Warning,
             Team_Work,
+        }
+        public class CafeLog
+        {
+            public static void SaveLog(string title)
+            {
+                string dateTimeString = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                DateTime dateTime = DateTime.ParseExact(dateTimeString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                LogRepository logRepository = new LogRepository()
+                {
+                    TextLog = title,
+                    DateLog = dateTime,
+                };
+                QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
+                db_quanly.LogRepositories.Add(logRepository);
+                db_quanly.SaveChanges();
+            }
         }
     }
 }

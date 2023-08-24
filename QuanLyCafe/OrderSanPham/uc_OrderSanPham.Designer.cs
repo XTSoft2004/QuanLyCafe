@@ -45,7 +45,7 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.rbMangVe = new System.Windows.Forms.RadioButton();
-            this.rbUongTaiQuan = new System.Windows.Forms.RadioButton();
+            this.rbTaiQuan = new System.Windows.Forms.RadioButton();
             this.VoucherSearchLookUp = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.voucherBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -318,10 +318,10 @@
             // groupControl3
             // 
             this.groupControl3.Controls.Add(this.rbMangVe);
-            this.groupControl3.Controls.Add(this.rbUongTaiQuan);
-            this.groupControl3.Location = new System.Drawing.Point(543, 92);
+            this.groupControl3.Controls.Add(this.rbTaiQuan);
+            this.groupControl3.Location = new System.Drawing.Point(568, 92);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(178, 58);
+            this.groupControl3.Size = new System.Drawing.Size(151, 58);
             this.groupControl3.TabIndex = 32;
             this.groupControl3.Text = "Chọn dữ liệu";
             // 
@@ -337,15 +337,15 @@
             this.rbMangVe.Text = "Mang về";
             this.rbMangVe.UseVisualStyleBackColor = true;
             // 
-            // rbUongTaiQuan
+            // rbTaiQuan
             // 
-            this.rbUongTaiQuan.AutoSize = true;
-            this.rbUongTaiQuan.Location = new System.Drawing.Point(77, 33);
-            this.rbUongTaiQuan.Name = "rbUongTaiQuan";
-            this.rbUongTaiQuan.Size = new System.Drawing.Size(92, 17);
-            this.rbUongTaiQuan.TabIndex = 31;
-            this.rbUongTaiQuan.Text = "Uống tại quán";
-            this.rbUongTaiQuan.UseVisualStyleBackColor = true;
+            this.rbTaiQuan.AutoSize = true;
+            this.rbTaiQuan.Location = new System.Drawing.Point(77, 33);
+            this.rbTaiQuan.Name = "rbTaiQuan";
+            this.rbTaiQuan.Size = new System.Drawing.Size(66, 17);
+            this.rbTaiQuan.TabIndex = 31;
+            this.rbTaiQuan.Text = "Tại quán";
+            this.rbTaiQuan.UseVisualStyleBackColor = true;
             // 
             // VoucherSearchLookUp
             // 
@@ -1099,6 +1099,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPhone;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private System.Windows.Forms.RadioButton rbMangVe;
-        private System.Windows.Forms.RadioButton rbUongTaiQuan;
+        private System.Windows.Forms.RadioButton rbTaiQuan;
     }
 }

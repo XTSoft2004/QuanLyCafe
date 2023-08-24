@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QuanLyCafeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="IdAccount" />
+    </Key>
+    <Property Name="IdAccount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IdNhanVien" Type="int" Nullable="false" />
+    <Property Name="Admin" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="ChiTietHoaDon">
     <Key>
       <PropertyRef Name="IdChiTietHoaDon" />
@@ -68,14 +78,22 @@
     <Property Name="IdTypeSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NameType" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="LogRepository">
+    <Key>
+      <PropertyRef Name="IdLog" />
+    </Key>
+    <Property Name="IdLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TextLog" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateLog" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="NhanVien">
     <Key>
       <PropertyRef Name="IdNhanVien" />
     </Key>
     <Property Name="IdNhanVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NameNhanVien" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NameNhanVien" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IdChucVu" Type="int" Nullable="false" />
-    <Property Name="Thongtin" Type="nvarchar" MaxLength="100" />
+    <Property Name="Thongtin" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="QLBan">
     <Key>
@@ -125,6 +143,18 @@
     <Property Name="Discount" Type="decimal" Precision="4" Scale="1" Nullable="false" />
     <Property Name="SoLuongSuDung" Type="int" />
   </EntityType>
+  <Association Name="FK_Account_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="IdNhanVien" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="IdNhanVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ChiTietHoaDon_HoaDon">
     <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="1" />
     <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
@@ -270,6 +300,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="QuanLyCafeModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietHoaDon" EntityType="Self.ChiTietHoaDon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChucVu" EntityType="Self.ChucVu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DanhMucTopping" EntityType="Self.DanhMucTopping" Schema="dbo" store:Type="Tables" />
@@ -277,12 +308,17 @@
     <EntitySet Name="HoaDonTopping" EntityType="Self.HoaDonTopping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LogRepository" EntityType="Self.LogRepository" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QLBan" EntityType="Self.QLBan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Topping" EntityType="Self.Topping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_NhanVien" Association="Self.FK_Account_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
     <AssociationSet Name="FK_ChiTietHoaDon_HoaDon" Association="Self.FK_ChiTietHoaDon_HoaDon">
       <End Role="HoaDon" EntitySet="HoaDon" />
       <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDon" />
