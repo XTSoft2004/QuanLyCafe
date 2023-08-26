@@ -2,6 +2,7 @@
 using DevExpress.XtraEditors;
 using QuanLyCafe.Helper;
 using QuanLyCafe.QLySanPham;
+using QuanLyCafe.TongQuan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -107,6 +108,12 @@ namespace QuanLyCafe
 
         private void uc_QLSanPham_Load(object sender, EventArgs e)
         {
+            if (!uc_TongQuat.InfoLogin.isAdmin)
+            {
+                Helper_ShowNoti.ShowXtraMessageBox("Xin lõi, tính năng này chỉ có admin vào được !!!", "Thông báo", IconXtraMessageBox.Error);
+                this.Hide();
+            }
+
             LoadAllDB();
         }
 

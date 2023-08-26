@@ -62,6 +62,12 @@ namespace QuanLyCafe.QLNhanVien
         }
         private void uc_QLNhanVien_Load(object sender, EventArgs e)
         {
+            if (!uc_TongQuat.InfoLogin.isAdmin)
+            {
+                Helper_ShowNoti.ShowXtraMessageBox("Xin lỗi, chỉ có admin mới vào được tính năng này !!!","Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
+                this.Hide();
+            }
+
             LoadChucVu(); // Lấy thông tin chức vụ từ bản chức vụ
 
             LoadAllDB();

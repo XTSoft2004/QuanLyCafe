@@ -1,14 +1,11 @@
-﻿using DevExpress.CodeParser.Diagnostics;
-using DevExpress.XtraCharts;
+﻿using DevExpress.XtraCharts;
 using DevExpress.XtraEditors;
-using QuanLyCafe.Helper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 //using System.Windows.Forms.DataVisualization.Charting;
 
 namespace QuanLyCafe.TongQuan
@@ -44,7 +41,7 @@ namespace QuanLyCafe.TongQuan
             LoadLogRepositories();
             LoadTable();
             LoadThongKeSanPham();
-
+            LoadThongKeSanPhamTop();
             HtmlAccountNhanVien.DataContext = InfoLogin;
         }
         private void LoadTable()
@@ -213,6 +210,31 @@ namespace QuanLyCafe.TongQuan
             LoadLogRepositories();
             LoadTable();
             LoadThongKeSanPham();
+        }
+        private void LoadThongKeSanPhamTop()
+        {
+            List<MenuTop> menuTops = new List<MenuTop>();
+            var sanpham = db_quanly.SanPhams.ToList();
+
+            foreach(var item in sanpham)
+            {
+                var SP = db_quanly.ChiTietHoaDons
+                    .Where(p => p.IdSanPham == item.IdSanPham)
+                    .ToList();
+
+                MenuTop menu = new MenuTop()
+                {
+                    Image = item.Image,
+                    NameSanPham = item.NameSanPham,
+                    GiaSanPham = item.GiaSanPham,
+                    SoLuong = SP.Sum(p=> p.SoLuong),
+                };
+
+                menuTops.Add(menu);
+            }
+
+            menuTopBindingSource.DataSource = menuTops;
+            winExplorerView2.RefreshData();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

@@ -3136,6 +3136,131 @@
   <metadata name="htmlTemplateCollection1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="menuTopBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>714, 17</value>
+  </metadata>
+  <metadata name="svgImageCollection2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>549, 17</value>
+  </metadata>
+  <data name="svgImageCollection2.drink" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIzLjEsIFZlcnNpb249MjMuMS4z
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAL8LAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9IjAgMCA2NCA2NCIgdmVyc2lvbj0iMS4x
+        IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3
+        LnczLm9yZy8xOTk5L3hsaW5rIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA2NCA2NCIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiPg0KICA8aW1hZ2UgeD0iMHB4IiB5PSIwcHgiIHdpZHRo
+        PSI2NHB4IiBoZWlnaHQ9IjY0cHgiIGhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dn
+        b0FBQUFOU1VoRVVnQUFBRUFBQUFCQUNBWUFBQUNxYVhIZUFBQUFCR2RCVFVFQUFMR1BDL3hoQlFBQUFD
+        QmpTRkpOIEFBQjZKZ0FBZ0lRQUFQb0FBQUNBNkFBQWRUQUFBT3BnQUFBNm1BQUFGM0NjdWxFOEFBQUFC
+        bUpMUjBRQS93RC9BUCtndmFlVEFBQUEgQ1hCSVdYTUFBQUhZQUFBQjJBSDZYS1p5QUFBR2RrbEVRVlI0
+        MnVXYlNXd2NSUlJBWDNYUFRFK3dQUjZiYkN3Q2NZQURFZ2NrUUlCQyBVQVFjeUlVRFVpUUVpT1dBdUxB
+        SWllMldHeGNrTm9GSVJNSUZJaFNXQTBJQ2llMkNnQk53Z0lBd3hHRlB3SGJHNDFsN3V2dHphSTluIDJ1
+        Nk9aN3BxMGlaOHliSzZ1cXQrL2RlL2ZsWDk2bEdrRlBuczNwc0oxRDRnRHh4Q3lZdnF1b05IMDdhWGxh
+        alVBTDUrNkFpTjVpWDQgdnIxY0ZBRHZvZVFGZGh6OFdDa2thK05HQmtBRXhjempDNkRLZERwUWIwS3Iz
+        Zi9JRE1LTEJNNEJ0ZXVsV3RaR0dnY0FJRDgrY1RmdyBNdUFBNFB2UWFFR3pCVUhRZmF5S3lCc0V1V2ZV
+        cnYwL1pHMnNVUUFBTXZ2b2RqejdMb1FIZ1BQQ1FvRjJHMnBOOEx6dW93R29UMUR5IFBEc092TGVSaG9j
+        V2dCVVEzKzB0VUdqZFFzRERLSzVkdWVHNm9WZEVoOGNSa0dmeEwzaFY3ZHJyRGExc0l3S0l3Smg1OGhx
+        RUIwRnUgSlp3aGxvZEhFNXJ0M3ZBUXZrSFp1OVhPL1grZFVRQldRUHp3MkxsWTF2M0FmY0Myc0ZCQ0NM
+        VjZGOFRYSEs5ZXFmYTg2Wjl4QUZaQSB6RHpnd1BnZTRFRkVyZ0JDNCtkT2h2K0YyOVgxQnc2ZHNRQ2lN
+        SjY4Qm1RZndtWFVHN0JVQjNoTjdUeHdaMVlBck5PcFRGMzgxQmNFIDhqUUF1VnkzOU5Lc2pEL3RBRUtO
+        NmxjQTdHWFZpdlAvWHdBODlXZW91YXRhTnN1bmUzUHBHL3l2QVhBN2Y2d0FVQW9FQytmb3Rxd0EgYUFY
+        QlkzVnZ0NGkvYytpSzllOGZ5WGtMZVJwTi9GeUpZT0tpdDFWeHkwK0RWSFY5V2xXZlluK1pXSHgxVmRr
+        NWZOb0J6TmJhZjRJNiBaOWg2RlUvdytoYkRFN2JDR2RBWDJ3SHpTNzZjdmFyWW55MFhuRDFLRGIyZTBC
+        d0NxcFdxMWlydXdUQmJBOFYwVEttWHhuZ0RBS2lrIFVxcWlCc3NRamhpSXJIMVljVEt0QVprQXNGWFVC
+        bDhHOTRBZ0hsYXFmdWdERUpWSzhlcmRjQ0NEZTBBY0s4a01nSkpVaXExVmIxR0cgaUFGeHo2ck1BS1Fl
+        QXRGcmY0Z1l1TEdHZ0ZLTHFhcXR1aDRtUFNReFkwQ1ExRUZRYndrcXB4NEN1Zlk4ZG1jUmxNSXJUT1Bu
+        SndHdyBWQWloM3hRZnNQdXViVytKWEhzT0NBaHlKVHJPbGtSWUZ1bGlrVDZBR05kVGdjZjR3cGVVL3Y2
+        SWZPdEU1RjU3N0VLcVcyK2lYcjRjIHBhekkyd3hFc0JXY3RmZ3RwUk1mVXF6TlJPcDZ6dGxVdDk1QXBY
+        UTFXTVhWYWxONW9qYUE0dEtScGhJaHNNZXd2Q1dLOVZuRzV6OFAgMzNxTU9QVmYyREw3Q2xQT1pweXBh
+        Nmx0dW9DT1BVN09xelBwL3M3VXdoZmtXOGZEZmNMNFdPZ3E5U2I0UHJuMlBOTy9IYVkwL3c1eiA1KzZn
+        Tm5VSm5VSUoyMnNCZnVyY29oYUE3VFBQblVnVFJuTHRPYzQ1L203OFRjdUM2Y2xldnFCWWhKTVY2SGlB
+        a0hOcmJELzJBUno3IG9LL0JmT3E4b200UXJHalZYOXRlMUhnSXZXQ3FESllkbmozRmllZk9ad1BBTWd5
+        Z1dJZ2EzdzlockpnOFhRUjI2bjdvQmNHR1hjRVogY0EraUxDaU5RYzd1blNDdE1TUklyaDlJT0ZYRWla
+        MXVRUWE2SG5Eai9pckozWXJLNURoc0trSStENU1UTUYwRzI0NCswKzdFZytsNCA0YmxDMHA3Qjg3TUJz
+        SHpFVlYzM3dVMUZLRHJSc2tJZU5rK0JVNGlXVjVlaUVOeE9HQVJGa2dHVUs2a0JtTWpGVllDcHhMdTJC
+        UlBqIGlRUXBqY00vQzcweUFSYVh3dU0wQmJUYzNyMzRFZEpVdTk5dmsxSk1BVWlXWWpFTVlrbVNkS3Z0
+        cmkyTDk0QlQ2MTlIOUpPaWFwME8gckxmWHJ3K1JWSXIzZ0l3QkJPdE1oYzFXL05zRXdvOHJHa1BvMnBB
+        ZUVKeTZBeUp3Y2pFYzF4SkV5eGVYRXRwVWEyY0lpRjhIck9lQiA2NGlCR0REZ1lxalpDcjhYR0JzTEV3
+        TDFCbmd4TTJpaEFPVlNHRGRjRnlyVjNwdVBBeUJaQTFDeXlLQXBMVDhJcDduRTN0Z3dWUW85IG9BdGpz
+        aFI2RU1RUGdaUnB1YTZNUGdZTUk0N1RNMzZsck5BN1Jvc0RrREl0Wnc2QVpoQ0tTQ2RtVitzSHZkZ1JP
+        d3RJNmx5QUdRQW0gZDRTdUM3VytXU0ZZRHFEZEZ4OGJBeXd0L1FhQ29GOHhlc1phcTRmTDM1d2RmbTNt
+        ZDE5N3dsTFkwaHNDQm9LZ3Foai82TTExWWZYUyBJV21qS0ZuSEFOTTVnU1FaUVM3QURJQ0dYZ2NHbGhI
+        a0Fzd0FHQ1lub0NNanlBVVlBVEJ3VG1CVUFEUnlBVVlBTEl0V0p3YVNFZVFDIC9sc0FScEFMTUFkQWMw
+        YzJrSXdnRjJBT2dNbjlRS0tPRGUwQjYrUUVURWg4RE5UYUI1Z0RvSEU2cXdkQVg2OGhEOURia1Ewa3NV
+        TkEgYnhGa0RrQldNVUF6RzJRT1FGYnJBR3VqeEFEVHA4UnhNb0o4b0RrQTZLM0hCN0krOXZ1NGpSSURS
+        dTBCU2Q5L1dIclpJSE1BUnAwVCBxQ2NRQ1BROXdNd1BGY3JWdjVpYmFDTTQrbzMxaVMvUThNTy90U0pZ
+        N3MrNktvejlhRXJldXVNUXZ0eG1GTUNwZS82TzJ2UDZyYnJOIG1NdG1CdTI3UVQwRDZwOFJtejRIN01Q
+        bEhoT04vUXZZS3BZSjE4cjlTQUFBQUNWMFJWaDBaR0YwWlRwamNtVmhkR1VBTWpBeU15MHcgT0MweU5s
+        UXhNRG95TkRveU1Tc3dNam93TURrN0U1c0FBQUFsZEVWWWRHUmhkR1U2Ylc5a2FXWjVBREl3TWpNdE1E
+        Z3RNalpVTVRBNiBNalE2TWpFck1ESTZNREJJWnFzbkFBQUFHWFJGV0hSVGIyWjBkMkZ5WlFCM2QzY3Vh
+        VzVyYzJOaGNHVXViM0pubSs0OEdnQUFBQUJKIFJVNUVya0pnZ2c9PSIgaWQ9ImltYWdlMCIgLz4NCjwv
+        c3ZnPgs=
+</value>
+  </data>
+  <data name="winExplorerView2.OptionsViewStyles.Medium.HtmlTemplate.Styles" xml:space="preserve">
+    <value>.banner{
+	display: flex;
+	border-radius: 30px;
+	background-color: @Yellow;
+	width: 400px;
+	text-align: center;
+	margin: 0px 50px 0px 50px;
+	justify-content: space-between;
+}
+.Image{
+	background-color: @Blue;
+	border-radius: 30px;
+	width: 70px;
+	height: 70px;
+}
+.InfoMonAn{
+	display: flex;
+	flex-direction: column;
+	padding-left: 20px;
+	padding-top: 10px;
+}
+.NameMon{
+	font-size: 15px;
+	color: @Success;
+	margin-bottom: 5px;
+}
+.GiaMon{
+	font-size: 15px;
+	color: @White;
+}
+.InfoSoLuong{
+	background-color: rgba(132, 240, 237,0.8);
+	width: 70px;
+	height: 70px;
+	border-radius: 30px;
+}
+.Soluong{
+	display: flex;
+	padding-top: 23px;
+	font-weight: bold;
+	
+	color: rgb(220, 122, 54);
+	font-size: 20px;
+	justify-content: center;
+}</value>
+  </data>
+  <data name="winExplorerView2.OptionsViewStyles.Medium.HtmlTemplate.Template" xml:space="preserve">
+    <value>&lt;div class="banner"&gt;
+	&lt;div class="ImageMonAn"&gt;
+		&lt;img src="${Image}" class="Image"&gt;
+	&lt;/div&gt;
+	&lt;div class="InfoMonAn"&gt;
+		&lt;span class="NameMon"&gt;${NameSanPham}&lt;/span&gt;
+		&lt;span class="GiaMon"&gt;${GiaSanPham}&lt;/span&gt;
+	&lt;/div&gt;
+	&lt;div class="InfoSoLuong"&gt;
+		&lt;span class="Soluong"&gt;${SoLuong}&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</value>
+  </data>
   <data name="winExplorerView1.OptionsViewStyles.Medium.HtmlTemplate.Styles" xml:space="preserve">
     <value>.banner{
 	display: inline-flex;

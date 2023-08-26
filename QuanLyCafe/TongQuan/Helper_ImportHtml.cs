@@ -18,4 +18,11 @@ namespace QuanLyCafe.TongQuan
         public string ChucVu { get; set; }
         public bool isAdmin { get; set; }
     }
+    public class MenuTop
+    {
+        public byte[] Image { get; set; }
+        public string NameSanPham { get;set; } 
+        public decimal GiaSanPham { get; set; }
+        public int SoLuong { get; set; }
+    }
 }

@@ -439,6 +439,7 @@
     <None Include="Properties\DataSources\QuanLyCafe.TongQuan.Account.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.TongQuan.AccountLogin.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.TongQuan.Helper_ThongKe.datasource" />
+    <None Include="Properties\DataSources\QuanLyCafe.TongQuan.MenuTop.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.TongQuan.ShowLog.datasource" />
     <None Include="Properties\DataSources\QuanLyCafe.TongQuan.ThongKeMoney.datasource" />
     <None Include="Properties\DataSources\Topping.datasource" />
