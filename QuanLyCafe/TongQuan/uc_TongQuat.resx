@@ -3205,9 +3205,9 @@
 	display: flex;
 	border-radius: 30px;
 	background-color: @Yellow;
-	width: 400px;
+	width: 430px;
 	text-align: center;
-	margin: 0px 50px 0px 50px;
+	margin: 0px 0px 0px 20px;
 	justify-content: space-between;
 }
 .Image{
@@ -3221,11 +3221,18 @@
 	flex-direction: column;
 	padding-left: 20px;
 	padding-top: 10px;
+	width: 250px;
+	/*background-color: @Red;*/
 }
 .NameMon{
 	font-size: 15px;
 	color: @Success;
 	margin-bottom: 5px;
+	
+	white-space: nowrap; /* Ngăn văn bản xuống dòng tự động */
+    overflow: hidden;    /* Ẩn phần văn bản vượt quá giới hạn */
+    text-overflow: ellipsis; /* Thêm dấu ba chấm (...) nếu văn bản vượt quá giới hạn */
+    max-width: 250px; /* Giới hạn độ rộng của đoạn văn bản */
 }
 .GiaMon{
 	font-size: 15px;

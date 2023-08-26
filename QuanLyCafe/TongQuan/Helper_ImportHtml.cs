@@ -22,7 +22,7 @@ namespace QuanLyCafe.TongQuan
     {
         public byte[] Image { get; set; }
         public string NameSanPham { get;set; } 
-        public decimal GiaSanPham { get; set; }
+        public string GiaSanPham { get; set; }
         public int SoLuong { get; set; }
     }
 }

@@ -226,15 +226,15 @@ namespace QuanLyCafe.TongQuan
                 {
                     Image = item.Image,
                     NameSanPham = item.NameSanPham,
-                    GiaSanPham = item.GiaSanPham,
+                    GiaSanPham = item.GiaSanPham.ToString("N3") + " VNĐ",
                     SoLuong = SP.Sum(p=> p.SoLuong),
                 };
 
                 menuTops.Add(menu);
             }
 
-            menuTopBindingSource.DataSource = menuTops;
-            winExplorerView2.RefreshData();
+            menuTopBindingSource.DataSource = menuTops.OrderByDescending(p => p.SoLuong);
+            //winExplorerView2.RefreshData();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
