@@ -194,7 +194,7 @@
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
             this.Name = "fMain";
             this.NavigationControl = this.accordionControl1;
-            this.Text = "Form1";
+            this.Text = "Quản lý cafe";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fMain_FormClosed);
             this.Load += new System.EventHandler(this.fMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
