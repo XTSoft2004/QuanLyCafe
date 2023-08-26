@@ -1,11 +1,14 @@
 ﻿using DevExpress.Utils;
 using DevExpress.Utils.Svg;
+using DevExpress.XtraEditors;
+using QuanLyCafe.TongQuan;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLyCafe.Helper
 {
@@ -49,6 +52,49 @@ namespace QuanLyCafe.Helper
         public static void ShowThongBao(string Message, string Title, SvgImageIcon svgImageIcon)
         {
             fMain.ShowNotification(Message, Title, svgImageIcon);
+            CafeLog.SaveLog($"[{uc_TongQuat.InfoLogin.IdNhanVien}:{uc_TongQuat.InfoLogin.NameNhanVien}] | {Title}");
+        }
+        public enum IconXtraMessageBox
+        {
+            Information,
+            Warning,
+            Error,
+            Stop,
+            Asterisk,
+            Exclamation,
+            Question,
+            Hand,
+            None,
+        }
+        public static void ShowXtraMessageBox(string text,string caption, IconXtraMessageBox iconXtra = IconXtraMessageBox.None)
+        {
+            switch(iconXtra)
+            {
+                case IconXtraMessageBox.Information:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                case IconXtraMessageBox.Warning:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                case IconXtraMessageBox.Error:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case IconXtraMessageBox.Stop:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    break;
+                case IconXtraMessageBox.Asterisk:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    break;
+                case IconXtraMessageBox.Question:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    break;
+                case IconXtraMessageBox.Hand:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    break;
+                case IconXtraMessageBox.None:
+                    XtraMessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.None);
+                    break;
+            }
         }
         public enum SvgImageIcon
         {

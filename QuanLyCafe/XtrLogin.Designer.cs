@@ -117,6 +117,7 @@
             this.Name = "XtrLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Giao diện login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.XtrLogin_FormClosed);
             this.Load += new System.EventHandler(this.XtrLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UsernameEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PasswordEdit.Properties)).EndInit();

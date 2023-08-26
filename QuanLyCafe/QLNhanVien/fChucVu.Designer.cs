@@ -195,9 +195,9 @@
             // NameChucVuTextEdit
             // 
             this.NameChucVuTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.chucVuBindingSource, "NameChucVu", true));
-            this.NameChucVuTextEdit.Location = new System.Drawing.Point(93, 36);
+            this.NameChucVuTextEdit.Location = new System.Drawing.Point(87, 36);
             this.NameChucVuTextEdit.Name = "NameChucVuTextEdit";
-            this.NameChucVuTextEdit.Size = new System.Drawing.Size(152, 20);
+            this.NameChucVuTextEdit.Size = new System.Drawing.Size(158, 20);
             this.NameChucVuTextEdit.StyleController = this.dataLayoutControl1;
             this.NameChucVuTextEdit.TabIndex = 5;
             // 
@@ -209,7 +209,7 @@
             0,
             0,
             0});
-            this.IdChucVuTextEdit.Location = new System.Drawing.Point(93, 12);
+            this.IdChucVuTextEdit.Location = new System.Drawing.Point(87, 12);
             this.IdChucVuTextEdit.Name = "IdChucVuTextEdit";
             this.IdChucVuTextEdit.Properties.Appearance.Options.UseTextOptions = true;
             this.IdChucVuTextEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -218,7 +218,7 @@
             this.IdChucVuTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.IdChucVuTextEdit.Properties.Mask.EditMask = "N0";
             this.IdChucVuTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.IdChucVuTextEdit.Size = new System.Drawing.Size(50, 20);
+            this.IdChucVuTextEdit.Size = new System.Drawing.Size(56, 20);
             this.IdChucVuTextEdit.StyleController = this.dataLayoutControl1;
             this.IdChucVuTextEdit.TabIndex = 4;
             // 
@@ -252,8 +252,8 @@
             this.ItemForIdChucVu.Location = new System.Drawing.Point(0, 0);
             this.ItemForIdChucVu.Name = "ItemForIdChucVu";
             this.ItemForIdChucVu.Size = new System.Drawing.Size(135, 24);
-            this.ItemForIdChucVu.Text = "Id Chuc Vu";
-            this.ItemForIdChucVu.TextSize = new System.Drawing.Size(69, 13);
+            this.ItemForIdChucVu.Text = "Id chức vụ:";
+            this.ItemForIdChucVu.TextSize = new System.Drawing.Size(63, 13);
             // 
             // ItemForNameChucVu
             // 
@@ -261,8 +261,8 @@
             this.ItemForNameChucVu.Location = new System.Drawing.Point(0, 24);
             this.ItemForNameChucVu.Name = "ItemForNameChucVu";
             this.ItemForNameChucVu.Size = new System.Drawing.Size(237, 56);
-            this.ItemForNameChucVu.Text = "Name Chuc Vu";
-            this.ItemForNameChucVu.TextSize = new System.Drawing.Size(69, 13);
+            this.ItemForNameChucVu.Text = "Tên chức vụ:";
+            this.ItemForNameChucVu.TextSize = new System.Drawing.Size(63, 13);
             // 
             // layoutControlItem2
             // 

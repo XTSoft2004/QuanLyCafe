@@ -38,8 +38,6 @@ namespace QuanLyCafe.QuanLyBan
             int count = db_quanly.QLBans.Count();
 
             Helper_QuanLyBan.DeleteAllTable();
-
-            Helper_ShowNoti.ShowThongBao("Xóa tất cả bàn", $"Xóa {count} bàn thành công !!", Helper_ShowNoti.SvgImageIcon.Success);
         }
 
         private void btnCreateBan_Click(object sender, EventArgs e)

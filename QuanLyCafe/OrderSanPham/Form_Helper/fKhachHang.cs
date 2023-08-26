@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using QuanLyCafe;
+using QuanLyCafe.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,8 +65,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
             {
                 db_quanly.KhachHangs.Remove(voucher);
                 db_quanly.SaveChanges();
-                XtraMessageBox.Show($"Đã xoá khách hàng {NameKhachHang} ra khỏi danh sách !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                Helper_ShowNoti.ShowThongBao($"Đã xoá khách hàng {NameKhachHang} ra khỏi danh sách !!!", "Thông báo", Helper_ShowNoti.SvgImageIcon.Success);
                 LoadAllData();
             }
         }
@@ -83,14 +83,18 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
                 this.Close();
             }
         }
-
-        private void btnThemKhachHang_Click(object sender, EventArgs e)
+        private bool CheckThongTinKhachHang()
         {
             if (string.IsNullOrEmpty(NameKhachHangTextEdit.Text))
             {
-                XtraMessageBox.Show($"Chưa nhập tên khách hàng, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                Helper_ShowNoti.ShowXtraMessageBox($"Chưa nhập tên khách hàng, vui lòng kiểm tra lại", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
+                return false;
             }
+            return true;
+        }
+        private void btnThemKhachHang_Click(object sender, EventArgs e)
+        {
+            if (!CheckThongTinKhachHang()) return;
 
             KhachHang khachHang = new KhachHang()
             {
@@ -102,17 +106,13 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
             db_quanly.KhachHangs.Add(khachHang);
             db_quanly.SaveChanges();
 
-            XtraMessageBox.Show($"Đã thêm khách hàng {NameKhachHangTextEdit.Text} vào dữ liệu !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã thêm khách hàng {NameKhachHangTextEdit.Text} vào dữ liệu !!", Helper_ShowNoti.SvgImageIcon.Success);
             LoadAllData();
         }
 
         private void btnEditKhachHang_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(NameKhachHangTextEdit.Text))
-            {
-                XtraMessageBox.Show($"Chưa nhập tên khách hàng, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (!CheckThongTinKhachHang()) return;
 
             int selectedRowHandle = gridView1.FocusedRowHandle;
 
@@ -125,7 +125,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
             db_quanly.SaveChanges();
 
-            XtraMessageBox.Show($"Đã chỉnh sửa khách hàng {NameKhachHangTextEdit.Text} !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã chỉnh sửa khách hàng {NameKhachHangTextEdit.Text} !!", Helper_ShowNoti.SvgImageIcon.Success);
             LoadAllData();
         }
 
@@ -138,7 +138,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
                 db_quanly.KhachHangs.Remove(item);
             }
 
-            XtraMessageBox.Show($"Đã xoá toàn bộ khách hàng !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xoá toàn bộ khách hàng !!!", Helper_ShowNoti.SvgImageIcon.Success);
             LoadAllData();
         }
     }

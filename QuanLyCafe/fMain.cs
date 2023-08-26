@@ -35,38 +35,34 @@ namespace QuanLyCafe
             };
             InfoLogin = infologin;
         }
-        private TongQuan.uc_TongQuat uc_HoaDon = new TongQuan.uc_TongQuat();
-        private uc_QLSanPham uc_QLSanPham = new uc_QLSanPham();
-        private uc_QLNhanVien uc_QLNhanVien = new uc_QLNhanVien();
-        private uc_QuanLyBan uc_quanlyban = new uc_QuanLyBan();
-        private TongQuan.uc_TongQuat uc_TongQuat = new TongQuan.uc_TongQuat();
-        private ThongTinQuan.uc_ThongTinQuan uc_thongtinquan = new ThongTinQuan.uc_ThongTinQuan();
         private void fMain_Load(object sender, EventArgs e)
         {
             //SplashScreenManager.ShowForm(this, typeof(SplashScreenMain), true, true);
             ////SplashScreenManager.Default.SetWaitFormDescription("Đang chờ thanh toán ....");
             //Thread.Sleep(2000);
-
             //SplashScreenManager.CloseForm();
 
             Helper_Project.MainControlAdd = MainControlAdd;
             Helper_ShowNoti.svgImages = svgImageCollection1;
 
-            Helper_ShowNoti.ShowThongBao("Chúc bạn một ngày tốt lành", "Làm việc thật tốt nhé <3", SvgImageIcon.Team_Work);
+            //Helper_ShowNoti.ShowThongBao("Chúc bạn một ngày tốt lành", "Làm việc thật tốt nhé <3", SvgImageIcon.Team_Work);
 
             XtrLogin xtrLogin = new XtrLogin();
             xtrLogin.ShowDialog();
-            
+
+            TongQuan.uc_TongQuat uc_TongQuat = new TongQuan.uc_TongQuat();
             Helper_Project.ShowFormUC(uc_TongQuat);
         }
 
         private void ControlElementQLSanPham_Click(object sender, EventArgs e)
         {
+            uc_QLSanPham uc_QLSanPham = new uc_QLSanPham();
             Helper_Project.ShowFormUC(uc_QLSanPham);
         }
 
         private void ControlElementQLNhanVien_Click(object sender, EventArgs e)
-        {          
+        {
+            uc_QLNhanVien uc_QLNhanVien = new uc_QLNhanVien();
             Helper_Project.ShowFormUC(uc_QLNhanVien);
         }
 
@@ -76,6 +72,7 @@ namespace QuanLyCafe
         }
         private void ControlElementQLBan_Click(object sender, EventArgs e)
         {
+            uc_QuanLyBan uc_quanlyban = new uc_QuanLyBan();
             Helper_Project.ShowFormUC(uc_quanlyban);
         }
         public void ShowNotification(string Message, string Title, SvgImageIcon svgImageIcon)
@@ -97,16 +94,19 @@ namespace QuanLyCafe
 
         private void ControlElementQLHoaDon_Click(object sender, EventArgs e)
         {
+            uc_HoaDon uc_HoaDon = new uc_HoaDon();
             Helper_Project.ShowFormUC(uc_HoaDon);
         }
 
         private void ControlElementThongTinQuan_Click(object sender, EventArgs e)
         {
+            ThongTinQuan.uc_ThongTinQuan uc_thongtinquan = new ThongTinQuan.uc_ThongTinQuan();
             Helper_Project.ShowFormUC(uc_thongtinquan);
         }
 
         private void ControlMenuQLAccount_Click(object sender, EventArgs e)
-        {        
+        {
+            TongQuan.uc_TongQuat uc_TongQuat = new TongQuan.uc_TongQuat();
             Helper_Project.ShowFormUC(uc_TongQuat);
         }
     }

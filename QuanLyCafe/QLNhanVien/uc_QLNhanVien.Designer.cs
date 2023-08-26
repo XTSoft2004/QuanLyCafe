@@ -58,13 +58,15 @@
             this.colNameNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNameChucVu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colThongtin = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnAddAccount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.AddAccount = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnRemoveAccount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.RemoveAccount = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.AddAccount = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnAddAccount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -89,12 +91,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RemoveAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddAccount)).BeginInit();
             this.SuspendLayout();
             // 
             // dataLayoutControl1
@@ -184,9 +187,9 @@
             // NameNhanVienTextEdit
             // 
             this.NameNhanVienTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.modelQLNhanVienBindingSource, "NameNhanVien", true));
-            this.NameNhanVienTextEdit.Location = new System.Drawing.Point(102, 36);
+            this.NameNhanVienTextEdit.Location = new System.Drawing.Point(123, 36);
             this.NameNhanVienTextEdit.Name = "NameNhanVienTextEdit";
-            this.NameNhanVienTextEdit.Size = new System.Drawing.Size(590, 20);
+            this.NameNhanVienTextEdit.Size = new System.Drawing.Size(569, 20);
             this.NameNhanVienTextEdit.StyleController = this.dataLayoutControl2;
             this.NameNhanVienTextEdit.TabIndex = 5;
             // 
@@ -197,9 +200,9 @@
             // ThongtinTextEdit
             // 
             this.ThongtinTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.modelQLNhanVienBindingSource, "Thongtin", true));
-            this.ThongtinTextEdit.Location = new System.Drawing.Point(102, 86);
+            this.ThongtinTextEdit.Location = new System.Drawing.Point(123, 86);
             this.ThongtinTextEdit.Name = "ThongtinTextEdit";
-            this.ThongtinTextEdit.Size = new System.Drawing.Size(590, 42);
+            this.ThongtinTextEdit.Size = new System.Drawing.Size(569, 42);
             this.ThongtinTextEdit.StyleController = this.dataLayoutControl2;
             this.ThongtinTextEdit.TabIndex = 7;
             // 
@@ -212,7 +215,7 @@
             0,
             0});
             this.IdNhanVienTextEdit.Enabled = false;
-            this.IdNhanVienTextEdit.Location = new System.Drawing.Point(102, 12);
+            this.IdNhanVienTextEdit.Location = new System.Drawing.Point(123, 12);
             this.IdNhanVienTextEdit.Name = "IdNhanVienTextEdit";
             this.IdNhanVienTextEdit.Properties.Appearance.Options.UseTextOptions = true;
             this.IdNhanVienTextEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -221,18 +224,18 @@
             this.IdNhanVienTextEdit.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.IdNhanVienTextEdit.Properties.Mask.EditMask = "N0";
             this.IdNhanVienTextEdit.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.IdNhanVienTextEdit.Size = new System.Drawing.Size(108, 20);
+            this.IdNhanVienTextEdit.Size = new System.Drawing.Size(87, 20);
             this.IdNhanVienTextEdit.StyleController = this.dataLayoutControl2;
             this.IdNhanVienTextEdit.TabIndex = 4;
             // 
             // NameChucVuCbb
             // 
             this.NameChucVuCbb.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.modelQLNhanVienBindingSource, "NameChucVu", true));
-            this.NameChucVuCbb.Location = new System.Drawing.Point(102, 60);
+            this.NameChucVuCbb.Location = new System.Drawing.Point(123, 60);
             this.NameChucVuCbb.Name = "NameChucVuCbb";
             this.NameChucVuCbb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.NameChucVuCbb.Size = new System.Drawing.Size(472, 20);
+            this.NameChucVuCbb.Size = new System.Drawing.Size(451, 20);
             this.NameChucVuCbb.StyleController = this.dataLayoutControl2;
             this.NameChucVuCbb.TabIndex = 6;
             // 
@@ -270,8 +273,8 @@
             this.ItemForIdNhanVien.Location = new System.Drawing.Point(0, 0);
             this.ItemForIdNhanVien.Name = "ItemForIdNhanVien";
             this.ItemForIdNhanVien.Size = new System.Drawing.Size(202, 24);
-            this.ItemForIdNhanVien.Text = "Id Nhan Vien";
-            this.ItemForIdNhanVien.TextSize = new System.Drawing.Size(78, 13);
+            this.ItemForIdNhanVien.Text = "Id Nhân Viên:";
+            this.ItemForIdNhanVien.TextSize = new System.Drawing.Size(99, 13);
             // 
             // ItemForNameNhanVien
             // 
@@ -279,8 +282,8 @@
             this.ItemForNameNhanVien.Location = new System.Drawing.Point(0, 24);
             this.ItemForNameNhanVien.Name = "ItemForNameNhanVien";
             this.ItemForNameNhanVien.Size = new System.Drawing.Size(684, 24);
-            this.ItemForNameNhanVien.Text = "Name Nhan Vien";
-            this.ItemForNameNhanVien.TextSize = new System.Drawing.Size(78, 13);
+            this.ItemForNameNhanVien.Text = "Tên nhân viên:";
+            this.ItemForNameNhanVien.TextSize = new System.Drawing.Size(99, 13);
             // 
             // ItemForNameChucVu
             // 
@@ -288,8 +291,8 @@
             this.ItemForNameChucVu.Location = new System.Drawing.Point(0, 48);
             this.ItemForNameChucVu.Name = "ItemForNameChucVu";
             this.ItemForNameChucVu.Size = new System.Drawing.Size(566, 26);
-            this.ItemForNameChucVu.Text = "Name Chuc Vu";
-            this.ItemForNameChucVu.TextSize = new System.Drawing.Size(78, 13);
+            this.ItemForNameChucVu.Text = "Chức vụ:";
+            this.ItemForNameChucVu.TextSize = new System.Drawing.Size(99, 13);
             // 
             // ItemForThongtin
             // 
@@ -297,8 +300,8 @@
             this.ItemForThongtin.Location = new System.Drawing.Point(0, 74);
             this.ItemForThongtin.Name = "ItemForThongtin";
             this.ItemForThongtin.Size = new System.Drawing.Size(684, 46);
-            this.ItemForThongtin.Text = "Thongtin";
-            this.ItemForThongtin.TextSize = new System.Drawing.Size(78, 13);
+            this.ItemForThongtin.Text = "Thông tin nhân viên:";
+            this.ItemForThongtin.TextSize = new System.Drawing.Size(99, 13);
             // 
             // layoutControlItem4
             // 
@@ -352,7 +355,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.AddAccount});
+            this.AddAccount,
+            this.RemoveAccount});
             this.gridControl1.Size = new System.Drawing.Size(987, 246);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -365,7 +369,8 @@
             this.colNameNhanVien,
             this.colNameChucVu,
             this.colThongtin,
-            this.btnAddAccount});
+            this.btnAddAccount,
+            this.btnRemoveAccount});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -403,6 +408,42 @@
             this.colThongtin.Visible = true;
             this.colThongtin.VisibleIndex = 3;
             this.colThongtin.Width = 456;
+            // 
+            // btnAddAccount
+            // 
+            this.btnAddAccount.Caption = "Thêm Account";
+            this.btnAddAccount.ColumnEdit = this.AddAccount;
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Visible = true;
+            this.btnAddAccount.VisibleIndex = 4;
+            this.btnAddAccount.Width = 83;
+            // 
+            // AddAccount
+            // 
+            this.AddAccount.AutoHeight = false;
+            this.AddAccount.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
+            this.AddAccount.Name = "AddAccount";
+            this.AddAccount.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.AddAccount.UseAdvancedMode = DevExpress.Utils.DefaultBoolean.True;
+            this.AddAccount.Click += new System.EventHandler(this.AddAccount_Click);
+            // 
+            // btnRemoveAccount
+            // 
+            this.btnRemoveAccount.Caption = "Xóa Account";
+            this.btnRemoveAccount.ColumnEdit = this.RemoveAccount;
+            this.btnRemoveAccount.Name = "btnRemoveAccount";
+            this.btnRemoveAccount.Visible = true;
+            this.btnRemoveAccount.VisibleIndex = 5;
+            // 
+            // RemoveAccount
+            // 
+            this.RemoveAccount.AutoHeight = false;
+            this.RemoveAccount.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.RemoveAccount.Name = "RemoveAccount";
+            this.RemoveAccount.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.RemoveAccount.Click += new System.EventHandler(this.RemoveAccount_Click);
             // 
             // Root
             // 
@@ -452,25 +493,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // AddAccount
-            // 
-            this.AddAccount.AutoHeight = false;
-            this.AddAccount.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
-            this.AddAccount.Name = "AddAccount";
-            this.AddAccount.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.AddAccount.UseAdvancedMode = DevExpress.Utils.DefaultBoolean.True;
-            this.AddAccount.Click += new System.EventHandler(this.AddAccount_Click);
-            // 
-            // btnAddAccount
-            // 
-            this.btnAddAccount.Caption = "Thêm Account";
-            this.btnAddAccount.ColumnEdit = this.AddAccount;
-            this.btnAddAccount.Name = "btnAddAccount";
-            this.btnAddAccount.Visible = true;
-            this.btnAddAccount.VisibleIndex = 4;
-            this.btnAddAccount.Width = 83;
-            // 
             // uc_QLNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,12 +525,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RemoveAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddAccount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -551,5 +574,7 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraGrid.Columns.GridColumn btnAddAccount;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit AddAccount;
+        private DevExpress.XtraGrid.Columns.GridColumn btnRemoveAccount;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit RemoveAccount;
     }
 }

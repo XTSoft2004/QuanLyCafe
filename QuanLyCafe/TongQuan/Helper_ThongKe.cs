@@ -12,4 +12,10 @@ namespace QuanLyCafe.TongQuan
         public string DoanhThu { get; set; }
         public string SanPham { get; set; } 
     }
+    public class Helper_Table
+    {
+        public int BanDat { get; set; }
+        public int BanHoatDong { get; set; }
+        public int BanTrong { get; set; }
+    }
 }

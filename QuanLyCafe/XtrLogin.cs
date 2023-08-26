@@ -44,8 +44,10 @@ namespace QuanLyCafe
 
                 AccountLogin infoaccount = new AccountLogin()
                 {
+                    IdNhanVien = account.NhanVien.IdNhanVien,
                     NameNhanVien = account.NhanVien.NameNhanVien,
                     ChucVu = account.NhanVien.ChucVu.NameChucVu,
+                    isAdmin = account.Admin == 1 ? true : false,
                 };
                 TongQuan.uc_TongQuat.InfoLogin = infoaccount;
 
@@ -71,6 +73,11 @@ namespace QuanLyCafe
         private void XtrLogin_Load(object sender, EventArgs e)
         {
             LoadAccount();
+        }
+
+        private void XtrLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

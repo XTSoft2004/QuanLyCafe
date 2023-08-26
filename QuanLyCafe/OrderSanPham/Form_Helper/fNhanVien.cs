@@ -17,7 +17,7 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
         {
             InitializeComponent();
         }
-        public static string NameNhanVien { get; set; }
+        public string NameNhanVien { get; set; }
         private void AddNhanVien_Click(object sender, EventArgs e)
         {
             int indexSelect = gridView1.FocusedRowHandle;

@@ -74,7 +74,8 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
             if(toppings.Exists(p=> p.IdTopping == idtopping))
             {
-                Helper_ShowNoti.ShowThongBao("Thêm Topping", $"Topping {nametopping} này đã có trong danh sách rồi !!!", Helper_ShowNoti.SvgImageIcon.Error);
+                Helper_ShowNoti.ShowXtraMessageBox($"Topping {nametopping} này đã có trong danh sách rồi !!!", "Thêm Topping", Helper_ShowNoti.IconXtraMessageBox.Error);
+                //Helper_ShowNoti.ShowThongBao("Thêm Topping", $"Topping {nametopping} này đã có trong danh sách rồi !!!", Helper_ShowNoti.SvgImageIcon.Error);
                 return;
             }
 
@@ -118,14 +119,15 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
         private void ThemTopping_Click(object sender, EventArgs e)
         {
-            if(XtraMessageBox.Show($"Bạn muốn thêm {gridView2.RowCount} vào sản phẩm","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Error) == DialogResult.Yes)
+            if(XtraMessageBox.Show($"Bạn muốn thêm {gridView2.RowCount} vào sản phẩm","Thông báo",MessageBoxButtons.YesNo,MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 _ModelOrderSanPham _ModelOrderSanPham = _ListTopping
                     .Where(p => p.IdSanPham == IdSanPham).FirstOrDefault();
 
                 _ModelOrderSanPham._list_toppings = toppings;
-
-                Helper_ShowNoti.ShowThongBao("Thêm topping", $"Đã thêm topping {gridView2.RowCount} thành công !!!", Helper_ShowNoti.SvgImageIcon.Success);
+                
+                var sanpham = db_quanly.SanPhams.Where(p => p.IdSanPham == IdSanPham).FirstOrDefault();
+                Helper_ShowNoti.ShowThongBao("Thêm topping", $"Đã thêm {gridView2.RowCount} topping vào sản phẩm {sanpham.NameSanPham} thành công !!!", Helper_ShowNoti.SvgImageIcon.Success);
 
                 this.Close();
             }

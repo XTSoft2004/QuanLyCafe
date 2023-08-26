@@ -1,7 +1,9 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Emf;
+using DevExpress.XtraEditors;
 using QuanLy;
 using QuanLyCafe.Helper;
 using QuanLyCafe.OrderSanPham.Form_Helper;
+using QuanLyCafe.TongQuan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,12 +27,14 @@ namespace QuanLyCafe.QLNhanVien
         {
             if(string.IsNullOrEmpty(NameNhanVienTextEdit.Text) || NameNhanVienTextEdit.Text == "")
             {
-                Helper_ShowNoti.ShowThongBao("Kiểm tra thông tin", $"Bạn chưa điền tên nhân viên !!!", Helper_ShowNoti.SvgImageIcon.Success);
+                XtraMessageBox.Show($"Bạn chưa điền tên nhân viên !!!", "Kiểm tra thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Kiểm tra thông tin", $"Bạn chưa điền tên nhân viên !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return false;
             }
             if (string.IsNullOrEmpty(NameChucVuCbb.Text) || NameChucVuCbb.Text == "")
             {
-                Helper_ShowNoti.ShowThongBao("Kiểm tra thông tin", $"Bạn chưa chọn chức vụ cho nhận viên !!!", Helper_ShowNoti.SvgImageIcon.Success);
+                XtraMessageBox.Show($"Bạn chưa chọn chức vụ cho nhận viên !!!", "Kiểm tra thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Kiểm tra thông tin", $"Bạn chưa chọn chức vụ cho nhận viên !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return false;
             }
 
@@ -83,7 +87,8 @@ namespace QuanLyCafe.QLNhanVien
 
             db_quanly.NhanViens.Add(nhanVien);
             db_quanly.SaveChanges();
-                 
+
+            Helper_ShowNoti.ShowThongBao("Thêm nhân viên", $"Thêm nhân viên {NameNhanVienTextEdit.Text} vào hệ thống", Helper_ShowNoti.SvgImageIcon.Success);
             LoadAllDB();
         }
 
@@ -125,13 +130,18 @@ namespace QuanLyCafe.QLNhanVien
                 {
                     int index = indexSelected[i];
 
-                    string IdNhanVien = gridView1.GetRowCellValue(index, "IdNhanVien").ToString();
+                    int IdNhanVien = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdNhanVien"));
                     string NameNhanVien = gridView1.GetRowCellValue(index, "NameNhanVien").ToString();
-                    int id = Convert.ToInt32(IdNhanVien);
 
-                    NhanVien topping = db_quanly.NhanViens.Find(id);
+                    var account = db_quanly.Accounts
+                        .Where(p=> p.IdNhanVien == IdNhanVien)
+                        .FirstOrDefault();
 
-                    db_quanly.NhanViens.Remove(topping);
+                    db_quanly.Accounts.Remove(account); // Xóa account
+
+                    NhanVien nhanvien = db_quanly.NhanViens.Find(IdNhanVien);
+
+                    db_quanly.NhanViens.Remove(nhanvien); // Xóa nhân viên
 
                     Helper_ShowNoti.ShowThongBao("Xóa nhân viên", $"Xóa nhân viên {NameNhanVien} thành công !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 }
@@ -150,6 +160,34 @@ namespace QuanLyCafe.QLNhanVien
 
             CreateAccount createAccount = new CreateAccount(idnhanvien);
             createAccount.ShowDialog();
+
+        }
+
+        private void RemoveAccount_Click(object sender, EventArgs e)
+        {
+            int index = gridView1.FocusedRowHandle;
+            int idnhanvien = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdNhanVien"));
+            string namenhanvien = gridView1.GetRowCellValue(index, "NameNhanVien").ToString();
+
+            if (XtraMessageBox.Show($"Bạn có muốn xoá nhân viên {namenhanvien} không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                var account = db_quanly.Accounts
+                    .Where(p => p.IdNhanVien == idnhanvien).FirstOrDefault();
+
+                if (account != null)
+                {
+                    db_quanly.Accounts.Remove(account);
+                    db_quanly.SaveChanges();
+                    Helper_ShowNoti.ShowThongBao("Thông báo", $"Xóa account nhân viên {namenhanvien} ra khỏi hệ thống", Helper_ShowNoti.SvgImageIcon.Success);
+                }
+                else
+                {
+                    Helper_ShowNoti.ShowXtraMessageBox($"Không tồn tại account {namenhanvien}, vui lòng kiểm tra lại !!", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
+                }
+            }
+
+            LoadAllDB();
+
         }
     }
 }

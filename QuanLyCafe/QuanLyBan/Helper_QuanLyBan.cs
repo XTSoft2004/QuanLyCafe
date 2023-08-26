@@ -187,7 +187,8 @@ namespace QuanLyCafe.QuanLyBan
             }
             else
             {
-                Helper_ShowNoti.ShowThongBao("Order sản phẩm", "Bàn đang hoạt động không thể order !!!!", Helper_ShowNoti.SvgImageIcon.Success);
+                Helper_ShowNoti.ShowXtraMessageBox("Bàn đang hoạt động không thể order !!!!", "Order sản phẩm", Helper_ShowNoti.IconXtraMessageBox.Error);
+                //Helper_ShowNoti.ShowThongBao("Order sản phẩm", "Bàn đang hoạt động không thể order !!!!", Helper_ShowNoti.SvgImageIcon.Success);
             }
 
         }
@@ -290,7 +291,8 @@ namespace QuanLyCafe.QuanLyBan
 
             if (result.Contains(nameban))
             {
-                XtraMessageBox.Show($"{nameban} đã tồn tại !!!","Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //XtraMessageBox.Show($"{nameban} đã tồn tại !!!","Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Helper_ShowNoti.ShowXtraMessageBox($"{nameban} đã tồn tại !!!", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
                 return false;
             }
 

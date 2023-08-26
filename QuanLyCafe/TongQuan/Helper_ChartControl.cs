@@ -30,10 +30,10 @@ namespace QuanLyCafe.TongQuan
             _series.Label.TextPattern = TextPattern;
             return _series;
         }
-        public static void AddSeries(ref Series _series,string NameSeries, decimal? ValueCost, string TextPattern)
+        public static void AddSeries(ref Series _series,string NameSeries, decimal? ValueCost, string TextPattern = "{A}: {V:N3} VNĐ")
         {
-            string str = ValueCost.Value.ToString("N3");
-            _series.Points.Add(new SeriesPoint(NameSeries, str));
+            //string str = ValueCost.Value.ToString("N3");
+            _series.Points.Add(new SeriesPoint(NameSeries, ValueCost.Value));
             //_series.Points.Add(new SeriesPoint("Tổng tiền bán được", ValueSale));
             _series.Label.TextPattern = TextPattern;
         }

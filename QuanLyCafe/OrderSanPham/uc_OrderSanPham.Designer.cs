@@ -266,6 +266,7 @@
             // NVThanhToanCbb
             // 
             this.NVThanhToanCbb.EditValue = "Không có tên nhân viên";
+            this.NVThanhToanCbb.Enabled = false;
             this.NVThanhToanCbb.Location = new System.Drawing.Point(132, 356);
             this.NVThanhToanCbb.Name = "NVThanhToanCbb";
             this.NVThanhToanCbb.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

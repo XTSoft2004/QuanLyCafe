@@ -48,6 +48,10 @@
             this.btnViewHoaDon = new DevExpress.XtraGrid.Columns.GridColumn();
             this.HoaDon = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colDatDoUong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnViewPhaChe = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.PhaChe = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnDeleteHoaDon = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DeleteHoaDon = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -135,6 +139,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.modelHoaDonBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PhaChe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -185,7 +191,9 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.HoaDon});
+            this.HoaDon,
+            this.PhaChe,
+            this.DeleteHoaDon});
             this.gridControl1.Size = new System.Drawing.Size(819, 670);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -208,7 +216,9 @@
             this.colTotalCost,
             this.colThue,
             this.btnViewHoaDon,
-            this.colDatDoUong});
+            this.colDatDoUong,
+            this.btnViewPhaChe,
+            this.btnDeleteHoaDon});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
@@ -222,7 +232,7 @@
             this.colNameNhanVien.Name = "colNameNhanVien";
             this.colNameNhanVien.Visible = true;
             this.colNameNhanVien.VisibleIndex = 0;
-            this.colNameNhanVien.Width = 82;
+            this.colNameNhanVien.Width = 64;
             // 
             // colNameBan
             // 
@@ -230,7 +240,7 @@
             this.colNameBan.Name = "colNameBan";
             this.colNameBan.Visible = true;
             this.colNameBan.VisibleIndex = 2;
-            this.colNameBan.Width = 82;
+            this.colNameBan.Width = 64;
             // 
             // colNameKhachHang
             // 
@@ -238,7 +248,7 @@
             this.colNameKhachHang.Name = "colNameKhachHang";
             this.colNameKhachHang.Visible = true;
             this.colNameKhachHang.VisibleIndex = 1;
-            this.colNameKhachHang.Width = 82;
+            this.colNameKhachHang.Width = 64;
             // 
             // colNameVoucher
             // 
@@ -246,7 +256,7 @@
             this.colNameVoucher.Name = "colNameVoucher";
             this.colNameVoucher.Visible = true;
             this.colNameVoucher.VisibleIndex = 3;
-            this.colNameVoucher.Width = 82;
+            this.colNameVoucher.Width = 64;
             // 
             // colNgayMua
             // 
@@ -256,7 +266,7 @@
             this.colNgayMua.Name = "colNgayMua";
             this.colNgayMua.Visible = true;
             this.colNgayMua.VisibleIndex = 4;
-            this.colNgayMua.Width = 115;
+            this.colNgayMua.Width = 116;
             // 
             // colTienNhan
             // 
@@ -266,7 +276,7 @@
             this.colTienNhan.Name = "colTienNhan";
             this.colTienNhan.Visible = true;
             this.colTienNhan.VisibleIndex = 5;
-            this.colTienNhan.Width = 105;
+            this.colTienNhan.Width = 76;
             // 
             // colTongTien
             // 
@@ -276,7 +286,7 @@
             this.colTongTien.Name = "colTongTien";
             this.colTongTien.Visible = true;
             this.colTongTien.VisibleIndex = 6;
-            this.colTongTien.Width = 73;
+            this.colTongTien.Width = 53;
             // 
             // colTotalCost
             // 
@@ -286,6 +296,7 @@
             this.colTotalCost.Name = "colTotalCost";
             this.colTotalCost.Visible = true;
             this.colTotalCost.VisibleIndex = 7;
+            this.colTotalCost.Width = 54;
             // 
             // colThue
             // 
@@ -293,7 +304,7 @@
             this.colThue.Name = "colThue";
             this.colThue.Visible = true;
             this.colThue.VisibleIndex = 8;
-            this.colThue.Width = 73;
+            this.colThue.Width = 70;
             // 
             // btnViewHoaDon
             // 
@@ -303,7 +314,7 @@
             this.btnViewHoaDon.Name = "btnViewHoaDon";
             this.btnViewHoaDon.Visible = true;
             this.btnViewHoaDon.VisibleIndex = 9;
-            this.btnViewHoaDon.Width = 91;
+            this.btnViewHoaDon.Width = 47;
             // 
             // HoaDon
             // 
@@ -319,7 +330,44 @@
             this.colDatDoUong.FieldName = "DatDoUong";
             this.colDatDoUong.Name = "colDatDoUong";
             this.colDatDoUong.Visible = true;
-            this.colDatDoUong.VisibleIndex = 10;
+            this.colDatDoUong.VisibleIndex = 11;
+            this.colDatDoUong.Width = 65;
+            // 
+            // btnViewPhaChe
+            // 
+            this.btnViewPhaChe.Caption = "Pha Chế";
+            this.btnViewPhaChe.ColumnEdit = this.PhaChe;
+            this.btnViewPhaChe.Name = "btnViewPhaChe";
+            this.btnViewPhaChe.Visible = true;
+            this.btnViewPhaChe.VisibleIndex = 10;
+            this.btnViewPhaChe.Width = 46;
+            // 
+            // PhaChe
+            // 
+            this.PhaChe.AutoHeight = false;
+            this.PhaChe.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus)});
+            this.PhaChe.Name = "PhaChe";
+            this.PhaChe.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.PhaChe.Click += new System.EventHandler(this.PhaChe_Click);
+            // 
+            // btnDeleteHoaDon
+            // 
+            this.btnDeleteHoaDon.Caption = "Xóa hóa đơn";
+            this.btnDeleteHoaDon.ColumnEdit = this.DeleteHoaDon;
+            this.btnDeleteHoaDon.Name = "btnDeleteHoaDon";
+            this.btnDeleteHoaDon.Visible = true;
+            this.btnDeleteHoaDon.VisibleIndex = 12;
+            this.btnDeleteHoaDon.Width = 70;
+            // 
+            // DeleteHoaDon
+            // 
+            this.DeleteHoaDon.AutoHeight = false;
+            this.DeleteHoaDon.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)});
+            this.DeleteHoaDon.Name = "DeleteHoaDon";
+            this.DeleteHoaDon.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.DeleteHoaDon.Click += new System.EventHandler(this.DeleteHoaDon_Click);
             // 
             // layoutControlGroup1
             // 
@@ -1197,6 +1245,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.modelHoaDonBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PhaChe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DeleteHoaDon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -1312,5 +1362,9 @@
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem18;
         private DevExpress.XtraPrinting.Preview.PrintPreviewBarCheckItem printPreviewBarCheckItem19;
         private DevExpress.XtraGrid.Columns.GridColumn colTotalCost;
+        private DevExpress.XtraGrid.Columns.GridColumn btnViewPhaChe;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit PhaChe;
+        private DevExpress.XtraGrid.Columns.GridColumn btnDeleteHoaDon;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit DeleteHoaDon;
     }
 }

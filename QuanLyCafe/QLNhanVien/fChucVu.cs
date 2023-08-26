@@ -50,6 +50,8 @@ namespace QuanLy
             XtraMessageBox.Show("Đã thêm thông tin chức vụ !!","Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             LoadAllChucVu();
+
+
         }
 
         private void btnEditChucVu_Click(object sender, EventArgs e)

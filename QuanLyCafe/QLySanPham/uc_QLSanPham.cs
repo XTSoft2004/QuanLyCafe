@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Emf;
+using DevExpress.XtraEditors;
 using QuanLyCafe.Helper;
 using QuanLyCafe.QLySanPham;
 using System;
@@ -114,22 +115,23 @@ namespace QuanLyCafe
             #region Kiểm tra đầy đủ thông tin
             if (string.IsNullOrEmpty(NameSanPhamTextEdit.Text))
             {
-                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Chưa điền tên sản phẩm, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Success);
+                XtraMessageBox.Show("Chưa điền tên sản phẩm, vui lòng xem lại !!!", "Thêm sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Chưa điền tên sản phẩm, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
             if (string.IsNullOrEmpty(NameTypeSanPhamCbbEdit.Text))
             {
-                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Chưa điền đơn giá, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Success);
+                XtraMessageBox.Show("Chưa điền đơn giá, vui lòng xem lại !!!", "Thêm sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (ImagePictureEdit.Image == null)
             {
-                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Chưa điền đường dẫn ảnh, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Success);
+                XtraMessageBox.Show("Chưa điền đường dẫn ảnh, vui lòng xem lại !!!", "Thêm sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if(GiaSanPhamSpinEdit.Value < CostSpinEdit.Value)
             {
-                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", "Tiền sản phẩm bé hơn tiền cost, vui lòng xem lại", Helper_ShowNoti.SvgImageIcon.Success);
+                XtraMessageBox.Show("Tiền sản phẩm bé hơn tiền cost, vui lòng xem lại", "Thêm sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             #endregion
@@ -278,7 +280,8 @@ namespace QuanLyCafe
             byte[] image = Helper_Project.ConvertImageToByte(ImagePictureEdit.Image);
             if (image == null)
             {
-                Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", $"Chỉnh sửa ảnh thất bại !!", Helper_ShowNoti.SvgImageIcon.Success);
+                XtraMessageBox.Show($"Chỉnh sửa ảnh thất bại !!", "Thêm sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", $"Chỉnh sửa ảnh thất bại !!", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
 

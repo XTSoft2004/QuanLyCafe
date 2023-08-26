@@ -8,6 +8,7 @@ using QuanLyCafe.OrderSanPham.Form_Helper;
 using QuanLyCafe.QLHoaDon;
 using QuanLyCafe.QLHoaDon;
 using QuanLyCafe.QuanLyBan;
+using QuanLyCafe.TongQuan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +45,8 @@ namespace QuanLyCafe.OrderSanPham
             LoadAllSanPham();
 
             LoadAllDuLieu();
+
+            NVThanhToanCbb.Text = $"{uc_TongQuat.InfoLogin.IdNhanVien}_{uc_TongQuat.InfoLogin.NameNhanVien}";
         }
         QuanLyCafeEntities db_quanly = new QuanLyCafeEntities();
         public List<_ModelOrderSanPham> _ModelOrderSanPhams = new List<_ModelOrderSanPham>();
@@ -112,7 +115,7 @@ namespace QuanLyCafe.OrderSanPham
         {
             fVoucher fVoucher = new fVoucher();
             fVoucher.ShowDialog();
-            VoucherSearchLookUp.Text = string.IsNullOrEmpty(fVoucher._NameVoucher) ? "Chọn voucher ( Không bắt buộc )" : fVoucher._NameVoucher;
+            VoucherSearchLookUp.EditValue = string.IsNullOrEmpty(fVoucher._NameVoucher) ? null : fVoucher._NameVoucher.Split('_')[0];
             LoadAllDuLieu();
         }
 
@@ -120,7 +123,7 @@ namespace QuanLyCafe.OrderSanPham
         {
             fKhachHang fKhachHang = new fKhachHang();
             fKhachHang.ShowDialog();
-            KhachHangSearchLookUp.Text = string.IsNullOrEmpty(fKhachHang._NameKhachHang) ? "Chọn khách hàng ( Không bắt buộc )" : fKhachHang._NameKhachHang;
+            KhachHangSearchLookUp.EditValue = string.IsNullOrEmpty(fKhachHang._NameKhachHang) ? null : fKhachHang._NameKhachHang.Split('_')[0];
             LoadAllDuLieu();
         }
 
@@ -300,22 +303,22 @@ namespace QuanLyCafe.OrderSanPham
         {
             if (NVThanhToanCbb.Text == "Không có tên nhân viên")
             {
-                Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa chọn nhân viên thanh toán hóa đơn !!", Helper_ShowNoti.SvgImageIcon.Error);
-                //XtraMessageBox.Show("Chưa chọn nhân viên thanh toán hóa đơn !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa chọn nhân viên thanh toán hóa đơn !!", Helper_ShowNoti.SvgImageIcon.Error);
+                Helper_ShowNoti.ShowXtraMessageBox("Chưa chọn nhân viên thanh toán hóa đơn !!", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
                 return false;
             }
 
             if(gridView1.RowCount == 0)
             {
-                Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa thêm sản phẩm, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Error);
-                //XtraMessageBox.Show("Chưa thêm sản phẩm, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa thêm sản phẩm, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Error);
+                Helper_ShowNoti.ShowXtraMessageBox("Chưa thêm sản phẩm, vui lòng xem lại !!!", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
                 return false;
             }
 
             if (text_Nhantien.Text == "")
             {
-                Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa nhập tiền khách đưa, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Error);
-                //XtraMessageBox.Show("Chưa nhập tiền khách đưa, vui lòng xem lại !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Thông báo", "Chưa nhập tiền khách đưa, vui lòng xem lại !!!", Helper_ShowNoti.SvgImageIcon.Error);
+                Helper_ShowNoti.ShowXtraMessageBox("Chưa nhập tiền khách đưa, vui lòng xem lại !!!", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
                 return false;
             }
 
@@ -324,8 +327,8 @@ namespace QuanLyCafe.OrderSanPham
 
             if (tiennhan < tongtien)
             {
-                Helper_ShowNoti.ShowThongBao("Thông báo", $"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", Helper_ShowNoti.SvgImageIcon.Error);
-                //XtraMessageBox.Show($"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //Helper_ShowNoti.ShowThongBao("Thông báo", $"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", Helper_ShowNoti.SvgImageIcon.Error);
+                Helper_ShowNoti.ShowXtraMessageBox($"Tiền khách đưa thiếu {tongtien - tiennhan} VNĐ, vui lòng kiểm tra lại nhé !!", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
                 return false;
             }
             return true;
@@ -343,7 +346,7 @@ namespace QuanLyCafe.OrderSanPham
 
                 if (voucher.SoLuongSuDung <= 0)
                 {
-                    XtraMessageBox.Show($"Voucher {voucher.NameVoucher} đã hết lượt sử dụng, vui lòng kiểm tra lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Helper_ShowNoti.ShowXtraMessageBox($"Voucher {voucher.NameVoucher} đã hết lượt sử dụng, vui lòng kiểm tra lại", "Thông báo", Helper_ShowNoti.IconXtraMessageBox.Error);
                     return;
                 }
 
@@ -368,7 +371,7 @@ namespace QuanLyCafe.OrderSanPham
                     NameSanPham = gridView1.GetRowCellValue(index, "NameSanPham").ToString(),
                     SoLuong = Convert.ToInt32(gridView1.GetRowCellValue(index, "SoLuong")),
                     GiaSanPham = Convert.ToDecimal(gridView1.GetRowCellValue(index, "GiaSanPham")),
-                    GhiChu = gridView1.GetRowCellValue(index, "GhiChu").ToString(),
+                    GhiChu = string.IsNullOrEmpty(gridView1.GetRowCellValue(index, "GhiChu").ToString()) ? null : gridView1.GetRowCellValue(index, "GhiChu").ToString(),
                     _listtoppings = _ModelOrderSanPhams.Find(p => p.IdSanPham == idsanpham)._list_toppings,
                 };
                 listsanpham.Add(sanPham);
@@ -449,8 +452,12 @@ namespace QuanLyCafe.OrderSanPham
                     .Select(p => p.IdHoaDon)
                     .FirstOrDefault();
 
+                int soluong = 0;
+
                 for (int rows = 0;rows < _ListSanPham.Count; rows++)
                 {
+                    soluong += _ListSanPham[rows].SoLuong; // Số lượng sản phẩm
+
                     var sanphams = _ListSanPham[rows];
                     ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon()
                     {
@@ -512,9 +519,7 @@ namespace QuanLyCafe.OrderSanPham
 
                 var NhanVien = db_quanly.NhanViens.Find(IdNhanVien);
 
-                CafeLog.SaveLog($"Mã hóa đơn: {list_hoadon.IdHoaDon} | {NhanVien.NameNhanVien} đã thanh toán hóa đơn {TongTien} VNĐ | Trạng thái: Thành công");
-
-                Helper_ShowNoti.ShowThongBao("Thanh toán hóa đơn", $"Thanh toán thành công {_ListSanPham.Count} sản phẩm !", Helper_ShowNoti.SvgImageIcon.Success);
+                Helper_ShowNoti.ShowThongBao("Thanh toán hóa đơn", $"Mã hóa đơn: {list_hoadon.IdHoaDon} | {NhanVien.NameNhanVien} đã thanh toán hóa đơn {TongTien} VNĐ, trong {soluong} sản phẩm | Trạng thái: Thành công", Helper_ShowNoti.SvgImageIcon.Success);
             }
         }
 

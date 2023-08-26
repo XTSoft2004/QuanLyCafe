@@ -1,4 +1,7 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
+using QuanLyCafe.Helper;
+using QuanLyCafe.TongQuan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +24,9 @@ namespace QuanLyCafe.QLHoaDon
         public List<_ModelHoaDon> _ModelHoaDons = new List<_ModelHoaDon>();
         private void LoadAllHoaDon()
         {
-            var list_hoadon = db_quanly.HoaDons.ToList();
+            var list_hoadon = db_quanly.HoaDons
+                        .OrderByDescending(log => log.NgayMua)
+                        .ToList();
 
             _ModelHoaDons = new List<_ModelHoaDon>();
 
@@ -102,46 +107,16 @@ namespace QuanLyCafe.QLHoaDon
         }
         private void HoaDon_Click(object sender, EventArgs e)
         {
-            int IdHoaDon = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IdHoaDon"));
-
-            var hoadon = _ModelHoaDons.Where(p => p.IdHoaDon == IdHoaDon).ToList();
-
-            //System.IO.Directory.CreateDirectory("PDF_HOADON");
-            string NameFile = Application.StartupPath + "\\PDF_HOADON\\HoaDon_" + DateTime.Now.ToString("dd-MM-yyyy HH.mm.ss") + ".pdf";
-            //fBaoCao fBaocao = new fBaoCao(hoadon);
-            //fBaocao.DataSource = hoadon;
-            //ReportPrintTool tool = new ReportPrintTool(fBaocao);
-            //tool.ShowRibbonPreview();
-
-            ReportHoaDon fBaocao = new ReportHoaDon();
-            fBaocao.DataSource = hoadon;
-            fBaocao.ExportToPdf(NameFile);
-            documentViewer1.DocumentSource = fBaocao;
-            documentViewer1.Show();
-
-            //MessageBox.Show("A");
-
-
-            //ReportPrintTool tool = new ReportPrintTool(fBaocao);
-            //tool.ShowRibbonPreview();
-
-
-            //documentViewer1.Load;
-
-            //fBaocao.ExportToPdf(NameFile);
-
-            //pdfViewer1.DocumentFilePath = NameFile;
-
-
-            //tool.ShowPreview();
-
-            //pdfViewer1.LoadDocument();
-
-            //fBaocao.CreateDocument();
+            ShowPdfHoaDon();
         }
 
         private void uc_HoaDon_Load(object sender, EventArgs e)
         {
+            if (!uc_TongQuat.InfoLogin.isAdmin)
+            {
+                btnDeleteHoaDon.Visible = false;
+            }
+
             LoadAllHoaDon();
         }
 
@@ -150,6 +125,10 @@ namespace QuanLyCafe.QLHoaDon
         }
 
         private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            ShowPdfHoaDon();
+        }
+        private void ShowPdfHoaDon()
         {
             int IdHoaDon = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IdHoaDon"));
             var hoadon = _ModelHoaDons.Where(p => p.IdHoaDon == IdHoaDon).ToList();
@@ -162,6 +141,69 @@ namespace QuanLyCafe.QLHoaDon
             fBaocao.ExportToPdf(NameFile);
             documentViewer1.DocumentSource = fBaocao;
             documentViewer1.Show();
+        }
+        private void ShowPDFPhaChe()
+        {
+            int IdHoaDon = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IdHoaDon"));
+
+            var hoadon = _ModelHoaDons.Where(p => p.IdHoaDon == IdHoaDon).ToList();
+
+            System.IO.Directory.CreateDirectory("PDF_HOADON");
+            string NameFile = Application.StartupPath + "\\PDF_HOADON\\PhaChe_" + DateTime.Now.ToString("dd-MM-yyyy HH.mm.ss") + ".pdf";
+            //fBaoCao fBaocao = new fBaoCao(hoadon);
+            //fBaocao.DataSource = hoadon;
+            //ReportPrintTool tool = new ReportPrintTool(fBaocao);
+            //tool.ShowRibbonPreview();
+
+            ReportPhaChe fBaocao = new ReportPhaChe();
+            fBaocao.DataSource = hoadon;
+            fBaocao.ExportToPdf(NameFile);
+            documentViewer1.DocumentSource = fBaocao;
+            documentViewer1.Show();
+        }
+        private void PhaChe_Click(object sender, EventArgs e)
+        {
+            ShowPDFPhaChe();
+        }
+
+        private void DeleteHoaDon_Click(object sender, EventArgs e)
+        {
+            int IdHoaDon = Convert.ToInt32(gridView1.GetFocusedRowCellValue("IdHoaDon"));
+            string title_remove = $"Bạn xóa hóa đơn với ID:{IdHoaDon}\n" +
+                $"=> Lưu ý:\n" +
+                $" + Sẽ xóa hết dữ liệu liên quan đến hóa đơn\n" +
+                $" + Sẽ xóa hết dữ liệu liên quan đến chi tiết hóa đơn\n" +
+                $" + Sẽ xóa hết dữ liệu liên quen đến hóa đơn toppings\n";
+
+
+            if (XtraMessageBox.Show(title_remove, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                var hoadon = db_quanly.HoaDons.Where(p => p.IdHoaDon == IdHoaDon).FirstOrDefault();
+
+                var chitiethoadon = db_quanly.ChiTietHoaDons
+                    .Where(p => p.IdHoaDon == IdHoaDon).ToList();
+
+                foreach(var item in chitiethoadon)
+                {
+                    var hoadontopping = db_quanly.HoaDonToppings.
+                        Where(p => p.IdChiTietHoaDon == item.IdChiTietHoaDon).ToList();
+
+                    foreach(var topping  in hoadontopping)
+                    {
+                        db_quanly.HoaDonToppings.Remove(topping);
+                    }
+
+                    db_quanly.ChiTietHoaDons.Remove(item);
+
+                }
+
+                db_quanly.HoaDons.Remove(hoadon);
+            }
+
+            db_quanly.SaveChanges();
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xóa hóa đơn {IdHoaDon} ra khỏi hệ thống", Helper_ShowNoti.SvgImageIcon.Success);
+
+            LoadAllHoaDon();
         }
     }
 }
