@@ -1,6 +1,9 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using QuanLyCafe;
+using QuanLyCafe.Helper;
+using QuanLyCafe.QLHoaDon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,22 +62,23 @@ namespace QuanLyCafe.QLySanPham
             db_quanly.LoaiSanPhams.Add(loaiSanPham);
             db_quanly.SaveChanges();
 
-            XtraMessageBox.Show($"Đã nhập thành công loại {name} !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã thêm danh mục sản phẩm {name} !!!", Helper_ShowNoti.SvgImageIcon.Success);
             LoadAllType();
         }
 
         private void btnEditLoai_Click(object sender, EventArgs e)
         {
             string name = NameTypeTextEdit.Text;
-            int id = Convert.ToInt32(IdTypeSPTextEdit.Text);
+            int IdTypeSP = Convert.ToInt32(IdTypeSPTextEdit.Value);
 
             if (CheckName(name)) return;
 
-            LoaiSanPham chucVu = db_quanly.LoaiSanPhams.Find(id);
+            LoaiSanPham chucVu = db_quanly.LoaiSanPhams.Find(IdTypeSP);
+            string name_old = chucVu.NameType;
             chucVu.NameType = NameTypeTextEdit.Text;
 
             db_quanly.SaveChanges();
-            XtraMessageBox.Show($"Chỉnh sửa thông tin thành {name} thành công !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Chỉnh sửa danh mục sản phẩm {name_old} thành {name} !!!", Helper_ShowNoti.SvgImageIcon.Success);
             LoadAllType();
         }
 
@@ -87,33 +91,100 @@ namespace QuanLyCafe.QLySanPham
 
             int id = Convert.ToInt32(IdTypeSP);
 
-            LoaiSanPham loaiSanPham = db_quanly.LoaiSanPhams.Find(id);
+            var loaiSanPham = db_quanly.LoaiSanPhams
+                .Where(p=> p.IdTypeSP == id).FirstOrDefault();
 
-            if (XtraMessageBox.Show($"Bạn có chắc chắn muốn xoá loại {NameType} không ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (XtraMessageBox.Show($"Bạn có chắc chắn muốn xoá loại {NameType} không ?\n" +
+                $"⚠️ Lưu ý:\n" +
+                $"+ Xóa toàn bộ sản phẩm ở trong danh mục {NameType} !!!\n" +
+                $"+ Xóa toàn bộ danh mục topping và topping được thêm !!\n" +
+                $"+ Xóa toàn bộ hóa đơn có liên quan !!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+
+                var sanphams = db_quanly.SanPhams
+                    .Where(p => p.IdTypeSP == loaiSanPham.IdTypeSP).ToList();
+
+                foreach(var sanpham in sanphams)
+                {
+                    RemoveSanPham(sanpham.IdSanPham); // Xóa các thứ liên quan đến sản phẩm
+
+                    db_quanly.SanPhams.Remove(sanpham);
+                }
+
                 db_quanly.LoaiSanPhams.Remove(loaiSanPham);
                 db_quanly.SaveChanges();
-                XtraMessageBox.Show($"Đã xoá loại {NameType} ra khỏi danh sách !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                //XtraMessageBox.Show($"Đã xoá loại {NameType} ra khỏi danh sách !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xoá loại {NameType} ra khỏi danh sách !!!", Helper_ShowNoti.SvgImageIcon.Success);
                 LoadAllType();
             }
         }
-
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void RemoveSanPham(int IdSanPham)
         {
-            // Lấy GridControl
+            #region Xóa danh mục topping và topping
+            var DanhMucToppings = db_quanly.DanhMucToppings 
+                .Where(p => p.IdSanPham == IdSanPham).ToList();
 
-            // Lấy dòng được chọn
-            int selectedRowHandle = gridView1.FocusedRowHandle;
-            if (selectedRowHandle >= 0)
+            foreach (var item in DanhMucToppings)
             {
-                // Lấy giá trị của các cột trong dòng được chọn
-                object columnValue1 = gridView1.GetRowCellValue(selectedRowHandle, "NameType");
-                // và các cột khác tương tự...
+                var toppings = db_quanly.Toppings
+                    .Where(p => p.IdDanhMucTopping == item.IdDanhMucTopping).ToList();
 
-                // Sử dụng giá trị của các cột
-                Console.WriteLine("Column 1 Value: " + columnValue1.ToString());
-                // và các cột khác tương tự...
+                foreach (var topping in toppings) db_quanly.Toppings.Remove(topping);
+
+                db_quanly.DanhMucToppings.Remove(item);
+            }
+            #endregion
+
+            var chitiethoadon = db_quanly.ChiTietHoaDons
+                .Where(p => p.IdSanPham == IdSanPham).ToList();
+
+            foreach(var item in chitiethoadon)
+            {
+                var hoadon = db_quanly.HoaDons
+                    .Where(p => p.IdHoaDon == item.IdHoaDon).ToList();
+
+                uc_HoaDon uc_HoaDon = new uc_HoaDon();
+                uc_HoaDon.Delete_HoaDon(hoadon); // Xóa hóa đơn
+            }
+
+        }
+
+        private void btnDeleteMutiTypeSP_Click(object sender, EventArgs e)
+        {
+            int[] indexSelected = gridView1.GetSelectedRows();
+
+            if (XtraMessageBox.Show($"Bạn có chắc chắn muốn xoá các danh mục sản phẩm không ?\n" +
+                $"⚠️ Lưu ý:\n" +
+                $"+ Xóa toàn bộ sản phẩm ở trong danh mục sản phẩm !!!\n" +
+                $"+ Xóa toàn bộ danh mục topping và topping được thêm !!\n" +
+                $"+ Xóa toàn bộ hóa đơn có liên quan !!", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                for (int i = 0; i < indexSelected.Length; i++)
+                {
+                    int index = indexSelected[i];
+                    int IdTypeSP = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdTypeSP"));
+                    string NameType = gridView1.GetRowCellValue(index, "NameType").ToString();
+
+                    var danhmucsp = db_quanly.LoaiSanPhams
+                        .Where(p=> p.IdTypeSP == IdTypeSP).FirstOrDefault();
+
+                    var sanphams = db_quanly.SanPhams
+                        .Where(p => p.IdTypeSP == IdTypeSP).ToList();
+
+                    foreach (var sanpham in sanphams)
+                    {
+                        RemoveSanPham(sanpham.IdSanPham); // Xóa các thứ liên quan đến sản phẩm
+
+                        db_quanly.SanPhams.Remove(sanpham);
+                    }
+
+                    db_quanly.LoaiSanPhams.Remove(danhmucsp);
+                    db_quanly.SaveChanges();
+
+                    Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xoá loại {NameType} ra khỏi danh sách !!!", Helper_ShowNoti.SvgImageIcon.Success);
+                    LoadAllType();
+                }
             }
 
         }

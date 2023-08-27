@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAccount));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnEditAccount = new DevExpress.XtraEditors.SimpleButton();
             this.cbAdmin = new DevExpress.XtraEditors.CheckEdit();
             this.btnSaveAccount = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -40,7 +42,6 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnEditAccount = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -68,24 +69,36 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(340, 148);
+            this.layoutControl1.Size = new System.Drawing.Size(351, 174);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnEditAccount
+            // 
+            this.btnEditAccount.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEditAccount.ImageOptions.SvgImage")));
+            this.btnEditAccount.Location = new System.Drawing.Point(12, 84);
+            this.btnEditAccount.Name = "btnEditAccount";
+            this.btnEditAccount.Size = new System.Drawing.Size(327, 36);
+            this.btnEditAccount.StyleController = this.layoutControl1;
+            this.btnEditAccount.TabIndex = 9;
+            this.btnEditAccount.Text = "Chỉnh sửa account";
+            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
             // cbAdmin
             // 
             this.cbAdmin.Location = new System.Drawing.Point(12, 60);
             this.cbAdmin.Name = "cbAdmin";
             this.cbAdmin.Properties.Caption = "Admin ( có thể sửa đổi tất cả mọi thứ )";
-            this.cbAdmin.Size = new System.Drawing.Size(316, 20);
+            this.cbAdmin.Size = new System.Drawing.Size(327, 20);
             this.cbAdmin.StyleController = this.layoutControl1;
             this.cbAdmin.TabIndex = 8;
             // 
             // btnSaveAccount
             // 
-            this.btnSaveAccount.Location = new System.Drawing.Point(12, 110);
+            this.btnSaveAccount.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSaveAccount.ImageOptions.SvgImage")));
+            this.btnSaveAccount.Location = new System.Drawing.Point(12, 124);
             this.btnSaveAccount.Name = "btnSaveAccount";
-            this.btnSaveAccount.Size = new System.Drawing.Size(164, 26);
+            this.btnSaveAccount.Size = new System.Drawing.Size(170, 38);
             this.btnSaveAccount.StyleController = this.layoutControl1;
             this.btnSaveAccount.TabIndex = 7;
             this.btnSaveAccount.Text = "Lưu Account";
@@ -93,9 +106,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(180, 110);
+            this.btnCancel.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCancel.ImageOptions.SvgImage")));
+            this.btnCancel.Location = new System.Drawing.Point(186, 124);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(148, 26);
+            this.btnCancel.Size = new System.Drawing.Size(153, 38);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Hủy bỏ";
@@ -105,7 +119,7 @@
             // 
             this.PasswordEdit.Location = new System.Drawing.Point(76, 36);
             this.PasswordEdit.Name = "PasswordEdit";
-            this.PasswordEdit.Size = new System.Drawing.Size(252, 20);
+            this.PasswordEdit.Size = new System.Drawing.Size(263, 20);
             this.PasswordEdit.StyleController = this.layoutControl1;
             this.PasswordEdit.TabIndex = 5;
             // 
@@ -113,7 +127,7 @@
             // 
             this.UsernameEdit.Location = new System.Drawing.Point(76, 12);
             this.UsernameEdit.Name = "UsernameEdit";
-            this.UsernameEdit.Size = new System.Drawing.Size(252, 20);
+            this.UsernameEdit.Size = new System.Drawing.Size(263, 20);
             this.UsernameEdit.StyleController = this.layoutControl1;
             this.UsernameEdit.TabIndex = 4;
             // 
@@ -129,7 +143,7 @@
             this.layoutControlItem5,
             this.layoutControlItem6});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(340, 148);
+            this.Root.Size = new System.Drawing.Size(351, 174);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -137,7 +151,7 @@
             this.layoutControlItem1.Control = this.UsernameEdit;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(320, 24);
+            this.layoutControlItem1.Size = new System.Drawing.Size(331, 24);
             this.layoutControlItem1.Text = "Username:";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(52, 13);
             // 
@@ -146,17 +160,17 @@
             this.layoutControlItem2.Control = this.PasswordEdit;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(320, 24);
+            this.layoutControlItem2.Size = new System.Drawing.Size(331, 24);
             this.layoutControlItem2.Text = "Password:";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(52, 13);
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnCancel;
-            this.layoutControlItem3.Location = new System.Drawing.Point(168, 98);
+            this.layoutControlItem3.Location = new System.Drawing.Point(174, 112);
             this.layoutControlItem3.MinSize = new System.Drawing.Size(78, 26);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(152, 30);
+            this.layoutControlItem3.Size = new System.Drawing.Size(157, 42);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
@@ -164,10 +178,10 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnSaveAccount;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 98);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 112);
             this.layoutControlItem4.MinSize = new System.Drawing.Size(78, 26);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(168, 30);
+            this.layoutControlItem4.Size = new System.Drawing.Size(174, 42);
             this.layoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
@@ -177,26 +191,16 @@
             this.layoutControlItem5.Control = this.cbAdmin;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(320, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(331, 24);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
-            // 
-            // btnEditAccount
-            // 
-            this.btnEditAccount.Location = new System.Drawing.Point(12, 84);
-            this.btnEditAccount.Name = "btnEditAccount";
-            this.btnEditAccount.Size = new System.Drawing.Size(316, 22);
-            this.btnEditAccount.StyleController = this.layoutControl1;
-            this.btnEditAccount.TabIndex = 9;
-            this.btnEditAccount.Text = "Chỉnh sửa account";
-            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnEditAccount;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(320, 26);
+            this.layoutControlItem6.Size = new System.Drawing.Size(331, 40);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -204,7 +208,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 148);
+            this.ClientSize = new System.Drawing.Size(351, 174);
             this.Controls.Add(this.layoutControl1);
             this.Name = "CreateAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

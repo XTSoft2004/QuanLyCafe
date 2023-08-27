@@ -39,6 +39,7 @@
             this.DeleteBtnChucVu = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.btnRemoveChucVu = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditChucVu = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddChucVu = new DevExpress.XtraEditors.SimpleButton();
             this.NameChucVuTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -50,12 +51,14 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.Grid_ChucVu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chucVuBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -73,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -80,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // Grid_ChucVu
@@ -90,7 +95,7 @@
             this.Grid_ChucVu.Name = "Grid_ChucVu";
             this.Grid_ChucVu.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.DeleteBtnChucVu});
-            this.Grid_ChucVu.Size = new System.Drawing.Size(434, 228);
+            this.Grid_ChucVu.Size = new System.Drawing.Size(434, 178);
             this.Grid_ChucVu.TabIndex = 0;
             this.Grid_ChucVu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -158,6 +163,7 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.btnRemoveChucVu);
             this.dataLayoutControl1.Controls.Add(this.btnEditChucVu);
             this.dataLayoutControl1.Controls.Add(this.btnAddChucVu);
             this.dataLayoutControl1.Controls.Add(this.NameChucVuTextEdit);
@@ -166,9 +172,20 @@
             this.dataLayoutControl1.Location = new System.Drawing.Point(12, 12);
             this.dataLayoutControl1.Name = "dataLayoutControl1";
             this.dataLayoutControl1.Root = this.Root;
-            this.dataLayoutControl1.Size = new System.Drawing.Size(458, 100);
+            this.dataLayoutControl1.Size = new System.Drawing.Size(458, 150);
             this.dataLayoutControl1.TabIndex = 5;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
+            // 
+            // btnRemoveChucVu
+            // 
+            this.btnRemoveChucVu.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRemoveChucVu.ImageOptions.SvgImage")));
+            this.btnRemoveChucVu.Location = new System.Drawing.Point(249, 92);
+            this.btnRemoveChucVu.Name = "btnRemoveChucVu";
+            this.btnRemoveChucVu.Size = new System.Drawing.Size(197, 46);
+            this.btnRemoveChucVu.StyleController = this.dataLayoutControl1;
+            this.btnRemoveChucVu.TabIndex = 7;
+            this.btnRemoveChucVu.Text = "Xóa các chức vụ bôi đen";
+            this.btnRemoveChucVu.Click += new System.EventHandler(this.btnRemoveChucVu_Click);
             // 
             // btnEditChucVu
             // 
@@ -229,7 +246,7 @@
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlGroup1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(458, 100);
+            this.Root.Size = new System.Drawing.Size(458, 150);
             this.Root.TextVisible = false;
             // 
             // layoutControlGroup1
@@ -241,14 +258,17 @@
             this.ItemForNameChucVu,
             this.layoutControlItem2,
             this.layoutControlItem5,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.emptySpaceItem3,
+            this.layoutControlItem6});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "autoGeneratedGroup0";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(438, 80);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(438, 130);
             // 
             // ItemForIdChucVu
             // 
             this.ItemForIdChucVu.Control = this.IdChucVuTextEdit;
+            this.ItemForIdChucVu.Enabled = false;
             this.ItemForIdChucVu.Location = new System.Drawing.Point(0, 0);
             this.ItemForIdChucVu.Name = "ItemForIdChucVu";
             this.ItemForIdChucVu.Size = new System.Drawing.Size(135, 24);
@@ -260,7 +280,7 @@
             this.ItemForNameChucVu.Control = this.NameChucVuTextEdit;
             this.ItemForNameChucVu.Location = new System.Drawing.Point(0, 24);
             this.ItemForNameChucVu.Name = "ItemForNameChucVu";
-            this.ItemForNameChucVu.Size = new System.Drawing.Size(237, 56);
+            this.ItemForNameChucVu.Size = new System.Drawing.Size(237, 24);
             this.ItemForNameChucVu.Text = "Tên chức vụ:";
             this.ItemForNameChucVu.TextSize = new System.Drawing.Size(63, 13);
             // 
@@ -290,13 +310,24 @@
             this.emptySpaceItem1.Size = new System.Drawing.Size(102, 24);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.btnRemoveChucVu;
+            this.layoutControlItem6.Location = new System.Drawing.Point(237, 80);
+            this.layoutControlItem6.MinSize = new System.Drawing.Size(162, 40);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(201, 50);
+            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
+            // 
             // layoutControl2
             // 
             this.layoutControl2.Controls.Add(this.Grid_ChucVu);
-            this.layoutControl2.Location = new System.Drawing.Point(12, 116);
+            this.layoutControl2.Location = new System.Drawing.Point(12, 166);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup3;
-            this.layoutControl2.Size = new System.Drawing.Size(458, 252);
+            this.layoutControl2.Size = new System.Drawing.Size(458, 202);
             this.layoutControl2.TabIndex = 4;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -307,7 +338,7 @@
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem4});
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(458, 252);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(458, 202);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem4
@@ -315,7 +346,7 @@
             this.layoutControlItem4.Control = this.Grid_ChucVu;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(438, 232);
+            this.layoutControlItem4.Size = new System.Drawing.Size(438, 182);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -333,9 +364,9 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.layoutControl2;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 104);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 154);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(462, 256);
+            this.layoutControlItem3.Size = new System.Drawing.Size(462, 206);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -344,9 +375,17 @@
             this.layoutControlItem1.Control = this.dataLayoutControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(462, 104);
+            this.layoutControlItem1.Size = new System.Drawing.Size(462, 154);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
+            // 
+            // emptySpaceItem3
+            // 
+            this.emptySpaceItem3.AllowHotTrack = false;
+            this.emptySpaceItem3.Location = new System.Drawing.Point(0, 48);
+            this.emptySpaceItem3.Name = "emptySpaceItem3";
+            this.emptySpaceItem3.Size = new System.Drawing.Size(237, 82);
+            this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // fChucVu
             // 
@@ -375,6 +414,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -382,6 +422,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -414,5 +455,8 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraEditors.SimpleButton btnRemoveChucVu;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
     }
 }

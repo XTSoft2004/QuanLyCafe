@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using QuanLyCafe;
 using QuanLyCafe.Helper;
+using QuanLyCafe.QLHoaDon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -116,9 +117,9 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
             int selectedRowHandle = gridView1.FocusedRowHandle;
 
-            string IdKhachHang = gridView1.GetRowCellValue(selectedRowHandle, "IdKhachHang").ToString();
+            int IdKhachHang = Convert.ToInt32(gridView1.GetRowCellValue(selectedRowHandle, "IdKhachHang"));
 
-            KhachHang khachHang = db_quanly.KhachHangs.Find(Convert.ToInt32(IdKhachHang));
+            KhachHang khachHang = db_quanly.KhachHangs.Find(IdKhachHang);
             khachHang.NameKhachHang = NameKhachHangTextEdit.Text;
             khachHang.Email = EmailTextEdit.Text;
             khachHang.Phone = PhoneTextEdit.Text;
@@ -131,15 +132,39 @@ namespace QuanLyCafe.OrderSanPham.Form_Helper
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            var result = db_quanly.KhachHangs.ToList();
+            int[] indexSelected = gridView1.GetSelectedRows();
 
-            foreach (var item in result)
+            if (XtraMessageBox.Show($"Bạn có muốn xoá {indexSelected.Length} khách hàng không ?\n" +
+                $"⚠️ Lưu ý:\n" +
+                $"+ Xóa hóa đơn có liên quan đến khách hàng !!\n" +
+                $"🚨 Vui lòng đọc kĩ lưu ý trước khi thao tác !!!!\n", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                db_quanly.KhachHangs.Remove(item);
-            }
+                for (int i = 0; i < indexSelected.Length; i++)
+                {
+                    int index = indexSelected[i];
 
-            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xoá toàn bộ khách hàng !!!", Helper_ShowNoti.SvgImageIcon.Success);
-            LoadAllData();
+                    int IdKhachHang = Convert.ToInt32(gridView1.GetRowCellValue(index, "IdKhachHang"));
+                    string NameKhachHang = gridView1.GetRowCellValue(index, "NameKhachHang").ToString();
+
+                    var khachhang = db_quanly.KhachHangs
+                        .Where(p => p.IdKhachHang == IdKhachHang).ToList();
+
+                    foreach (var item in khachhang)
+                    {
+                        var hoadon = db_quanly.HoaDons
+                            .Where(p => p.IdKhachHang == item.IdKhachHang).ToList();
+
+                        uc_HoaDon uc_HoaDon = new uc_HoaDon();
+                        uc_HoaDon.Delete_HoaDon(hoadon);
+
+                        db_quanly.KhachHangs.Remove(item);
+
+                    }
+                    db_quanly.SaveChanges();
+                    Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xóa khách hàng {NameKhachHang} !!", Helper_ShowNoti.SvgImageIcon.Success);
+                }
+                LoadAllData();
+            }
         }
     }
 }

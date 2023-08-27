@@ -34,7 +34,7 @@
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.text_SearchKhachHang = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDeleteMutiKhachHang = new DevExpress.XtraEditors.SimpleButton();
             this.btnEditKhachHang = new DevExpress.XtraEditors.SimpleButton();
             this.btnThemKhachHang = new DevExpress.XtraEditors.SimpleButton();
             this.NameKhachHangTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -127,7 +127,7 @@
             // dataLayoutControl1
             // 
             this.dataLayoutControl1.Controls.Add(this.text_SearchKhachHang);
-            this.dataLayoutControl1.Controls.Add(this.simpleButton2);
+            this.dataLayoutControl1.Controls.Add(this.btnDeleteMutiKhachHang);
             this.dataLayoutControl1.Controls.Add(this.btnEditKhachHang);
             this.dataLayoutControl1.Controls.Add(this.btnThemKhachHang);
             this.dataLayoutControl1.Controls.Add(this.NameKhachHangTextEdit);
@@ -151,23 +151,23 @@
             this.text_SearchKhachHang.TabIndex = 11;
             this.text_SearchKhachHang.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.text_SearchKhachHang_EditValueChanging);
             // 
-            // simpleButton2
+            // btnDeleteMutiKhachHang
             // 
-            this.simpleButton2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("simpleButton2.ImageOptions.SvgImage")));
-            this.simpleButton2.Location = new System.Drawing.Point(596, 12);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(158, 36);
-            this.simpleButton2.StyleController = this.dataLayoutControl1;
-            this.simpleButton2.TabIndex = 10;
-            this.simpleButton2.Text = "Xoá toàn bộ khách hàng";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.btnDeleteMutiKhachHang.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDeleteMutiKhachHang.ImageOptions.SvgImage")));
+            this.btnDeleteMutiKhachHang.Location = new System.Drawing.Point(579, 12);
+            this.btnDeleteMutiKhachHang.Name = "btnDeleteMutiKhachHang";
+            this.btnDeleteMutiKhachHang.Size = new System.Drawing.Size(175, 36);
+            this.btnDeleteMutiKhachHang.StyleController = this.dataLayoutControl1;
+            this.btnDeleteMutiKhachHang.TabIndex = 10;
+            this.btnDeleteMutiKhachHang.Text = "Xóa các khách hàng bôi đen";
+            this.btnDeleteMutiKhachHang.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // btnEditKhachHang
             // 
             this.btnEditKhachHang.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnEditKhachHang.ImageOptions.SvgImage")));
             this.btnEditKhachHang.Location = new System.Drawing.Point(324, 52);
             this.btnEditKhachHang.Name = "btnEditKhachHang";
-            this.btnEditKhachHang.Size = new System.Drawing.Size(268, 36);
+            this.btnEditKhachHang.Size = new System.Drawing.Size(251, 36);
             this.btnEditKhachHang.StyleController = this.dataLayoutControl1;
             this.btnEditKhachHang.TabIndex = 9;
             this.btnEditKhachHang.Text = "Edit Khách Hàng";
@@ -178,7 +178,7 @@
             this.btnThemKhachHang.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThemKhachHang.ImageOptions.SvgImage")));
             this.btnThemKhachHang.Location = new System.Drawing.Point(324, 12);
             this.btnThemKhachHang.Name = "btnThemKhachHang";
-            this.btnThemKhachHang.Size = new System.Drawing.Size(268, 36);
+            this.btnThemKhachHang.Size = new System.Drawing.Size(251, 36);
             this.btnThemKhachHang.StyleController = this.dataLayoutControl1;
             this.btnThemKhachHang.TabIndex = 8;
             this.btnThemKhachHang.Text = "Thêm Khách Hàng";
@@ -268,6 +268,7 @@
             // ItemForIdKhachHang
             // 
             this.ItemForIdKhachHang.Control = this.IdKhachHangTextEdit;
+            this.ItemForIdKhachHang.Enabled = false;
             this.ItemForIdKhachHang.Location = new System.Drawing.Point(0, 0);
             this.ItemForIdKhachHang.Name = "ItemForIdKhachHang";
             this.ItemForIdKhachHang.Size = new System.Drawing.Size(160, 24);
@@ -306,7 +307,7 @@
             this.layoutControlItem4.Control = this.btnThemKhachHang;
             this.layoutControlItem4.Location = new System.Drawing.Point(312, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(272, 40);
+            this.layoutControlItem4.Size = new System.Drawing.Size(255, 40);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -315,7 +316,7 @@
             this.layoutControlItem5.Control = this.btnEditKhachHang;
             this.layoutControlItem5.Location = new System.Drawing.Point(312, 40);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(272, 40);
+            this.layoutControlItem5.Size = new System.Drawing.Size(255, 40);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -330,10 +331,10 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.Control = this.simpleButton2;
-            this.layoutControlItem6.Location = new System.Drawing.Point(584, 0);
+            this.layoutControlItem6.Control = this.btnDeleteMutiKhachHang;
+            this.layoutControlItem6.Location = new System.Drawing.Point(567, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(162, 80);
+            this.layoutControlItem6.Size = new System.Drawing.Size(179, 80);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -385,7 +386,7 @@
             this.colNameKhachHang.Name = "colNameKhachHang";
             this.colNameKhachHang.Visible = true;
             this.colNameKhachHang.VisibleIndex = 1;
-            this.colNameKhachHang.Width = 226;
+            this.colNameKhachHang.Width = 229;
             // 
             // colPhone
             // 
@@ -393,7 +394,7 @@
             this.colPhone.Name = "colPhone";
             this.colPhone.Visible = true;
             this.colPhone.VisibleIndex = 2;
-            this.colPhone.Width = 226;
+            this.colPhone.Width = 115;
             // 
             // colEmail
             // 
@@ -401,15 +402,16 @@
             this.colEmail.Name = "colEmail";
             this.colEmail.Visible = true;
             this.colEmail.VisibleIndex = 3;
-            this.colEmail.Width = 228;
+            this.colEmail.Width = 186;
             // 
             // btnDelete
             // 
-            this.btnDelete.Caption = "Delete";
+            this.btnDelete.Caption = "Xóa khách hàng";
             this.btnDelete.ColumnEdit = this.DeleteKhachHang;
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Visible = true;
             this.btnDelete.VisibleIndex = 5;
+            this.btnDelete.Width = 83;
             // 
             // DeleteKhachHang
             // 
@@ -422,11 +424,12 @@
             // 
             // btnChoose
             // 
-            this.btnChoose.Caption = "Choose";
+            this.btnChoose.Caption = "Chọn khách hàng";
             this.btnChoose.ColumnEdit = this.ChooseKhachHang;
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.Visible = true;
             this.btnChoose.VisibleIndex = 4;
+            this.btnChoose.Width = 78;
             // 
             // ChooseKhachHang
             // 
@@ -544,7 +547,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.TextEdit text_SearchKhachHang;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btnDeleteMutiKhachHang;
         private DevExpress.XtraEditors.SimpleButton btnEditKhachHang;
         private DevExpress.XtraEditors.SimpleButton btnThemKhachHang;
         private System.Windows.Forms.BindingSource khachHangBindingSource;

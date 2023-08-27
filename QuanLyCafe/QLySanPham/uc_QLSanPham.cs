@@ -205,7 +205,7 @@ namespace QuanLyCafe
             }
 
         }
-        private void RemoveSanPham(int IdSanPham)
+        public void RemoveSanPham(int IdSanPham)
         {
             var list_chitiethoadon = db_quanly.ChiTietHoaDons
                 .Where(p => p.IdSanPham == IdSanPham)
@@ -282,17 +282,17 @@ namespace QuanLyCafe
 
         private void btnEditSanPham_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(IdSanPhamSpinEdit.Text);
+            int IdSanPham = Convert.ToInt32(IdSanPhamSpinEdit.Value);
 
             byte[] image = Helper_Project.ConvertImageToByte(ImagePictureEdit.Image);
             if (image == null)
             {
-                XtraMessageBox.Show($"Chỉnh sửa ảnh thất bại !!", "Thêm sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Chỉnh sửa ảnh thất bại hoặc bạn chưa thêm ảnh vào !!", "Thêm sản phẩm", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //Helper_ShowNoti.ShowThongBao("Thêm sản phẩm", $"Chỉnh sửa ảnh thất bại !!", Helper_ShowNoti.SvgImageIcon.Success);
                 return;
             }
 
-            SanPham sanpham = db_quanly.SanPhams.Find(id);
+            SanPham sanpham = db_quanly.SanPhams.Find(IdSanPham);
             sanpham.NameSanPham = NameSanPhamTextEdit.Text;
             sanpham.GiaSanPham = GiaSanPhamSpinEdit.Value;
             sanpham.IdTypeSP = GET_ID_TYPESP(NameTypeSanPhamCbbEdit.Text);

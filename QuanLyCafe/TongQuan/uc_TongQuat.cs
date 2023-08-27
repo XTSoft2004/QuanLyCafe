@@ -35,6 +35,9 @@ namespace QuanLyCafe.TongQuan
         }
         private void uc_TongQuan_Load(object sender, EventArgs e)
         {
+            dateEdit1.DateTime = DateTime.Now;
+            dateEdit2.DateTime = DateTime.Now;
+
             LoadChartBarThongKe();
             LoadThongKeNow();
             LoadAccount();

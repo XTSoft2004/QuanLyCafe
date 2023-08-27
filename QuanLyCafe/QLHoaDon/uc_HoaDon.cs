@@ -178,32 +178,38 @@ namespace QuanLyCafe.QLHoaDon
 
             if (XtraMessageBox.Show(title_remove, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                var hoadon = db_quanly.HoaDons.Where(p => p.IdHoaDon == IdHoaDon).FirstOrDefault();
+                var hoadon = db_quanly.HoaDons.Where(p => p.IdHoaDon == IdHoaDon).ToList();
 
+                Delete_HoaDon(hoadon);
+            }
+
+            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xóa hóa đơn {IdHoaDon} ra khỏi hệ thống", Helper_ShowNoti.SvgImageIcon.Success);
+
+            LoadAllHoaDon();
+        }
+        public void Delete_HoaDon(List<HoaDon> hoaDon)
+        {
+            foreach (var hoadons in hoaDon)
+            {
                 var chitiethoadon = db_quanly.ChiTietHoaDons
-                    .Where(p => p.IdHoaDon == IdHoaDon).ToList();
+                .Where(p => p.IdHoaDon == hoadons.IdHoaDon).ToList();
 
-                foreach(var item in chitiethoadon)
+                foreach (var item in chitiethoadon)
                 {
                     var hoadontopping = db_quanly.HoaDonToppings.
                         Where(p => p.IdChiTietHoaDon == item.IdChiTietHoaDon).ToList();
 
-                    foreach(var topping  in hoadontopping)
+                    foreach (var topping in hoadontopping)
                     {
-                        db_quanly.HoaDonToppings.Remove(topping);
+                        db_quanly.HoaDonToppings.Remove(topping); // Xóa toppings
                     }
 
-                    db_quanly.ChiTietHoaDons.Remove(item);
-
+                    db_quanly.ChiTietHoaDons.Remove(item); // Xóa chi tiết hóa đơn
                 }
 
-                db_quanly.HoaDons.Remove(hoadon);
+                db_quanly.HoaDons.Remove(hoadons); // Xóa hóa đơn
             }
-
             db_quanly.SaveChanges();
-            Helper_ShowNoti.ShowThongBao("Thông báo", $"Đã xóa hóa đơn {IdHoaDon} ra khỏi hệ thống", Helper_ShowNoti.SvgImageIcon.Success);
-
-            LoadAllHoaDon();
         }
     }
 }

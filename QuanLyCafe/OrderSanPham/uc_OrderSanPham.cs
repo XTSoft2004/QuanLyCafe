@@ -200,6 +200,8 @@ namespace QuanLyCafe.OrderSanPham
 
         private void cbtnTienMat_CheckedChanged(object sender, EventArgs e)
         {
+            TinhTongHoaDon();
+
             if (cbtnTienMat.Checked == false)
             {
                 labelControl5.Enabled = false;
